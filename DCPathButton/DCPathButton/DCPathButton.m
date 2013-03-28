@@ -368,7 +368,7 @@ static CGFloat const kDCPathButtonDefaultShakeRight = -M_PI*0.1;
             andEndPoint_y:kDCPathButtonAllTypeTag_0_endPosition_y
       resetToStartPoint_x:kDCPathButtonAllTypeTag_0_startPosition_x
       resetToStartPoint_y:kDCPathButtonAllTypeTag_0_startPosition_y
-                 duration:0.2];
+                 duration:0.1];
         [self closeButton:button_1
            fromEndPoint_x:kDCPathButtonAllTypeTag_1_endPosition_x
             andEndPoint_y:kDCPathButtonAllTypeTag_1_endPosition_y
