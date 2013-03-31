@@ -17,10 +17,11 @@ How to use DCPathButton:
 						      buttonBackgroundImage:buttonBackgroundImage 
 						               buttonImages:buttonImages];	
 ### Custom Your Button Action
-	  [dcPathButton.button_tag addTarget:self 
-					  action:@selector(button_tag_Press:) 
-				forControlEvents:UIControlEventTouchUpInside];
-	  - (IBAction)button_tag_Press:(id)sender{}  
+ add the "DCPathButtonDelegate",if you want to custom the action for button in tag 0,just use this method:
+ 		- (void)button_0_press{
+ 		     //Custom you action
+		}
+	
 
 ### Parameter illustrte
 
