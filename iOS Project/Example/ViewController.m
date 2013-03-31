@@ -36,7 +36,7 @@
     [images addImage:@"dc-button_3.png"];
     [images addImage:@"dc-button_4.png"];
     
-    dcPathButton=[[DCPathButton alloc]initWithButtonCount:4
+    dcPathButton=[[DCPathButton alloc]initWithButtonCount:5
                                               totalRadius:70
                                              centerRadius:30
                                               centerImage:[UIImage imageNamed:kDCPathCenterButtonDefaultImage]
