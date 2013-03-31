@@ -17,12 +17,18 @@ How to use DCPathButton:
 						      buttonBackgroundImage:buttonBackgroundImage 
 						               buttonImages:buttonImages];	
 ### Custom Your Button Action
-####Add the "DCPathButtonDelegate",if you want to custom the action for button in tag 0,just use this method:
+
+####Add the "DCPathButtonDelegate" protocol,custom the button's action :
  		
 		- (void)button_0_press{
- 		     //Custom you action
+ 		     //Custom you actio
 		}
-	
+
+		- (void)button_1_press{
+ 		     //Custom you actio
+		}
+		............
+
 
 ### Parameter illustrte
 
