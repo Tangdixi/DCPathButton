@@ -21,11 +21,11 @@ How to use DCPathButton:
 ####Add the "DCPathButtonDelegate" protocol,custom the button's action :
  		
 		- (void)button_0_press{
- 		     //Custom you actio
+ 		     //Custom you action
 		}
 
 		- (void)button_1_press{
- 		     //Custom you actio
+ 		     //Custom you action
 		}
 		............
 
