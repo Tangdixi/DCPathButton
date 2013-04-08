@@ -13,36 +13,43 @@
     CGFloat kCurrentCenterButtonRadius;
     CGFloat kCurrentButtonRadius;
     
+    //tag 0 in all type position parameter
     CGFloat kDCPathButtonAllTypeTag_0_startPosition_x;
     CGFloat kDCPathButtonAllTypeTag_0_startPosition_y;
     CGFloat kDCPathButtonAllTypeTag_0_endPosition_x;
     CGFloat kDCPathButtonAllTypeTag_0_endPosition_y;
     
+    //tag 1 in all type position parameter
     CGFloat kDCPathButtonAllTypeTag_1_startPosition_x;
     CGFloat kDCPathButtonAllTypeTag_1_startPosition_y;
     CGFloat kDCPathButtonAllTypeTag_1_endPosition_x;
     CGFloat kDCPathButtonAllTypeTag_1_endPosition_y;
     
+    //tag 2 in all type 1  & 3 position parameter
     CGFloat kDCPathButtonType_1_3_Tag_2_startPosition_x;
     CGFloat kDCPathButtonType_1_3_Tag_2_startPosition_y;
     CGFloat kDCPathButtonType_1_3_Tag_2_endPosition_x;
     CGFloat kDCPathButtonType_1_3_Tag_2_endPosition_y;
     
+    //tag 2 in all type 2 position parameter
     CGFloat kDCPathButtonType_2_Tag_2_startPosition_x;
     CGFloat kDCPathButtonType_2_Tag_2_startPosition_y;
     CGFloat kDCPathButtonType_2_Tag_2_endPosition_x;
     CGFloat kDCPathButtonType_2_Tag_2_endPosition_y;
     
+    //tag 3 in all type 2 position parameter
     CGFloat kDCPathButtonType_2_Tag_3_startPosition_x;
     CGFloat kDCPathButtonType_2_Tag_3_startPosition_y;
     CGFloat kDCPathButtonType_2_Tag_3_endPosition_x;
     CGFloat kDCPathButtonType_2_Tag_3_endPosition_y;
     
+    //tag 3 in all type 3 position parameter
     CGFloat kDCPathButtonType_3_Tag_3_startPosition_x;
     CGFloat kDCPathButtonType_3_Tag_3_startPosition_y;
     CGFloat kDCPathButtonType_3_Tag_3_endPosition_x;
     CGFloat kDCPathButtonType_3_Tag_3_endPosition_y;
     
+    //tag 4 in all type 3 position parameter
     CGFloat kDCPathButtonType_3_Tag_4_startPosition_x;
     CGFloat kDCPathButtonType_3_Tag_4_startPosition_y;
     CGFloat kDCPathButtonType_3_Tag_4_endPosition_x;
@@ -294,7 +301,6 @@ static CGFloat const kDCPathButtonDefaultShakeRight = -M_PI*0.1;
 }
 
 - (IBAction)centerButtonPress{
-    random = arc4random()%2;
     switch (random) {
         case 0:
         {
@@ -387,6 +393,7 @@ static CGFloat const kDCPathButtonDefaultShakeRight = -M_PI*0.1;
                 break;
         }
         isExpand = NO;
+        random = arc4random()%2;
     }
 }
 
@@ -532,6 +539,7 @@ static CGFloat const kDCPathButtonDefaultShakeRight = -M_PI*0.1;
                 break;
         }
         isExpand = NO;
+        random = arc4random()%2;
     }
 }
 

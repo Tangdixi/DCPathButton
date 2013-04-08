@@ -146,9 +146,9 @@
 				DA21D0AB17081DDB0075EDE4 /* DCPathButtonConstant.h */,
 				DA21D0AC17081DDB0075EDE4 /* DCSubButton.h */,
 				DA21D0AD17081DDB0075EDE4 /* DCSubButton.m */,
-				DA21D0AE17081DDB0075EDE4 /* Images */,
-				DA21D0B717081DDB0075EDE4 /* NSMutableArray+addImage.h */,
 				DA21D0B817081DDB0075EDE4 /* NSMutableArray+addImage.m */,
+				DA21D0B717081DDB0075EDE4 /* NSMutableArray+addImage.h */,
+				DA21D0AE17081DDB0075EDE4 /* Images */,
 			);
 			path = DCPathButton;
 			sourceTree = "<group>";
@@ -370,6 +370,7 @@
 				DA21D0A717081DCC0075EDE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
