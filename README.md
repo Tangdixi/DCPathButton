@@ -7,15 +7,16 @@ How to use DCPathButton:
 =================================================
 ### Create a dcPathButton
 
-     DCPathButton *dcPathButton=[[DCPathButton alloc]initWithButtonCount:count 
-								totalRadius:totalRadius 
-							       centerRadius:centerRadius 
-								centerImage:centerImage
-					              centerBackgroundImage:centerBackgroundImage 
-						 centerButtonHighLightImage:centerButtonHighLightImage 
-						 	       buttonRadius:buttonRadius 
-						      buttonBackgroundImage:buttonBackgroundImage 
-						               buttonImages:buttonImages];	
+    DCPathButton *dcPathButton=[[DCPathButton alloc]initWithButtonCount:count 
+     														totalRadius:totalRadius 
+     													   centerRadius:centerRadius 
+     													    centerImage:centerImage
+     											  centerBackgroundImage:centerBackgroundImage 
+     										 centerButtonHighLightImage:centerButtonHighLightImage 					 	       
+     													   buttonRadius:buttonRadius 
+     											  buttonBackgroundImage:buttonBackgroundImage 
+     												       buttonImages:buttonImages];	
+     												       
 ### Custom Your Button Action
 
 ####Add the "DCPathButtonDelegate" protocol,custom the button's action :
@@ -33,16 +34,16 @@ How to use DCPathButton:
 ### Parameter illustrte
 
 	  -- Parameter illustrte
-	  Count: How many button you want to show, range between 3 to 5, if you set this parameter above 
-	         5,it will set the maximum value 5, the same to the minimum value 3.
-	  TotalRadius: The radius that whole the buttons expanded, maximum half screen width minus button
-	               radius, this parameter shouldn't be 0.
-	  CenterRadius: The center button's radius, shouldn't be nil but it already have a normal radius,
-	                maximum 100.
-	  ButtonRadius: The button which around the center button, they will have a same radius you give,
-	                shouldn't be nil but have a normal radius, maximum 80.
-	  ButtonImages: Use an array to save whole the button images, you have to keep the images' number
-	                equal to the parameter count, or greater than it.
+	  Count: 			How many button you want to show, range between 3 to 5, if you set this parameter above 
+	         			5,it will set the maximum value 5, the same to the minimum value 3.
+	  TotalRadius: 		The radius that whole the buttons expanded, maximum half screen width minus button
+	               		radius, this parameter shouldn't be 0.
+	  CenterRadius: 	The center button's radius, shouldn't be nil but it already have a normal radius,
+	               		maximum 100.
+	  ButtonRadius: 	The button which around the center button, they will have a same radius you give,
+	                	shouldn't be nil but have a normal radius, maximum 80.
+	  ButtonImages: 	Use an array to save whole the button images, you have to keep the images' number
+	                	equal to the parameter count, or greater than it.
 	  CenterBackgroundImage & buttonBackgroundImage: If you set this parameter nil, it will use the 
 	    						   normal background image, hope you like it. (^_^)
 	
