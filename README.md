@@ -2,6 +2,7 @@
 ### __________Create by Tangdixi
 #Date:2013/3/25
 ---------------------
+
 ![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/3.jpeg)
 ![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/4.jpeg)
 ![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/5.jpeg)
@@ -34,11 +35,11 @@ How to use DCPathButton:
 		............
 
 
-### Parameter illustrte
+### Parameter illustrate
 
 	  -- Parameter illustrte
-	  Count: 			How many button you want to show, range between 3 to 5, if you set this parameter above 
-	         			5,it will set the maximum value 5, the same to the minimum value 3.
+	  Count: 		How many button you want to show, range between 3 to 5, if you set this parameter above 
+	         		5,it will set the maximum value 5, the same to the minimum value 3.
 	  TotalRadius: 		The radius that whole the buttons expanded, maximum half screen width minus button
 	               		radius, this parameter shouldn't be 0.
 	  CenterRadius: 	The center button's radius, shouldn't be nil but it already have a normal radius,
@@ -47,7 +48,9 @@ How to use DCPathButton:
 	                	shouldn't be nil but have a normal radius, maximum 80.
 	  ButtonImages: 	Use an array to save whole the button images, you have to keep the images' number
 	                	equal to the parameter count, or greater than it.
-	  CenterBackgroundImage & buttonBackgroundImage: If you set this parameter nil, it will use the 
+	  CenterBackgroundImage 
+	  	& 
+	  buttonBackgroundImage: If you set this parameter nil, it will use the 
 	    						   normal background image, hope you like it. (^_^)
 	
 	
