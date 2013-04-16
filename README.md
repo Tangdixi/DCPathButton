@@ -20,7 +20,24 @@ How to use DCPathButton:
      													   buttonRadius:buttonRadius 
      											  buttonBackgroundImage:buttonBackgroundImage 
      												       buttonImages:buttonImages];	
-     												       
+     						
+     						
+### Add DCPathButton Delegate
+
+	Example:
+		#import <UIKit/UIKit.h>
+		#import "DCPathButton.h"
+
+		@interface ViewController : UIViewController<DCPathButtonDelegate>
+		@property (strong, nonatomic) DCPathButton *dcPathButton;
+
+		@end
+		...................
+	
+	//Set the DCPathButton Delegate
+		dcPathButton.delegate = self;
+	
+
 ### Custom Your Button Action
 
 ####Add the "DCPathButtonDelegate" protocol,custom the button's action :
