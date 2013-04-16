@@ -29,7 +29,8 @@
 }
 
 - (void)setUpDCPathButton{
-    NSMutableArray *images = [NSMutableArray arrayContainImages:4];
+    NSMutableArray *images = [NSMutableArray arrayContainImages:4];// Use a NSMutableArray catagory I provide, or you can use a mutable array to achive the same goal
+    
     [images addImage:@"dc-button_0.png"];
     [images addImage:@"dc-button_1.png"];
     [images addImage:@"dc-button_2.png"];
@@ -37,12 +38,12 @@
     [images addImage:@"dc-button_4.png"];
     
     dcPathButton=[[DCPathButton alloc]initWithButtonCount:5
-                                              totalRadius:70
-                                             centerRadius:30
+                                              totalRadius:60
+                                             centerRadius:20
                                               centerImage:[UIImage imageNamed:kDCPathCenterButtonDefaultImage]
                                     centerBackgroundImage:[UIImage imageNamed:kDCPathCenterButtonDefaultImage]
                                centerButtonHighLightImage:[UIImage imageNamed:kDCPathCenterButtonDefaultHighLightImage]
-                                             buttonRadius:20
+                                             buttonRadius:15
                                     buttonBackgroundImage:[UIImage imageNamed:@"dc-buttonBackground.png"]
                                              buttonImages:images];
     dcPathButton.delegate = self;

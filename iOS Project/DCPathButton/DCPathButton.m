@@ -69,6 +69,8 @@ static CGFloat const kDCPathButtonDefaultReverseRotation = -M_PI*2;
 static CGFloat const kDCPathButtonDefaultShakeLeft = M_PI*0.1;
 static CGFloat const kDCPathButtonDefaultShakeRight = -M_PI*0.1;
 
+#pragma mark - Initialization 
+
 - (id)initWithButtonCount:(NSUInteger)count totalRadius:(CGFloat)totalRadius centerRadius:(CGFloat)centerRadius centerImage:(UIImage *)centerImage centerBackgroundImage:(UIImage *)centerBackgroundImage centerButtonHighLightImage:(UIImage *)centerButtonHighLightImage buttonRadius:(CGFloat)buttonRadius buttonBackgroundImage:(UIImage *)buttonBackgroundImage buttonImages:(NSArray *)buttonImages{
     
     centerRadius == 0? (kCurrentCenterButtonRadius = kDCPathButtonDefaultCenterRadius) :(kCurrentCenterButtonRadius = centerRadius);
@@ -86,6 +88,8 @@ static CGFloat const kDCPathButtonDefaultShakeRight = -M_PI*0.1;
     }
     return self;
 }
+
+#pragma mark - Configure button's basic parameters
 
 - (void)getReadyButtonParameterWithCount:(NSUInteger)count totalRaius:(CGFloat)totalRadius{
     [self configureAllTypeBasicParameters:totalRadius];
@@ -182,8 +186,6 @@ static CGFloat const kDCPathButtonDefaultShakeRight = -M_PI*0.1;
     kDCPathButtonType_3_Tag_4_endPosition_y = kDCPathButtonCurrentScreenHeight/2 +
     totalRadius*cosf(kDCPathButtonBasicRadian_2) + kCurrentButtonRadius;
 }
-
-//  Animation type 1 delegate
 
 - (void)setUpCenterButtonRadius:(CGFloat)cRadius buttonImage:(UIImage *)cbImage backgroundImage:(UIImage *)cbbImage highLightImage:(UIImage *)highLightImage{
     centerButton = [[UIButton alloc] init];
@@ -300,24 +302,88 @@ static CGFloat const kDCPathButtonDefaultShakeRight = -M_PI*0.1;
     }
 }
 
+#pragma mark - Animation Control
+
 - (IBAction)centerButtonPress{
-    switch (random) {
-        case 0:
-        {
-            [self centerButtonPress_1];
-        }
-            break;
-        case 1:
-        {
-            [self centerButtonPress_2];
-        }
-        default:
-            break;
+    if (!isExpand) {
+        [self expandAcion];
+    }
+    else{
+        [self shrinkAction];
     }
 }
 
-- (void)centerButtonPress_1{
-    if (!isExpand) {
+- (void)shrinkAction{
+    [self closeButtonAnimation_1:button_0
+                  fromEndPoint_x:kDCPathButtonAllTypeTag_0_endPosition_x
+                   andEndPoint_y:kDCPathButtonAllTypeTag_0_endPosition_y
+             resetToStartPoint_x:kDCPathButtonAllTypeTag_0_startPosition_x
+             resetToStartPoint_y:kDCPathButtonAllTypeTag_0_startPosition_y
+                        duration:0.2];
+    [self closeButtonAnimation_1:button_1
+                  fromEndPoint_x:kDCPathButtonAllTypeTag_1_endPosition_x
+                   andEndPoint_y:kDCPathButtonAllTypeTag_1_endPosition_y
+             resetToStartPoint_x:kDCPathButtonAllTypeTag_1_startPosition_x
+             resetToStartPoint_y:kDCPathButtonAllTypeTag_1_startPosition_y
+                        duration:0.3];
+    switch ((int)kCurrentButtonsCount) {
+        case 3:
+        {
+            [self closeButtonAnimation_1:button_2
+                          fromEndPoint_x:kDCPathButtonType_1_3_Tag_2_endPosition_x
+                           andEndPoint_y:kDCPathButtonType_1_3_Tag_2_endPosition_y
+                     resetToStartPoint_x:kDCPathButtonType_1_3_Tag_2_startPosition_x
+                     resetToStartPoint_y:kDCPathButtonType_1_3_Tag_2_startPosition_y
+                                duration:0.5];
+        }
+            break;
+        case 4:
+        {
+            [self closeButtonAnimation_1:button_2
+                          fromEndPoint_x:kDCPathButtonType_2_Tag_2_endPosition_x
+                           andEndPoint_y:kDCPathButtonType_2_Tag_2_endPosition_y
+                     resetToStartPoint_x:kDCPathButtonType_2_Tag_2_startPosition_x
+                     resetToStartPoint_y:kDCPathButtonType_2_Tag_2_startPosition_y
+                                duration:0.7];
+            [self closeButtonAnimation_1:button_3
+                          fromEndPoint_x:kDCPathButtonType_2_Tag_3_endPosition_x
+                           andEndPoint_y:kDCPathButtonType_2_Tag_3_endPosition_y
+                     resetToStartPoint_x:kDCPathButtonType_2_Tag_3_startPosition_x
+                     resetToStartPoint_y:kDCPathButtonType_2_Tag_3_startPosition_y
+                                duration:0.5];
+        }
+            break;
+        case 5:
+        {
+            [self closeButtonAnimation_1:button_2
+                          fromEndPoint_x:kDCPathButtonType_1_3_Tag_2_endPosition_x
+                           andEndPoint_y:kDCPathButtonType_1_3_Tag_2_endPosition_y
+                     resetToStartPoint_x:kDCPathButtonType_1_3_Tag_2_startPosition_x
+                     resetToStartPoint_y:kDCPathButtonType_1_3_Tag_2_startPosition_y
+                                duration:0.7];
+            [self closeButtonAnimation_1:button_3
+                          fromEndPoint_x:kDCPathButtonType_3_Tag_3_endPosition_x
+                           andEndPoint_y:kDCPathButtonType_3_Tag_3_endPosition_y
+                     resetToStartPoint_x:kDCPathButtonType_3_Tag_3_startPosition_x
+                     resetToStartPoint_y:kDCPathButtonType_3_Tag_3_startPosition_y
+                                duration:0.5];
+            [self closeButtonAnimation_1:button_4
+                          fromEndPoint_x:kDCPathButtonType_3_Tag_4_endPosition_x
+                           andEndPoint_y:kDCPathButtonType_3_Tag_4_endPosition_y
+                     resetToStartPoint_x:kDCPathButtonType_3_Tag_4_startPosition_x
+                     resetToStartPoint_y:kDCPathButtonType_3_Tag_4_startPosition_y
+                                duration:0.9];
+        }
+            break;
+        default:
+            break;
+    }
+    isExpand = NO;
+    random = arc4random()%11;
+}
+
+- (void)expandAcion{
+    if (random > 5) {
         [self expandButtonAnimation_2:button_0 appearAtEndPoint_x:kDCPathButtonAllTypeTag_0_endPosition_x endPoint_y:kDCPathButtonAllTypeTag_0_endPosition_y delay:0.3];
         [self expandButtonAnimation_2:button_1 appearAtEndPoint_x:kDCPathButtonAllTypeTag_1_endPosition_x endPoint_y:kDCPathButtonAllTypeTag_0_endPosition_y delay:0.4];
         switch ((int)kCurrentButtonsCount) {
@@ -345,203 +411,84 @@ static CGFloat const kDCPathButtonDefaultShakeRight = -M_PI*0.1;
         isExpand = YES;
     }
     else{
-        [self closeButtonAnimation_2:button_0
-               dismissAtStartPoint_x:kDCPathButtonAllTypeTag_0_startPosition_x
-                        StartPoint_y:kDCPathButtonAllTypeTag_0_startPosition_y
-                               delay:0.3];
-        [self closeButtonAnimation_2:button_1
-               dismissAtStartPoint_x:kDCPathButtonAllTypeTag_1_startPosition_x
-                        StartPoint_y:kDCPathButtonAllTypeTag_1_startPosition_y
-                               delay:0.4];
-        switch ((int)kCurrentButtonsCount) {
-            case 3:
-            {
-                [self closeButtonAnimation_2:button_2
-                       dismissAtStartPoint_x:kDCPathButtonType_1_3_Tag_2_startPosition_x
-                                StartPoint_y:kDCPathButtonType_1_3_Tag_2_startPosition_y
-                                       delay:0.5];
-            }
-                break;
-            case 4:
-            {
-                [self closeButtonAnimation_2:button_2
-                       dismissAtStartPoint_x:kDCPathButtonType_2_Tag_2_startPosition_x  
-                                StartPoint_y:kDCPathButtonType_2_Tag_2_startPosition_y
-                                       delay:0.5];
-                [self closeButtonAnimation_2:button_3
-                       dismissAtStartPoint_x:kDCPathButtonType_2_Tag_3_startPosition_x
-                                StartPoint_y:kDCPathButtonType_2_Tag_3_startPosition_y
-                                       delay:0.6];
-            }
-                break;
-            case 5:{
-                [self closeButtonAnimation_2:button_2
-                       dismissAtStartPoint_x:kDCPathButtonType_1_3_Tag_2_startPosition_x
-                                StartPoint_y:kDCPathButtonType_1_3_Tag_2_startPosition_y
-                                       delay:0.5];
-                [self closeButtonAnimation_2:button_3
-                       dismissAtStartPoint_x:kDCPathButtonType_3_Tag_3_startPosition_x
-                                StartPoint_y:kDCPathButtonType_3_Tag_3_startPosition_y
-                                       delay:0.6];
-                [self closeButtonAnimation_2:button_4
-                       dismissAtStartPoint_x:kDCPathButtonType_3_Tag_4_startPosition_x
-                                StartPoint_y:kDCPathButtonType_3_Tag_4_startPosition_y
-                                       delay:0.7];
-            }
-                break;
-            default:
-                break;
-        }
-        isExpand = NO;
-        random = arc4random()%2;
-    }
-}
-
-- (void)centerButtonPress_2{
-    if (!isExpand) {
         [self expandButtonAnimation_1:button_0
-                       fromStart_x:kDCPathButtonAllTypeTag_1_startPosition_x
-                        andStart_y:kDCPathButtonAllTypeTag_1_startPosition_y
-                           toEnd_x:kDCPathButtonAllTypeTag_0_endPosition_x
-                          andEnd_y:kDCPathButtonAllTypeTag_0_endPosition_y
-                        withRadius:kCurrentButtonRadius
-                             delay:0.3];
+                          fromStart_x:kDCPathButtonAllTypeTag_1_startPosition_x
+                           andStart_y:kDCPathButtonAllTypeTag_1_startPosition_y
+                              toEnd_x:kDCPathButtonAllTypeTag_0_endPosition_x
+                             andEnd_y:kDCPathButtonAllTypeTag_0_endPosition_y
+                           withRadius:kCurrentButtonRadius
+                                delay:0.3];
         [self expandButtonAnimation_1:button_1
-                       fromStart_x:kDCPathButtonAllTypeTag_0_startPosition_x
-                        andStart_y:kDCPathButtonAllTypeTag_0_startPosition_y
-                           toEnd_x:kDCPathButtonAllTypeTag_1_endPosition_x
-                          andEnd_y:kDCPathButtonAllTypeTag_1_endPosition_y
-                        withRadius:kCurrentButtonRadius
-                             delay:0.4];
+                          fromStart_x:kDCPathButtonAllTypeTag_0_startPosition_x
+                           andStart_y:kDCPathButtonAllTypeTag_0_startPosition_y
+                              toEnd_x:kDCPathButtonAllTypeTag_1_endPosition_x
+                             andEnd_y:kDCPathButtonAllTypeTag_1_endPosition_y
+                           withRadius:kCurrentButtonRadius
+                                delay:0.4];
         switch ((int)kCurrentButtonsCount) {
             case 3:
             {
                 [self expandButtonAnimation_1:button_2
-                               fromStart_x:kDCPathButtonType_1_3_Tag_2_startPosition_x
-                                andStart_y:kDCPathButtonType_1_3_Tag_2_startPosition_y
-                                   toEnd_x:kDCPathButtonType_1_3_Tag_2_endPosition_x
-                                  andEnd_y:kDCPathButtonType_1_3_Tag_2_endPosition_y
-                                withRadius:kCurrentButtonRadius
-                                     delay:0.45];
+                                  fromStart_x:kDCPathButtonType_1_3_Tag_2_startPosition_x
+                                   andStart_y:kDCPathButtonType_1_3_Tag_2_startPosition_y
+                                      toEnd_x:kDCPathButtonType_1_3_Tag_2_endPosition_x
+                                     andEnd_y:kDCPathButtonType_1_3_Tag_2_endPosition_y
+                                   withRadius:kCurrentButtonRadius
+                                        delay:0.45];
             }
                 break;
             case 4:
             {
                 [self expandButtonAnimation_1:button_2
-                               fromStart_x:kDCPathButtonType_2_Tag_3_startPosition_x
-                                andStart_y:kDCPathButtonType_2_Tag_3_startPosition_y
-                                   toEnd_x:kDCPathButtonType_2_Tag_2_endPosition_x
-                                  andEnd_y:kDCPathButtonType_2_Tag_2_endPosition_y
-                                withRadius:kCurrentButtonRadius
-                                     delay:0.6];
+                                  fromStart_x:kDCPathButtonType_2_Tag_3_startPosition_x
+                                   andStart_y:kDCPathButtonType_2_Tag_3_startPosition_y
+                                      toEnd_x:kDCPathButtonType_2_Tag_2_endPosition_x
+                                     andEnd_y:kDCPathButtonType_2_Tag_2_endPosition_y
+                                   withRadius:kCurrentButtonRadius
+                                        delay:0.6];
                 [self expandButtonAnimation_1:button_3
-                               fromStart_x:kDCPathButtonType_2_Tag_2_startPosition_x
-                                andStart_y:kDCPathButtonType_2_Tag_2_startPosition_y
-                                   toEnd_x:kDCPathButtonType_2_Tag_3_endPosition_x
-                                  andEnd_y:kDCPathButtonType_2_Tag_3_endPosition_y
-                                withRadius:kCurrentButtonRadius
-                                     delay:0.55];
+                                  fromStart_x:kDCPathButtonType_2_Tag_2_startPosition_x
+                                   andStart_y:kDCPathButtonType_2_Tag_2_startPosition_y
+                                      toEnd_x:kDCPathButtonType_2_Tag_3_endPosition_x
+                                     andEnd_y:kDCPathButtonType_2_Tag_3_endPosition_y
+                                   withRadius:kCurrentButtonRadius
+                                        delay:0.55];
             }
                 break;
             case 5:
             {
                 [self expandButtonAnimation_1:button_2
-                               fromStart_x:kDCPathButtonType_1_3_Tag_2_startPosition_x
-                                andStart_y:kDCPathButtonType_1_3_Tag_2_startPosition_y
-                                   toEnd_x:kDCPathButtonType_1_3_Tag_2_endPosition_x
-                                  andEnd_y:kDCPathButtonType_1_3_Tag_2_endPosition_y
-                                withRadius:kCurrentButtonRadius
-                                     delay:0.5];
+                                  fromStart_x:kDCPathButtonType_1_3_Tag_2_startPosition_x
+                                   andStart_y:kDCPathButtonType_1_3_Tag_2_startPosition_y
+                                      toEnd_x:kDCPathButtonType_1_3_Tag_2_endPosition_x
+                                     andEnd_y:kDCPathButtonType_1_3_Tag_2_endPosition_y
+                                   withRadius:kCurrentButtonRadius
+                                        delay:0.5];
                 [self expandButtonAnimation_1:button_3
-                               fromStart_x:kDCPathButtonType_3_Tag_4_startPosition_x
-                                andStart_y:kDCPathButtonType_3_Tag_4_startPosition_y
-                                   toEnd_x:kDCPathButtonType_3_Tag_3_endPosition_x
-                                  andEnd_y:kDCPathButtonType_3_Tag_3_endPosition_y
-                                withRadius:kCurrentButtonRadius
-                                     delay:0.6];
+                                  fromStart_x:kDCPathButtonType_3_Tag_4_startPosition_x
+                                   andStart_y:kDCPathButtonType_3_Tag_4_startPosition_y
+                                      toEnd_x:kDCPathButtonType_3_Tag_3_endPosition_x
+                                     andEnd_y:kDCPathButtonType_3_Tag_3_endPosition_y
+                                   withRadius:kCurrentButtonRadius
+                                        delay:0.6];
                 [self expandButtonAnimation_1:button_4
-                               fromStart_x:kDCPathButtonType_3_Tag_3_startPosition_x
-                                andStart_y:kDCPathButtonType_3_Tag_3_startPosition_y
-                                   toEnd_x:kDCPathButtonType_3_Tag_4_endPosition_x
-                                  andEnd_y:kDCPathButtonType_3_Tag_4_endPosition_y
-                                withRadius:kCurrentButtonRadius
-                                     delay:0.7];
+                                  fromStart_x:kDCPathButtonType_3_Tag_3_startPosition_x
+                                   andStart_y:kDCPathButtonType_3_Tag_3_startPosition_y
+                                      toEnd_x:kDCPathButtonType_3_Tag_4_endPosition_x
+                                     andEnd_y:kDCPathButtonType_3_Tag_4_endPosition_y
+                                   withRadius:kCurrentButtonRadius
+                                        delay:0.7];
             }
                 break;
             default:
                 break;
         }
         isExpand = YES;
-    }   
-    else{
-        [self closeButtonAnimation_1:button_0
-           fromEndPoint_x:kDCPathButtonAllTypeTag_0_endPosition_x
-            andEndPoint_y:kDCPathButtonAllTypeTag_0_endPosition_y
-      resetToStartPoint_x:kDCPathButtonAllTypeTag_0_startPosition_x
-      resetToStartPoint_y:kDCPathButtonAllTypeTag_0_startPosition_y
-                 duration:0.2];
-        [self closeButtonAnimation_1:button_1
-           fromEndPoint_x:kDCPathButtonAllTypeTag_1_endPosition_x
-            andEndPoint_y:kDCPathButtonAllTypeTag_1_endPosition_y
-      resetToStartPoint_x:kDCPathButtonAllTypeTag_1_startPosition_x
-      resetToStartPoint_y:kDCPathButtonAllTypeTag_1_startPosition_y
-                 duration:0.3];
-        switch ((int)kCurrentButtonsCount) {
-            case 3:
-            {
-                [self closeButtonAnimation_1:button_2
-                   fromEndPoint_x:kDCPathButtonType_1_3_Tag_2_endPosition_x
-                    andEndPoint_y:kDCPathButtonType_1_3_Tag_2_endPosition_y
-              resetToStartPoint_x:kDCPathButtonType_1_3_Tag_2_startPosition_x
-              resetToStartPoint_y:kDCPathButtonType_1_3_Tag_2_startPosition_y
-                         duration:0.5];
-            }
-                break;
-            case 4:
-            {
-                [self closeButtonAnimation_1:button_2
-                   fromEndPoint_x:kDCPathButtonType_2_Tag_2_endPosition_x
-                    andEndPoint_y:kDCPathButtonType_2_Tag_2_endPosition_y
-              resetToStartPoint_x:kDCPathButtonType_2_Tag_2_startPosition_x
-              resetToStartPoint_y:kDCPathButtonType_2_Tag_2_startPosition_y
-                         duration:0.7];
-                [self closeButtonAnimation_1:button_3
-                   fromEndPoint_x:kDCPathButtonType_2_Tag_3_endPosition_x
-                    andEndPoint_y:kDCPathButtonType_2_Tag_3_endPosition_y
-              resetToStartPoint_x:kDCPathButtonType_2_Tag_3_startPosition_x
-              resetToStartPoint_y:kDCPathButtonType_2_Tag_3_startPosition_y
-                         duration:0.5];
-            }
-                break;
-            case 5:
-            {
-                [self closeButtonAnimation_1:button_2
-                   fromEndPoint_x:kDCPathButtonType_1_3_Tag_2_endPosition_x
-                    andEndPoint_y:kDCPathButtonType_1_3_Tag_2_endPosition_y
-              resetToStartPoint_x:kDCPathButtonType_1_3_Tag_2_startPosition_x
-              resetToStartPoint_y:kDCPathButtonType_1_3_Tag_2_startPosition_y
-                         duration:0.7];
-                [self closeButtonAnimation_1:button_3
-                   fromEndPoint_x:kDCPathButtonType_3_Tag_3_endPosition_x
-                    andEndPoint_y:kDCPathButtonType_3_Tag_3_endPosition_y
-              resetToStartPoint_x:kDCPathButtonType_3_Tag_3_startPosition_x
-              resetToStartPoint_y:kDCPathButtonType_3_Tag_3_startPosition_y
-                         duration:0.5];
-                [self closeButtonAnimation_1:button_4
-                   fromEndPoint_x:kDCPathButtonType_3_Tag_4_endPosition_x
-                    andEndPoint_y:kDCPathButtonType_3_Tag_4_endPosition_y
-              resetToStartPoint_x:kDCPathButtonType_3_Tag_4_startPosition_x
-              resetToStartPoint_y:kDCPathButtonType_3_Tag_4_startPosition_y
-                         duration:0.9];
-            }
-                break;
-            default:
-                break;
-        }
-        isExpand = NO;
-        random = arc4random()%2;
     }
+
 }
+
+#pragma mark - Animation delegate
 
 - (void)expandButtonAnimation_1:(UIButton *)button fromStart_x:(CGFloat)startPoint_x andStart_y:(CGFloat)startPoint_y toEnd_x:(CGFloat)endPoint_x andEnd_y:(CGFloat)endPoint_y withRadius:(CGFloat)currentButtonRadius delay:(CGFloat)time{
     CAKeyframeAnimation *button_rotation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
@@ -619,7 +566,7 @@ resetToStartPoint_x:(CGFloat)startPoint_x resetToStartPoint_y:(CGFloat)startPoin
     button.center = CGPointMake(startPoint_x, startPoint_y);
 }
 
-#pragma mark - DCSubButton Delegate
+#pragma mark - DCSubButton delegate
 
 - (void)subButtonPress:(DCSubButton *)button{
     if ([_delegate respondsToSelector:@selector(button_0_press)] &&

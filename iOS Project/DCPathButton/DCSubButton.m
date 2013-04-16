@@ -22,13 +22,13 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     self.highlighted = YES;
-    if ([_delegate respondsToSelector:@selector(subButtonPress:)]) {
-        [_delegate subButtonPress:self];
-    }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     self.highlighted = NO;
+    if ([_delegate respondsToSelector:@selector(subButtonPress:)]) {
+        [_delegate subButtonPress:self];
+    }
 }
 
 /*
