@@ -3,10 +3,17 @@
 #Date:2013/3/25
 ---------------------
 
-![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/3.jpeg)
-![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/4.jpeg)
-![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/5.jpeg)
-![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/6.jpeg)
+## Circle buttons
+![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/3.jpeg) .
+![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/4.jpeg) .
+![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/5.jpeg) .
+![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/6.jpeg) .
+
+# Button Animations
+![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/3g.gif) .
+![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/4g.gif) .
+![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/5g.gif) .
+![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/6g.gif) .
 
 How to use DCPathButton:
 =================================================
