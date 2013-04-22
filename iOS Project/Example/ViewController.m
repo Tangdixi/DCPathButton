@@ -1,8 +1,8 @@
 //
 //  ViewController.m
-//  Example
+//  DCPathButton
 //
-//  Created by Paul on 3/31/13.
+//  Created by Paul on 4/19/13.
 //  Copyright (c) 2013 Paul. All rights reserved.
 //
 
@@ -13,12 +13,31 @@
 @end
 
 @implementation ViewController
-@synthesize dcPathButton;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setUpDCPathButton];
+    
+    self.view.frame = CGRectMake(0, 0, 320, 460);
+    self.view.backgroundColor = [UIColor whiteColor];
+    DCPathButton *dcPathButton = [[DCPathButton alloc]
+                                  initDCPathButtonWithSubButtons:3
+                                  totalRadius:85
+                                  centerRadius:30
+                                  subRadius:25
+                                  centerImage:@"custom_center"
+                                  centerBackground:nil
+                                  subImages:^(DCPathButton *dc){
+                                      [dc subButtonImage:@"custom_1" withTag:0];
+                                      [dc subButtonImage:@"custom_2" withTag:1];
+                                      [dc subButtonImage:@"custom_3" withTag:2];
+                                      //[dc subButtonImage:@"custom_4" withTag:3];
+                                      //[dc subButtonImage:@"custom_5" withTag:4];
+                                      //[dc subButtonImage:@"custom_1" withTag:5];
+                                  }
+                                  subImageBackground:nil inParentView:self.view];
+    dcPathButton.delegate = self;
+    
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -28,49 +47,30 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)setUpDCPathButton{
-    NSMutableArray *images = [NSMutableArray arrayContainImages:4];// Use a NSMutableArray catagory I provide, or you can use a mutable array to achive the same goal
-    
-    [images addImage:@"dc-button_0.png"];
-    [images addImage:@"dc-button_1.png"];
-    [images addImage:@"dc-button_2.png"];
-    [images addImage:@"dc-button_3.png"];
-    [images addImage:@"dc-button_4.png"];
-    
-    dcPathButton=[[DCPathButton alloc]initWithButtonCount:5
-                                              totalRadius:60
-                                             centerRadius:20
-                                              centerImage:[UIImage imageNamed:kDCPathCenterButtonDefaultImage]
-                                    centerBackgroundImage:[UIImage imageNamed:kDCPathCenterButtonDefaultImage]
-                               centerButtonHighLightImage:[UIImage imageNamed:kDCPathCenterButtonDefaultHighLightImage]
-                                             buttonRadius:15
-                                    buttonBackgroundImage:[UIImage imageNamed:@"dc-buttonBackground.png"]
-                                             buttonImages:images];
-    dcPathButton.delegate = self;
-    [self.view addSubview:dcPathButton];
-}
-
 #pragma mark - DCPathButton delegate
 
-- (void)button_0_press{
-    NSLog(@"Press 0");
+- (void)button_0_action{
+    NSLog(@"Button Press Tag 0!!");
 }
 
-- (void)button_1_press{
-    NSLog(@"Press 1");
+- (void)button_1_action{
+    NSLog(@"Button Press Tag 1!!");
 }
 
-- (void)button_2_press{
-    NSLog(@"Press 2");
+- (void)button_2_action{
+    NSLog(@"Button Press Tag 2!!");
 }
 
-- (void)button_3_press{
-    NSLog(@"Press 3");
+- (void)button_3_action{
+    NSLog(@"Button Press Tag 3!!");
 }
 
-- (void)button_4_press{
-    NSLog(@"Press 4");
+- (void)button_4_action{
+    NSLog(@"Button Press Tag 4!!");
+}
+
+- (void)button_5_action{
+    NSLog(@"Button Press Tag 5!!");    
 }
 
 @end
-

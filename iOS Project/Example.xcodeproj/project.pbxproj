@@ -20,16 +20,13 @@
 		DA21D0A217081DCC0075EDE4 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA21D0A017081DCC0075EDE4 /* ViewController.xib */; };
 		DA21D0B917081DDB0075EDE4 /* DCPathButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DA21D0AA17081DDB0075EDE4 /* DCPathButton.m */; };
 		DA21D0BA17081DDB0075EDE4 /* DCSubButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DA21D0AD17081DDB0075EDE4 /* DCSubButton.m */; };
-		DA21D0BB17081DDB0075EDE4 /* dc-button_0.png in Resources */ = {isa = PBXBuildFile; fileRef = DA21D0AF17081DDB0075EDE4 /* dc-button_0.png */; };
-		DA21D0BC17081DDB0075EDE4 /* dc-button_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DA21D0B017081DDB0075EDE4 /* dc-button_1.png */; };
-		DA21D0BD17081DDB0075EDE4 /* dc-button_2.png in Resources */ = {isa = PBXBuildFile; fileRef = DA21D0B117081DDB0075EDE4 /* dc-button_2.png */; };
-		DA21D0BE17081DDB0075EDE4 /* dc-button_3.png in Resources */ = {isa = PBXBuildFile; fileRef = DA21D0B217081DDB0075EDE4 /* dc-button_3.png */; };
-		DA21D0BF17081DDB0075EDE4 /* dc-button_4.png in Resources */ = {isa = PBXBuildFile; fileRef = DA21D0B317081DDB0075EDE4 /* dc-button_4.png */; };
-		DA21D0C017081DDB0075EDE4 /* dc-buttonBackground_.png in Resources */ = {isa = PBXBuildFile; fileRef = DA21D0B417081DDB0075EDE4 /* dc-buttonBackground_.png */; };
-		DA21D0C117081DDB0075EDE4 /* dc-center.png in Resources */ = {isa = PBXBuildFile; fileRef = DA21D0B517081DDB0075EDE4 /* dc-center.png */; };
-		DA21D0C217081DDB0075EDE4 /* dc-centerHighLight.png in Resources */ = {isa = PBXBuildFile; fileRef = DA21D0B617081DDB0075EDE4 /* dc-centerHighLight.png */; };
-		DA21D0C317081DDB0075EDE4 /* NSMutableArray+addImage.m in Sources */ = {isa = PBXBuildFile; fileRef = DA21D0B817081DDB0075EDE4 /* NSMutableArray+addImage.m */; };
 		DA21D0C517081E000075EDE4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA21D0C417081E000075EDE4 /* QuartzCore.framework */; };
+		DAE870B11725993A00D91D6C /* custom_center.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE870AB1725993A00D91D6C /* custom_center.png */; };
+		DAE870B21725993A00D91D6C /* custom_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE870AC1725993A00D91D6C /* custom_1.png */; };
+		DAE870B31725993A00D91D6C /* custom_2.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE870AD1725993A00D91D6C /* custom_2.png */; };
+		DAE870B41725993A00D91D6C /* custom_3.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE870AE1725993A00D91D6C /* custom_3.png */; };
+		DAE870B51725993A00D91D6C /* custom_4.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE870AF1725993A00D91D6C /* custom_4.png */; };
+		DAE870B61725993A00D91D6C /* custom_5.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE870B01725993A00D91D6C /* custom_5.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,17 +51,13 @@
 		DA21D0AB17081DDB0075EDE4 /* DCPathButtonConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPathButtonConstant.h; sourceTree = "<group>"; };
 		DA21D0AC17081DDB0075EDE4 /* DCSubButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSubButton.h; sourceTree = "<group>"; };
 		DA21D0AD17081DDB0075EDE4 /* DCSubButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSubButton.m; sourceTree = "<group>"; };
-		DA21D0AF17081DDB0075EDE4 /* dc-button_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dc-button_0.png"; sourceTree = "<group>"; };
-		DA21D0B017081DDB0075EDE4 /* dc-button_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dc-button_1.png"; sourceTree = "<group>"; };
-		DA21D0B117081DDB0075EDE4 /* dc-button_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dc-button_2.png"; sourceTree = "<group>"; };
-		DA21D0B217081DDB0075EDE4 /* dc-button_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dc-button_3.png"; sourceTree = "<group>"; };
-		DA21D0B317081DDB0075EDE4 /* dc-button_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dc-button_4.png"; sourceTree = "<group>"; };
-		DA21D0B417081DDB0075EDE4 /* dc-buttonBackground_.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dc-buttonBackground_.png"; sourceTree = "<group>"; };
-		DA21D0B517081DDB0075EDE4 /* dc-center.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dc-center.png"; sourceTree = "<group>"; };
-		DA21D0B617081DDB0075EDE4 /* dc-centerHighLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dc-centerHighLight.png"; sourceTree = "<group>"; };
-		DA21D0B717081DDB0075EDE4 /* NSMutableArray+addImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+addImage.h"; sourceTree = "<group>"; };
-		DA21D0B817081DDB0075EDE4 /* NSMutableArray+addImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+addImage.m"; sourceTree = "<group>"; };
 		DA21D0C417081E000075EDE4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DAE870AB1725993A00D91D6C /* custom_center.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom_center.png; sourceTree = "<group>"; };
+		DAE870AC1725993A00D91D6C /* custom_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom_1.png; sourceTree = "<group>"; };
+		DAE870AD1725993A00D91D6C /* custom_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom_2.png; sourceTree = "<group>"; };
+		DAE870AE1725993A00D91D6C /* custom_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom_3.png; sourceTree = "<group>"; };
+		DAE870AF1725993A00D91D6C /* custom_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom_4.png; sourceTree = "<group>"; };
+		DAE870B01725993A00D91D6C /* custom_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom_5.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,8 +139,6 @@
 				DA21D0AB17081DDB0075EDE4 /* DCPathButtonConstant.h */,
 				DA21D0AC17081DDB0075EDE4 /* DCSubButton.h */,
 				DA21D0AD17081DDB0075EDE4 /* DCSubButton.m */,
-				DA21D0B817081DDB0075EDE4 /* NSMutableArray+addImage.m */,
-				DA21D0B717081DDB0075EDE4 /* NSMutableArray+addImage.h */,
 				DA21D0AE17081DDB0075EDE4 /* Images */,
 			);
 			path = DCPathButton;
@@ -156,14 +147,12 @@
 		DA21D0AE17081DDB0075EDE4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				DA21D0AF17081DDB0075EDE4 /* dc-button_0.png */,
-				DA21D0B017081DDB0075EDE4 /* dc-button_1.png */,
-				DA21D0B117081DDB0075EDE4 /* dc-button_2.png */,
-				DA21D0B217081DDB0075EDE4 /* dc-button_3.png */,
-				DA21D0B317081DDB0075EDE4 /* dc-button_4.png */,
-				DA21D0B417081DDB0075EDE4 /* dc-buttonBackground_.png */,
-				DA21D0B517081DDB0075EDE4 /* dc-center.png */,
-				DA21D0B617081DDB0075EDE4 /* dc-centerHighLight.png */,
+				DAE870AB1725993A00D91D6C /* custom_center.png */,
+				DAE870AC1725993A00D91D6C /* custom_1.png */,
+				DAE870AD1725993A00D91D6C /* custom_2.png */,
+				DAE870AE1725993A00D91D6C /* custom_3.png */,
+				DAE870AF1725993A00D91D6C /* custom_4.png */,
+				DAE870B01725993A00D91D6C /* custom_5.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -224,14 +213,12 @@
 				DA21D09A17081DCC0075EDE4 /* Default@2x.png in Resources */,
 				DA21D09C17081DCC0075EDE4 /* Default-568h@2x.png in Resources */,
 				DA21D0A217081DCC0075EDE4 /* ViewController.xib in Resources */,
-				DA21D0BB17081DDB0075EDE4 /* dc-button_0.png in Resources */,
-				DA21D0BC17081DDB0075EDE4 /* dc-button_1.png in Resources */,
-				DA21D0BD17081DDB0075EDE4 /* dc-button_2.png in Resources */,
-				DA21D0BE17081DDB0075EDE4 /* dc-button_3.png in Resources */,
-				DA21D0BF17081DDB0075EDE4 /* dc-button_4.png in Resources */,
-				DA21D0C017081DDB0075EDE4 /* dc-buttonBackground_.png in Resources */,
-				DA21D0C117081DDB0075EDE4 /* dc-center.png in Resources */,
-				DA21D0C217081DDB0075EDE4 /* dc-centerHighLight.png in Resources */,
+				DAE870B11725993A00D91D6C /* custom_center.png in Resources */,
+				DAE870B21725993A00D91D6C /* custom_1.png in Resources */,
+				DAE870B31725993A00D91D6C /* custom_2.png in Resources */,
+				DAE870B41725993A00D91D6C /* custom_3.png in Resources */,
+				DAE870B51725993A00D91D6C /* custom_4.png in Resources */,
+				DAE870B61725993A00D91D6C /* custom_5.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,7 +234,6 @@
 				DA21D09F17081DCC0075EDE4 /* ViewController.m in Sources */,
 				DA21D0B917081DDB0075EDE4 /* DCPathButton.m in Sources */,
 				DA21D0BA17081DDB0075EDE4 /* DCSubButton.m in Sources */,
-				DA21D0C317081DDB0075EDE4 /* NSMutableArray+addImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

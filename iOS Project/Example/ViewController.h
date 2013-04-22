@@ -1,8 +1,8 @@
 //
 //  ViewController.h
-//  Example
+//  DCPathButton
 //
-//  Created by Paul on 3/31/13.
+//  Created by Paul on 4/19/13.
 //  Copyright (c) 2013 Paul. All rights reserved.
 //
 
@@ -10,6 +10,5 @@
 #import "DCPathButton.h"
 
 @interface ViewController : UIViewController<DCPathButtonDelegate>
-@property (strong, nonatomic) DCPathButton *dcPathButton;
 
 @end
