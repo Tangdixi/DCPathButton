@@ -31,6 +31,8 @@
 @synthesize totalRaiuds = _totalRaiuds;
 @synthesize centerRadius = _centerRadius;
 @synthesize subRadius = _subRadius;
+@synthesize centerLocationAxisX = _centerLocationAxisX;
+@synthesize centerLocationAxisY = _centerLocationAxisY;
 
 @synthesize parentView = _parentView;
 @synthesize buttons = _buttons;
@@ -53,15 +55,17 @@ static CGFloat const kDCPathButtonDefaultRotation = M_PI*2;
 static CGFloat const kDCPathButtonDefaultReverseRotation = -M_PI*2;
 
 #pragma mark - Initialization method
-- (id)initDCPathButtonWithSubButtons:(NSInteger)buttonCount totalRadius:(CGFloat)totalRadius centerRadius:(NSInteger)centerRadius subRadius:(CGFloat)subRadius centerImage:(NSString *)centerImageName centerBackground:(NSString *)centerBackgroundName subImages:(void (^)(DCPathButton *))imageBlock subImageBackground:(NSString *)subImageBackgroundName inParentView:(UIView *)parentView{
+- (id)initDCPathButtonWithSubButtons:(NSInteger)buttonCount totalRadius:(CGFloat)totalRadius centerRadius:(NSInteger)centerRadius subRadius:(CGFloat)subRadius centerImage:(NSString *)centerImageName centerBackground:(NSString *)centerBackgroundName subImages:(void (^)(DCPathButton *))imageBlock subImageBackground:(NSString *)subImageBackgroundName inLocationX:(CGFloat)xAxis locationY:(CGFloat)yAxis toParentView:(UIView *)parentView{
     
     parentView == nil? (self.parentView = parentView):(self.parentView = parentView);
+    xAxis == 0? (self.centerLocationAxisX = kDCPathButtonCurrentFrameWidth/2) : (self.centerLocationAxisX = xAxis);
+    yAxis == 0? (self.centerLocationAxisY = kDCPathButtonCurrentFrameHeight/2) : (self.centerLocationAxisY = yAxis);
     self.buttonCount = buttonCount;
     self.totalRaiuds = totalRadius;
     self.subRadius = subRadius;
     _expanded = NO;
     kDCPathButtonSubButtonBirthLocation = CGPointMake(-kDCPathButtonCurrentFrameWidth/2, -kDCPathButtonCurrentFrameHeight/2);
-    kDCPathButtonSubButtonFinalLocation = CGPointMake(kDCPathButtonCurrentFrameWidth/2, kDCPathButtonCurrentFrameHeight/2);
+    kDCPathButtonSubButtonFinalLocation = CGPointMake(self.centerLocationAxisX, self.centerLocationAxisY);
     
     if (self = [super initWithFrame:self.parentView.bounds]) {
         [self configureCenterButton:centerRadius image:centerImageName backgroundImage:centerBackgroundName];
@@ -77,7 +81,7 @@ static CGFloat const kDCPathButtonDefaultReverseRotation = -M_PI*2;
 - (void)configureCenterButton:(CGFloat)centerRadius image:(NSString *)imageName backgroundImage:(NSString *)backgroundImageName{
     self.centerButton = [[UIButton alloc]init];
     self.centerButton.frame = CGRectMake(0, 0, centerRadius * 2, centerRadius * 2);
-    self.centerButton.center = CGPointMake(kDCPathButtonCurrentFrameWidth/2, kDCPathButtonCurrentFrameHeight/2);
+    self.centerButton.center = CGPointMake(self.centerLocationAxisX, self.centerLocationAxisY);
     if (imageName == nil) {
         imageName = @"dc-center";
     }
@@ -275,71 +279,71 @@ static CGFloat const kDCPathButtonDefaultReverseRotation = -M_PI*2;
         case 3:
         {
             kDCPathButtonSubButtonTag_0_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2 - self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)),
-                                                                     kDCPathButtonCurrentFrameHeight/2 - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)));
+                                                                     self.centerLocationAxisX - self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)),
+                                                                     self.centerLocationAxisY - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)));
             kDCPathButtonSubButtonTag_1_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2 + self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)),
-                                                                     kDCPathButtonCurrentFrameHeight/2 - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)));
+                                                                     self.centerLocationAxisX + self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)),
+                                                                     self.centerLocationAxisY - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)));
             kDCPathButtonSubButtonTag_2_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2 ,
-                                                                     kDCPathButtonCurrentFrameHeight/2 +self.totalRaiuds);
+                                                                     self.centerLocationAxisX ,
+                                                                     self.centerLocationAxisY +self.totalRaiuds);
         }
             break;
         case 4:
         {
             kDCPathButtonSubButtonTag_0_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2 - self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)),
-                                                                     kDCPathButtonCurrentFrameHeight/2 - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)));
+                                                                     self.centerLocationAxisX - self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)),
+                                                                     self.centerLocationAxisY - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)));
             kDCPathButtonSubButtonTag_1_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2 + self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)),
-                                                                     kDCPathButtonCurrentFrameHeight/2 - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)));
+                                                                     self.centerLocationAxisX + self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)),
+                                                                     self.centerLocationAxisY - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)));
             kDCPathButtonSubButtonTag_2_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2 - self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)),
-                                                                     kDCPathButtonCurrentFrameHeight/2 + self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)));
+                                                                     self.centerLocationAxisX - self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)),
+                                                                     self.centerLocationAxisY + self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)));
             kDCPathButtonSubButtonTag_3_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2 + self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)),
-                                                                     kDCPathButtonCurrentFrameHeight/2 + self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)));
+                                                                     self.centerLocationAxisX + self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)),
+                                                                     self.centerLocationAxisY + self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel45C)));
         }
             break;
         case 5:
         {
             kDCPathButtonSubButtonTag_0_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2 - self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel36C)),
-                                                                     kDCPathButtonCurrentFrameHeight/2 - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel36C)));
+                                                                     self.centerLocationAxisX - self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel36C)),
+                                                                     self.centerLocationAxisY - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel36C)));
             kDCPathButtonSubButtonTag_1_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2 + self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel36C)),
-                                                                     kDCPathButtonCurrentFrameHeight/2 - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel36C)));
+                                                                     self.centerLocationAxisX + self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel36C)),
+                                                                     self.centerLocationAxisY - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel36C)));
             kDCPathButtonSubButtonTag_2_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2 - self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel72C)),
-                                                                     kDCPathButtonCurrentFrameHeight/2 + self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel72C)));
+                                                                     self.centerLocationAxisX - self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel72C)),
+                                                                     self.centerLocationAxisY + self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel72C)));
             kDCPathButtonSubButtonTag_3_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2,
-                                                                     kDCPathButtonCurrentFrameHeight/2 + self.totalRaiuds);
+                                                                     self.centerLocationAxisX,
+                                                                     self.centerLocationAxisY + self.totalRaiuds);
             kDCPathButtonSubButtonTag_4_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2 + self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel72C)),
-                                                                     kDCPathButtonCurrentFrameHeight/2 + self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel72C)));
+                                                                     self.centerLocationAxisX + self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel72C)),
+                                                                     self.centerLocationAxisY + self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel72C)));
         }
             break;
         case 6:
         {
             kDCPathButtonSubButtonTag_0_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2 - self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)),
-                                                                     kDCPathButtonCurrentFrameHeight/2 - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)));
+                                                                     self.centerLocationAxisX - self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)),
+                                                                     self.centerLocationAxisY - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)));
             kDCPathButtonSubButtonTag_1_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2,
-                                                                     kDCPathButtonCurrentFrameHeight/2 - self.totalRaiuds);
+                                                                     self.centerLocationAxisX,
+                                                                     self.centerLocationAxisY - self.totalRaiuds);
             kDCPathButtonSubButtonTag_2_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2 + self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)),
-                                                                     kDCPathButtonCurrentFrameHeight/2 - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)));
+                                                                     self.centerLocationAxisX + self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)),
+                                                                     self.centerLocationAxisY - self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)));
             kDCPathButtonSubButtonTag_3_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2 - self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)),
-                                                                     kDCPathButtonCurrentFrameHeight/2 + self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)));
+                                                                     self.centerLocationAxisX - self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)),
+                                                                     self.centerLocationAxisY + self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)));
             kDCPathButtonSubButtonTag_4_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2,
-                                                                     kDCPathButtonCurrentFrameHeight/2 + self.totalRaiuds);
+                                                                     self.centerLocationAxisX,
+                                                                     self.centerLocationAxisY + self.totalRaiuds);
             kDCPathButtonSubButtonTag_5_AppearLocation = CGPointMake(
-                                                                     kDCPathButtonCurrentFrameWidth/2 + self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)),
-                                                                     kDCPathButtonCurrentFrameHeight/2 + self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)));
+                                                                     self.centerLocationAxisX + self.totalRaiuds * sinf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)),
+                                                                     self.centerLocationAxisY + self.totalRaiuds * cosf(kDCCovertAngelToRadian(kDCPathButtonAngel60C)));
         }
             break;
         default:

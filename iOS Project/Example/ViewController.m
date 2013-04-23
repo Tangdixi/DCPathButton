@@ -21,21 +21,22 @@
     self.view.frame = CGRectMake(0, 0, 320, 460);
     self.view.backgroundColor = [UIColor whiteColor];
     DCPathButton *dcPathButton = [[DCPathButton alloc]
-                                  initDCPathButtonWithSubButtons:3
-                                  totalRadius:85
-                                  centerRadius:30
-                                  subRadius:25
+                                  initDCPathButtonWithSubButtons:6
+                                  totalRadius:60
+                                  centerRadius:15
+                                  subRadius:15
                                   centerImage:@"custom_center"
                                   centerBackground:nil
                                   subImages:^(DCPathButton *dc){
                                       [dc subButtonImage:@"custom_1" withTag:0];
                                       [dc subButtonImage:@"custom_2" withTag:1];
                                       [dc subButtonImage:@"custom_3" withTag:2];
-                                      //[dc subButtonImage:@"custom_4" withTag:3];
-                                      //[dc subButtonImage:@"custom_5" withTag:4];
-                                      //[dc subButtonImage:@"custom_1" withTag:5];
+                                      [dc subButtonImage:@"custom_4" withTag:3];
+                                      [dc subButtonImage:@"custom_5" withTag:4];
+                                      [dc subButtonImage:@"custom_1" withTag:5];
                                   }
-                                  subImageBackground:nil inParentView:self.view];
+                                  subImageBackground:nil
+                                  inLocationX:0 locationY:0 toParentView:self.view];
     dcPathButton.delegate = self;
     
 	// Do any additional setup after loading the view, typically from a nib.

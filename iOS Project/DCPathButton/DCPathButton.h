@@ -38,7 +38,9 @@ typedef enum{
                     centerBackground:(NSString *)centerBackgroundName
                            subImages:(void(^)(DCPathButton *))imageBlock
                   subImageBackground:(NSString *)subImageBackgroundName
-                        inParentView:(UIView *)parentView;
+                         inLocationX:(CGFloat)xAxis
+                           locationY:(CGFloat)yAxis
+                        toParentView:(UIView *)parentView;
 
 @property (nonatomic, weak) id<DCPathButtonDelegate> delegate;
 @property (nonatomic, getter = isExpanded) BOOL expanded;
@@ -47,6 +49,8 @@ typedef enum{
 @property (nonatomic) CGFloat centerRadius;
 @property (nonatomic) CGFloat subRadius;
 @property (nonatomic) NSInteger buttonCount;
+@property (nonatomic) CGFloat centerLocationAxisX;
+@property (nonatomic) CGFloat centerLocationAxisY;
 @property (nonatomic, strong) UIView *parentView;
 
 @property (strong, nonatomic) UIButton *centerButton;
