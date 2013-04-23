@@ -34,7 +34,10 @@ How to use DCPathButton:
                                       						[dc subButtonImage:@"x" withTag:4];
                                       						[dc subButtonImage:@"x" withTag:5];
                                   						}
-                                  			  subImageBackground:nil inParentView:self.view];
+                                  			      subImageBackground:nil
+                                  				     inLocationX:0 
+                                  				       locationY:0 
+                                  				    toParentView:self.view];
 
     
      						
