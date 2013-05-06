@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DCPathButtonConstant.h"
 #import "DCSubButton.h"
+#import "DCCenterButton.h"
 
 typedef enum{
     kDCPathButtonRotationNormal = 0,
@@ -18,6 +19,7 @@ typedef enum{
 
 @protocol DCPathButtonDelegate <NSObject>
 @optional
+
 - (void)button_0_action;
 - (void)button_1_action;
 - (void)button_2_action;
@@ -28,7 +30,7 @@ typedef enum{
 @end
 
 @class DCPathButton;
-@interface DCPathButton : UIView<DCSubButtonDelegate>
+@interface DCPathButton : UIView<DCSubButtonDelegate, DCCenterButtonDelegate>
 
 - (id)initDCPathButtonWithSubButtons:(NSInteger)buttonCount
                          totalRadius:(CGFloat)totalRadius
@@ -43,6 +45,7 @@ typedef enum{
                         toParentView:(UIView *)parentView;
 
 @property (nonatomic, weak) id<DCPathButtonDelegate> delegate;
+
 @property (nonatomic, getter = isExpanded) BOOL expanded;
 
 @property (nonatomic) CGFloat totalRaiuds;
@@ -53,13 +56,14 @@ typedef enum{
 @property (nonatomic) CGFloat centerLocationAxisY;
 @property (nonatomic, strong) UIView *parentView;
 
-@property (strong, nonatomic) UIButton *centerButton;
+@property (strong, nonatomic) DCCenterButton *centerButton;
 @property (strong, nonatomic) DCSubButton *subButton;
 @property (strong, nonatomic) NSMutableArray *buttons;
 
 - (void)subButtonImage:(NSString *)imageName withTag:(NSInteger)tag;
 
 //  -- Parameter illustrte
+//
 //  Count: How many button you want to show, range between 3 to 6, if you set this parameter above
 //         6,it will set the maximum value 6, the same to the minimum value 3.
 //  TotalRadius: The radius that whole the buttons expanded, maximum half screen width minus button

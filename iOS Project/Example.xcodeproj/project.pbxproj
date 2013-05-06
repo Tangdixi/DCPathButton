@@ -21,6 +21,7 @@
 		DA21D0B917081DDB0075EDE4 /* DCPathButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DA21D0AA17081DDB0075EDE4 /* DCPathButton.m */; };
 		DA21D0BA17081DDB0075EDE4 /* DCSubButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DA21D0AD17081DDB0075EDE4 /* DCSubButton.m */; };
 		DA21D0C517081E000075EDE4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA21D0C417081E000075EDE4 /* QuartzCore.framework */; };
+		DA61A5DA1735F574007E2080 /* DCCenterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DA61A5D91735F574007E2080 /* DCCenterButton.m */; };
 		DAE870B11725993A00D91D6C /* custom_center.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE870AB1725993A00D91D6C /* custom_center.png */; };
 		DAE870B21725993A00D91D6C /* custom_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE870AC1725993A00D91D6C /* custom_1.png */; };
 		DAE870B31725993A00D91D6C /* custom_2.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE870AD1725993A00D91D6C /* custom_2.png */; };
@@ -52,6 +53,8 @@
 		DA21D0AC17081DDB0075EDE4 /* DCSubButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCSubButton.h; sourceTree = "<group>"; };
 		DA21D0AD17081DDB0075EDE4 /* DCSubButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCSubButton.m; sourceTree = "<group>"; };
 		DA21D0C417081E000075EDE4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DA61A5D81735F574007E2080 /* DCCenterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCCenterButton.h; sourceTree = "<group>"; };
+		DA61A5D91735F574007E2080 /* DCCenterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCCenterButton.m; sourceTree = "<group>"; };
 		DAE870AB1725993A00D91D6C /* custom_center.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom_center.png; sourceTree = "<group>"; };
 		DAE870AC1725993A00D91D6C /* custom_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom_1.png; sourceTree = "<group>"; };
 		DAE870AD1725993A00D91D6C /* custom_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = custom_2.png; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				DA21D0AB17081DDB0075EDE4 /* DCPathButtonConstant.h */,
 				DA21D0AC17081DDB0075EDE4 /* DCSubButton.h */,
 				DA21D0AD17081DDB0075EDE4 /* DCSubButton.m */,
+				DA61A5D81735F574007E2080 /* DCCenterButton.h */,
+				DA61A5D91735F574007E2080 /* DCCenterButton.m */,
 				DA21D0AE17081DDB0075EDE4 /* Images */,
 			);
 			path = DCPathButton;
@@ -234,6 +239,7 @@
 				DA21D09F17081DCC0075EDE4 /* ViewController.m in Sources */,
 				DA21D0B917081DDB0075EDE4 /* DCPathButton.m in Sources */,
 				DA21D0BA17081DDB0075EDE4 /* DCSubButton.m in Sources */,
+				DA61A5DA1735F574007E2080 /* DCCenterButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

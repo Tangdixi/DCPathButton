@@ -33,7 +33,7 @@
                                       [dc subButtonImage:@"custom_3" withTag:2];
                                       [dc subButtonImage:@"custom_4" withTag:3];
                                       [dc subButtonImage:@"custom_5" withTag:4];
-                                      [dc subButtonImage:@"custom_1" withTag:5];
+                                      [dc subButtonImage:@"custom_2" withTag:5];
                                   }
                                   subImageBackground:nil
                                   inLocationX:0 locationY:0 toParentView:self.view];
