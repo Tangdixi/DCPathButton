@@ -15,6 +15,10 @@
 ![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/5g.gif) .
 ![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/6g.gif) .
 
+### Add new feature! 
+You can move the center button in which you like~
+![](https://raw.github.com/Tangdixi/DCPathButton/master/ScreenShot/7g.gif) .
+
 How to use DCPathButton:
 =================================================
 ### Create a dcPathButton
