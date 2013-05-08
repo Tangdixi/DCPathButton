@@ -55,6 +55,9 @@ typedef enum{
 @property (nonatomic) CGFloat centerLocationAxisX;
 @property (nonatomic) CGFloat centerLocationAxisY;
 @property (nonatomic, strong) UIView *parentView;
+@property (nonatomic) CGPoint viewOffset;
+@property (nonatomic) CGPoint selflastLocation;
+
 
 @property (strong, nonatomic) DCCenterButton *centerButton;
 @property (strong, nonatomic) DCSubButton *subButton;

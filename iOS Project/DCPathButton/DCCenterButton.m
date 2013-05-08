@@ -24,7 +24,8 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     isMoving = NO;
     self.highlighted = YES;
-    finalLocation = self.center;
+    startLocation = self.center;
+    finalLocation = startLocation;
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -34,28 +35,24 @@
         [_delegate centerButtonMoved];
     }
     self.center = [[touches anyObject]locationInView:self.superview];
+    currentLocation = [[touches anyObject]locationInView:self.superview];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
     if (isMoving) {
         if ([_delegate respondsToSelector:@selector(centerButtonEnded)]) {
             [_delegate centerButtonEnded];
-            finalLocation = self.center;
+            finalLocation = currentLocation;
         }
     }
     else{
-        if ([_delegate respondsToSelector:@selector(buttonAppear:)]) {
-            [_delegate buttonAppear:self];
-        }
-        if ([_delegate respondsToSelector:@selector(buttonShrink:)]) {
-            [_delegate buttonShrink:self];
-        }
-        if ([_delegate respondsToSelector:@selector(cinfigureExpandStatus)]) {
-            [_delegate cinfigureExpandStatus];
-        }
+        [_delegate buttonAppear:self];
+        [_delegate buttonShrink:self];
+        [_delegate cinfigureExpandStatus];
         isMoving = NO;
     }
-    [_delegate configureAxisXY:finalLocation];
+    
+    [_delegate bottomFinalLocation:CGPointMake(finalLocation.x - startLocation.x, finalLocation.y - startLocation.y)];
     self.highlighted = NO;
 }
 

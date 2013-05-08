@@ -36,7 +36,7 @@
                                       [dc subButtonImage:@"custom_2" withTag:5];
                                   }
                                   subImageBackground:nil
-                                  inLocationX:0 locationY:0 toParentView:self.view];
+                                  inLocationX:160 locationY:250 toParentView:self.view];
     dcPathButton.delegate = self;
     
 	// Do any additional setup after loading the view, typically from a nib.

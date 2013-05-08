@@ -12,9 +12,9 @@
 
 @protocol DCCenterButtonDelegate <NSObject>
 
+- (void)bottomFinalLocation:(CGPoint)offSet;
 - (void)buttonAppear:(DCCenterButton *)centerButton;
 - (void)buttonShrink:(DCCenterButton *)centerButton;
-- (void)configureAxisXY:(CGPoint)current;
 - (void)cinfigureExpandStatus;
 - (void)centerButtonMoved;
 - (void)centerButtonEnded;
@@ -22,6 +22,8 @@
 @end
 
 @interface DCCenterButton : UIButton{
+    CGPoint startLocation;
+    CGPoint currentLocation;
     CGPoint finalLocation;
     BOOL isMoving;
 }

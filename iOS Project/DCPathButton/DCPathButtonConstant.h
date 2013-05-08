@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define kDCPathButtonParentView self.parentView
+#define kDCPathButtonParentView self
 #define kDCPathButtonCurrentFrameWidth kDCPathButtonParentView.frame.size.width
 #define kDCPathButtonCurrentFrameHeight kDCPathButtonParentView.frame.size.height
 
