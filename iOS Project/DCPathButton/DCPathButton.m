@@ -296,36 +296,36 @@ static CGFloat const kDCPathButtonDefaultReverseRotation = -M_PI*2;
         switch (self.buttonCount) {
             case 3:
             {
-                [self button:[self.buttons objectAtIndex:0] appearAt:kDCPathButtonSubButtonTag_0_AppearLocation withDalay:0.5 duration:0.35];
-                [self button:[self.buttons objectAtIndex:1] appearAt:kDCPathButtonSubButtonTag_1_AppearLocation withDalay:0.55 duration:0.4];
-                [self button:[self.buttons objectAtIndex:2] appearAt:kDCPathButtonSubButtonTag_2_AppearLocation withDalay:0.6 duration:0.45];
+                [self button:[self.buttons objectAtIndex:0] appearAt:kDCPathButtonSubButtonTag_0_AppearLocation withDalay:0.4 duration:0.25];
+                [self button:[self.buttons objectAtIndex:1] appearAt:kDCPathButtonSubButtonTag_1_AppearLocation withDalay:0.45 duration:0.3];
+                [self button:[self.buttons objectAtIndex:2] appearAt:kDCPathButtonSubButtonTag_2_AppearLocation withDalay:0.5 duration:0.35];
             }
                 break;
             case 4:
             {
-                [self button:[self.buttons objectAtIndex:0] appearAt:kDCPathButtonSubButtonTag_0_AppearLocation withDalay:0.5 duration:0.35];
-                [self button:[self.buttons objectAtIndex:1] appearAt:kDCPathButtonSubButtonTag_1_AppearLocation withDalay:0.55 duration:0.4];
-                [self button:[self.buttons objectAtIndex:2] appearAt:kDCPathButtonSubButtonTag_2_AppearLocation withDalay:0.6 duration:0.45];
-                [self button:[self.buttons objectAtIndex:3] appearAt:kDCPathButtonSubButtonTag_3_AppearLocation withDalay:0.65 duration:0.5];
+                [self button:[self.buttons objectAtIndex:0] appearAt:kDCPathButtonSubButtonTag_0_AppearLocation withDalay:0.4 duration:0.25];
+                [self button:[self.buttons objectAtIndex:1] appearAt:kDCPathButtonSubButtonTag_1_AppearLocation withDalay:0.45 duration:0.3];
+                [self button:[self.buttons objectAtIndex:2] appearAt:kDCPathButtonSubButtonTag_2_AppearLocation withDalay:0.5 duration:0.35];
+                [self button:[self.buttons objectAtIndex:3] appearAt:kDCPathButtonSubButtonTag_3_AppearLocation withDalay:0.55 duration:0.4];
             }
                 break;
             case 5:
             {
-                [self button:[self.buttons objectAtIndex:0] appearAt:kDCPathButtonSubButtonTag_0_AppearLocation withDalay:0.5 duration:0.35];
-                [self button:[self.buttons objectAtIndex:1] appearAt:kDCPathButtonSubButtonTag_1_AppearLocation withDalay:0.55 duration:0.4];
-                [self button:[self.buttons objectAtIndex:2] appearAt:kDCPathButtonSubButtonTag_2_AppearLocation withDalay:0.6 duration:0.45];
-                [self button:[self.buttons objectAtIndex:3] appearAt:kDCPathButtonSubButtonTag_3_AppearLocation withDalay:0.65 duration:0.5];
-                [self button:[self.buttons objectAtIndex:4] appearAt:kDCPathButtonSubButtonTag_4_AppearLocation withDalay:0.7 duration:0.55];
+                [self button:[self.buttons objectAtIndex:0] appearAt:kDCPathButtonSubButtonTag_0_AppearLocation withDalay:0.4 duration:0.25];
+                [self button:[self.buttons objectAtIndex:1] appearAt:kDCPathButtonSubButtonTag_1_AppearLocation withDalay:0.45 duration:0.3];
+                [self button:[self.buttons objectAtIndex:2] appearAt:kDCPathButtonSubButtonTag_2_AppearLocation withDalay:0.5 duration:0.35];
+                [self button:[self.buttons objectAtIndex:3] appearAt:kDCPathButtonSubButtonTag_3_AppearLocation withDalay:0.55 duration:0.4];
+                [self button:[self.buttons objectAtIndex:4] appearAt:kDCPathButtonSubButtonTag_4_AppearLocation withDalay:0.6 duration:0.45];
             }
                 break;
             case 6:
             {
-                [self button:[self.buttons objectAtIndex:0] appearAt:kDCPathButtonSubButtonTag_0_AppearLocation withDalay:0.5 duration:0.35];
-                [self button:[self.buttons objectAtIndex:1] appearAt:kDCPathButtonSubButtonTag_1_AppearLocation withDalay:0.55 duration:0.4];
-                [self button:[self.buttons objectAtIndex:2] appearAt:kDCPathButtonSubButtonTag_2_AppearLocation withDalay:0.6 duration:0.45];
-                [self button:[self.buttons objectAtIndex:3] appearAt:kDCPathButtonSubButtonTag_3_AppearLocation withDalay:0.65 duration:0.5];
-                [self button:[self.buttons objectAtIndex:4] appearAt:kDCPathButtonSubButtonTag_4_AppearLocation withDalay:0.7 duration:0.55];
-                [self button:[self.buttons objectAtIndex:5] appearAt:kDCPathButtonSubButtonTag_5_AppearLocation withDalay:0.75 duration:0.6];
+                [self button:[self.buttons objectAtIndex:0] appearAt:kDCPathButtonSubButtonTag_0_AppearLocation withDalay:0.4 duration:0.25];
+                [self button:[self.buttons objectAtIndex:1] appearAt:kDCPathButtonSubButtonTag_1_AppearLocation withDalay:0.45 duration:0.3];
+                [self button:[self.buttons objectAtIndex:2] appearAt:kDCPathButtonSubButtonTag_2_AppearLocation withDalay:0.5 duration:0.35];
+                [self button:[self.buttons objectAtIndex:3] appearAt:kDCPathButtonSubButtonTag_3_AppearLocation withDalay:0.55 duration:0.4];
+                [self button:[self.buttons objectAtIndex:4] appearAt:kDCPathButtonSubButtonTag_4_AppearLocation withDalay:0.6 duration:0.45];
+                [self button:[self.buttons objectAtIndex:5] appearAt:kDCPathButtonSubButtonTag_5_AppearLocation withDalay:0.65 duration:0.5];
             }
                 break;
             default:
@@ -343,17 +343,18 @@ static CGFloat const kDCPathButtonDefaultReverseRotation = -M_PI*2;
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_0_AppearLocation withSubOffSetX:0 subOffSetY:0]
                  offsetAxisX:kDCPathButtonLeftOffSetX
                  offSEtAxisY:[self offsetAxisY:kDCPathButtonLeftOffSetX withAngel:kDCPathButtonAngel60C]
-                   withDelay:0.4
+                   withDelay:0.3
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1];
                 [self button:[self.buttons objectAtIndex:1]
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_1_AppearLocation withSubOffSetX:self.centerRadius subOffSetY:0]
                  offsetAxisX:kDCPathButtonRightOffSetX
-                 offSEtAxisY:-[self offsetAxisY:kDCPathButtonRightOffSetX withAngel:kDCPathButtonAngel60C] withDelay:0.5
+                 offSEtAxisY:-[self offsetAxisY:kDCPathButtonRightOffSetX withAngel:kDCPathButtonAngel60C]
+                   withDelay:0.35
              rotateDirection:kDCPathButtonRotationReverse animationDuration:1.2];
                 [self button:[self.buttons objectAtIndex:2]
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_2_AppearLocation withSubOffSetX:self.centerRadius subOffSetY:0]
                  offsetAxisX:0 offSEtAxisY:kDCPathButtonVerticalOffSetX
-                   withDelay:0.6
+                   withDelay:0.4
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1.4];
             }
                 break;
@@ -363,25 +364,25 @@ static CGFloat const kDCPathButtonDefaultReverseRotation = -M_PI*2;
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_0_AppearLocation withSubOffSetX:0 subOffSetY:0]
                  offsetAxisX:kDCPathButtonLeftOffSetX
                  offSEtAxisY:[self offsetAxisY:kDCPathButtonLeftOffSetX withAngel:kDCPathButtonAngel45C]
-                   withDelay:0.4
+                   withDelay:0.3
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1];
                 [self button:[self.buttons objectAtIndex:1]
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_1_AppearLocation withSubOffSetX:self.centerRadius subOffSetY:0]
                  offsetAxisX:kDCPathButtonRightOffSetX
                  offSEtAxisY:[self offsetAxisY:-kDCPathButtonRightOffSetX withAngel:kDCPathButtonAngel45C]
-                   withDelay:0.45
+                   withDelay:0.35
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1.1];
                 [self button:[self.buttons objectAtIndex:2]
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_2_AppearLocation withSubOffSetX:-self.centerRadius subOffSetY:self.centerRadius]
                  offsetAxisX:kDCPathButtonLeftOffSetX
                  offSEtAxisY:[self offsetAxisY:-kDCPathButtonLeftOffSetX withAngel:kDCPathButtonAngel45C]
-                   withDelay:0.5
+                   withDelay:0.4
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1.2];
                 [self button:[self.buttons objectAtIndex:3]
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_3_AppearLocation withSubOffSetX:self.centerRadius subOffSetY:self.centerRadius]
                  offsetAxisX:kDCPathButtonRightOffSetX
                  offSEtAxisY:[self offsetAxisY:kDCPathButtonRightOffSetX withAngel:kDCPathButtonAngel45C]
-                   withDelay:0.55
+                   withDelay:0.45
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1.3];
             }
                 break;
@@ -391,30 +392,30 @@ static CGFloat const kDCPathButtonDefaultReverseRotation = -M_PI*2;
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_0_AppearLocation withSubOffSetX:0 subOffSetY:0]
                  offsetAxisX:kDCPathButtonLeftOffSetX
                  offSEtAxisY:[self offsetAxisY:kDCPathButtonLeftOffSetX withAngel:kDCPathButtonAngel36C]
-                   withDelay:0.4
+                   withDelay:0.3
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1];
                 [self button:[self.buttons objectAtIndex:1]
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_1_AppearLocation withSubOffSetX:self.centerRadius subOffSetY:0]
                  offsetAxisX:kDCPathButtonRightOffSetX
                  offSEtAxisY:[self offsetAxisY:-kDCPathButtonRightOffSetX withAngel:kDCPathButtonAngel36C]
-                   withDelay:0.44
+                   withDelay:0.34
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1.2];
                 [self button:[self.buttons objectAtIndex:2]
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_2_AppearLocation withSubOffSetX:-self.centerRadius subOffSetY:self.centerRadius]
                  offsetAxisX:kDCPathButtonLeftOffSetX
                  offSEtAxisY:[self offsetAxisY:-kDCPathButtonLeftOffSetX withAngel:kDCPathButtonAngel72C]
-                   withDelay:0.48
+                   withDelay:0.38
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1.3];
                 [self button:[self.buttons objectAtIndex:3]
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_3_AppearLocation withSubOffSetX:self.centerRadius subOffSetY:0]
                  offsetAxisX:0 offSEtAxisY:kDCPathButtonVerticalOffSetX
-                   withDelay:0.52
+                   withDelay:0.42
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1.1];
                 [self button:[self.buttons objectAtIndex:4]
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_4_AppearLocation withSubOffSetX:self.centerRadius subOffSetY:self.centerRadius]
                  offsetAxisX:kDCPathButtonRightOffSetX
                  offSEtAxisY:[self offsetAxisY:kDCPathButtonRightOffSetX withAngel:kDCPathButtonAngel72C]
-                   withDelay:0.55
+                   withDelay:0.45
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1.4];
             }
                 break;
@@ -424,35 +425,35 @@ static CGFloat const kDCPathButtonDefaultReverseRotation = -M_PI*2;
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_0_AppearLocation withSubOffSetX:0 subOffSetY:0]
                  offsetAxisX:kDCPathButtonLeftOffSetX
                  offSEtAxisY:[self offsetAxisY:kDCPathButtonLeftOffSetX withAngel:kDCPathButtonAngel60C]
-                   withDelay:0.4
+                   withDelay:0.3
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1];
                 [self button:[self.buttons objectAtIndex:1]
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_1_AppearLocation withSubOffSetX:self.centerRadius subOffSetY:0]
                  offsetAxisX:0 offSEtAxisY:-kDCPathButtonVerticalOffSetX
-                   withDelay:0.43
+                   withDelay:0.33
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1.1];
                 [self button:[self.buttons objectAtIndex:2]
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_2_AppearLocation withSubOffSetX:self.centerRadius subOffSetY:self.centerRadius]
                  offsetAxisX:kDCPathButtonRightOffSetX
                  offSEtAxisY:[self offsetAxisY:-kDCPathButtonRightOffSetX withAngel:kDCPathButtonAngel60C]
-                   withDelay:0.46
+                   withDelay:0.36
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1.2];
                 [self button:[self.buttons objectAtIndex:3]
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_3_AppearLocation withSubOffSetX:-self.centerRadius subOffSetY:-self.centerRadius]
                  offsetAxisX:kDCPathButtonLeftOffSetX
                  offSEtAxisY:[self offsetAxisY:-kDCPathButtonLeftOffSetX withAngel:kDCPathButtonAngel60C]
-                   withDelay:0.49
+                   withDelay:0.39
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1.3];
                 [self button:[self.buttons objectAtIndex:4]
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_4_AppearLocation withSubOffSetX:self.centerRadius subOffSetY:0]
                  offsetAxisX:0 offSEtAxisY:kDCPathButtonVerticalOffSetX
-                   withDelay:0.52
+                   withDelay:0.42
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1.3];
                 [self button:[self.buttons objectAtIndex:5]
                     shrinkAt:[self offSet:kDCPathButtonSubButtonTag_5_AppearLocation withSubOffSetX:self.centerRadius subOffSetY:self.centerRadius]
                  offsetAxisX:kDCPathButtonRightOffSetX
                  offSEtAxisY:[self offsetAxisY:kDCPathButtonRightOffSetX withAngel:kDCPathButtonAngel60C]
-                   withDelay:0.55
+                   withDelay:0.45
              rotateDirection:kDCPathButtonRotationNormal animationDuration:1.4];
             }
             default:
