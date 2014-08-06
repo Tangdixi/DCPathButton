@@ -29,4 +29,6 @@
 @property (strong, nonatomic) NSMutableArray *itemButtonBackgroundImages;
 @property (strong, nonatomic) NSMutableArray *itemButtonBackgroundHighlightedImages;
 
+@property (assign, nonatomic) CGFloat itemExpandRadius;
+
 @end

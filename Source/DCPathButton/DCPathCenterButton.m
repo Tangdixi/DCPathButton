@@ -10,7 +10,7 @@
 
 @implementation DCPathCenterButton
 
-- (id)initWithImage:(UIImage *)image highlightedImage:(UIImage *)highlightedImage
+- (id)initWithImage:(UIImage *)image highlightedImage:(UIImage *)highlightedImage 
 {
     if (self = [super initWithImage:image highlightedImage:highlightedImage]) {
         
@@ -23,26 +23,49 @@
     return self;
 }
 
+#pragma mark - Scale Center Button Frame to 5x
+
+- (CGRect)scaleRect:(CGRect)originRect
+{
+    return CGRectMake(- originRect.size.width * 2,
+                      - originRect.size.height * 2,
+                      originRect.size.width * 5,
+                      originRect.size.height * 5);
+}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    self.highlighted = YES;
+    
     // Center button Begin Tapped
     if ([_delegate respondsToSelector:@selector(centerButtonTapped)]) {
         [_delegate centerButtonTapped];
     }
     
-    NSLog(@"Center Button Tapped");
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    CGPoint currentLocation = [[touches anyObject]locationInView:self];
     
+    
+    // Cancel button highlight when the touch location is out of 5x area
+    if (!CGRectContainsPoint([self scaleRect:self.bounds] , currentLocation)) {
+        self.highlighted = NO;
+        return ;
+    }
+    
+    // If moving in the 5x area, keep the highlight state
     self.highlighted = YES;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    //
+    
     self.highlighted = NO;
 }
 
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    self.highlighted = NO;
-}
+
 
 @end

@@ -17,7 +17,10 @@
 @interface DCPathItemButton : UIImageView
 
 @property (weak, nonatomic) id<DCPathItemButtonDelegate> delegate;
-@property (strong, nonatomic) UIImage *backgroundImage;
-@property (strong, nonatomic) UIImage *backgroungHighlightedImage;
+
+- (id)initWithImage:(UIImage *)image
+   highlightedImage:(UIImage *)highlightedImage
+    backgroundImage:(UIImage *)backgroundImage
+backgroundHighlightedImage:(UIImage *)backgroundHighlightedImage;
 
 @end

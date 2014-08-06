@@ -75,8 +75,9 @@
         // Init basic parameters
         
         _subButtonExpand = NO;
-        _itemsCount = self.itemButtonImages.count;
+        _itemsCount = _itemButtonImages.count;
         _itemButtons = [[NSMutableArray alloc]initWithCapacity:self.itemsCount];
+        _itemExpandRadius = 110;
         
         [self configureViews];
     }
@@ -178,14 +179,6 @@
     _bottomView.backgroundColor = [UIColor blackColor];
     _bottomView.alpha = 0.0f;
     
-    // Configure the item buttons
-    for (int i = 0; i < self.itemsCount; i++) {
-        DCPathItemButton *pathItemButton = [[DCPathItemButton alloc]initWithImage:self.itemButtonImages[i]
-                                                                 highlightedImage:self.itemButtonHighlightedImages[i]];
-        pathItemButton.center = centerButtonDefaultCenter;
-        [self addSubview:pathItemButton];
-        [self.itemButtons insertObject:pathItemButton atIndex:i];
-    }
 }
 
 
@@ -207,6 +200,11 @@
         self.pathCenterButton.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         [self.bottomView removeFromSuperview];
         
+        
+        for (DCPathItemButton *itemButton in self.itemButtons) {
+            [itemButton performSelector:@selector(removeFromSuperview)];
+        }
+        
         _subButtonExpand = NO;
         
         return ;
@@ -225,7 +223,31 @@
         _bottomView.alpha = 0.618f;
     }];
     
-    self.pathCenterButton.center = CGPointMake(self.frame.size.width/2, self.frame.size.height - tabBarHeight);
+    self.pathCenterButton.center = centerButtonExpandCenter;
+    
+    // Configure the item buttons
+    
+    CGFloat basicAngel = 180 / (_itemsCount + 1) ;
+    
+    NSLog(@"Basic angel : %f", basicAngel);
+    
+    for (int i = 1; i <= self.itemsCount; i++) {
+        DCPathItemButton *pathItemButton = [[DCPathItemButton alloc]initWithImage:self.itemButtonImages[i - 1]
+                                                                 highlightedImage:self.itemButtonHighlightedImages[i - 1]
+                                                                  backgroundImage:self.itemButtonBackgroundImages[i - 1]
+                                                       backgroundHighlightedImage:self.itemButtonBackgroundHighlightedImages[i - 1]];
+        CGFloat currentAngel = (basicAngel * i)/180;
+        
+        
+        pathItemButton.center = CGPointMake(centerButtonExpandCenter.x - cosf(currentAngel * M_PI) * self.itemExpandRadius,
+                                            centerButtonExpandCenter.y - sinf(currentAngel * M_PI) * self.itemExpandRadius);
+        
+        NSLog(@"Location : (%.0f, %.0f)", pathItemButton.center.x, pathItemButton.center.y);
+        
+        [self addSubview:pathItemButton];
+        
+        [self.itemButtons insertObject:pathItemButton atIndex:i - 1];
+    }
     
     _subButtonExpand = YES;
 }
