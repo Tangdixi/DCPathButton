@@ -27,10 +27,10 @@
 
 - (CGRect)scaleRect:(CGRect)originRect
 {
-    return CGRectMake(- originRect.size.width * 2,
-                      - originRect.size.height * 2,
-                      originRect.size.width * 5,
-                      originRect.size.height * 5);
+    return CGRectMake(- originRect.size.width,
+                      - originRect.size.height,
+                      originRect.size.width * 3,
+                      originRect.size.height * 3);
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
