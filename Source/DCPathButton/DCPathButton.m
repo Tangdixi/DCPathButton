@@ -22,6 +22,8 @@
 @property (strong, nonatomic) DCPathCenterButton *pathCenterButton;
 @property (strong, nonatomic) NSMutableArray *itemButtons;
 
+@property (strong, nonatomic) NSTimer *runloopTimer;
+
 @end
 
 @implementation DCPathButton
@@ -203,8 +205,6 @@
     [self configureExpand];
 }
 
-#pragma mark - Expand and Shrink Animation
-
 - (CGPoint)createEndPointWithRadius:(CGFloat)itemExpandRadius andAngel:(CGFloat)angel
 {
     CGPoint point = CGPointMake(centerButtonExpandCenter.x - cosf(angel * M_PI) * itemExpandRadius,
@@ -215,28 +215,6 @@
 - (void)configureShrink
 {
     
-    // The shrink code here ...
-    // 1. Scale the self view's frame to the origin size
-    //
-    self.frame = CGRectMake(0, 0, originWidth, originHeight);
-    self.center = self.expandCenter;
-    
-    [UIView animateWithDuration:0.0618f * 2
-                     animations:^{
-                         _bottomView.alpha = 0.0f;
-                     }];
-    
-    self.pathCenterButton.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
-    [self.bottomView removeFromSuperview];
-    
-    // Remove all item buttons
-    //
-    for (DCPathItemButton *itemButton in self.itemButtons) {
-        [itemButton performSelector:@selector(removeFromSuperview)];
-    }
-    [self.itemButtons removeAllObjects];
-    
-    
     [UIView animateWithDuration:0.0618f * 3
                           delay:0.0618f * 2
                         options:UIViewAnimationOptionCurveEaseIn
@@ -245,9 +223,74 @@
                      }
                      completion:nil];
     
+    for (int i = 0; i < self.itemsCount; i++) {
+        DCPathItemButton *itemButton = self.itemButtons[i];
+        CAAnimationGroup *shrinkAnimation = [self shrinkAnimationFromPoint:itemButton.center];
+        [itemButton.layer addAnimation:shrinkAnimation forKey:@"Shrink"];
+        itemButton.center = centerButtonExpandCenter;
+    }
+    
+    [self bringSubviewToFront:self.pathCenterButton];
+    
+    [UIView animateWithDuration:0.0618f * 2
+                     animations:^{
+                          //_bottomView.alpha = 0.0f;
+                     }];
+    
+    
+    // Remove all item buttons
+    //
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0618f * 5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        for (DCPathItemButton *itemButton in self.itemButtons) {
+            [itemButton performSelector:@selector(removeFromSuperview)];
+        }
+        
+        self.frame = CGRectMake(0, 0, originWidth, originHeight);
+        self.center = self.expandCenter;
+        self.pathCenterButton.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+        
+        [self.bottomView removeFromSuperview];
+        [self.itemButtons removeAllObjects];
+    });
+    
     _subButtonExpand = NO;
     
 }
+
+- (CAAnimationGroup *)shrinkAnimationFromPoint:(CGPoint)endPoint
+{
+    // 1.Configure rotation animation
+    //
+    CAKeyframeAnimation *rotationAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.values = @[@(-M_PI * 4), @(0.0f)];
+    rotationAnimation.duration = 0.0618f * 5;
+    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    
+    // 2.Configure moving animation
+    //
+    CAKeyframeAnimation *movingAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    
+    // Create moving path
+    //
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, endPoint.x, endPoint.y);
+    CGPathAddLineToPoint(path, NULL, centerButtonExpandCenter.x, centerButtonExpandCenter.y);
+    
+    movingAnimation.path = path;
+    movingAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    movingAnimation.duration = 0.0618f * 5;
+    CGPathRelease(path);
+    
+    // 3.Merge animation together
+    //
+    CAAnimationGroup *animations = [CAAnimationGroup animation];
+    animations.animations = @[rotationAnimation, movingAnimation];
+    animations.duration = 0.0618f * 5;
+    
+    return animations;
+}
+
+#pragma mark - Configure Expand
 
 - (void)configureExpand
 {
@@ -287,11 +330,13 @@
                                                                  highlightedImage:self.itemButtonHighlightedImages[i - 1]
                                                                   backgroundImage:self.itemButtonBackgroundImages[i - 1]
                                                        backgroundHighlightedImage:self.itemButtonBackgroundHighlightedImages[i - 1]];
+        pathItemButton.delegate = self;
+        pathItemButton.tag = i - 1;
         // 1.Add pathItem button to the view
         //
         CGFloat currentAngel = (basicAngel * i)/180;
         pathItemButton.center = centerButtonExpandCenter;
-        [self addSubview:pathItemButton];
+        [self insertSubview:pathItemButton belowSubview:self.pathCenterButton];
         
         // 2.Excute expand animation
         //
@@ -345,11 +390,24 @@
     return animations;
 }
 
-#pragma mark - Item Button Delegate
+#pragma mark - DCPathButton Item Delegate
 
-- (void)itemButtonTapped
+- (void)itemButtonTapped:(DCPathItemButton *)itemButton
 {
-    
+    for (int i = 0; i < self.itemsCount; i++) {
+        if (itemButton.tag == i) {
+            // Blow up code here ...
+            
+            continue;
+        }
+        
+        // Scale code here ...
+        
+        
+    }
+    if ([_delegate respondsToSelector:@selector(itemButtonTappedAtIndex:)]) {
+        [_delegate itemButtonTappedAtIndex:itemButton.tag];
+    }
 }
 
 #pragma mark - DCPathButton Touch Events

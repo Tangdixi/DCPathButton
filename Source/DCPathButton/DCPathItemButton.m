@@ -50,8 +50,8 @@
     self.highlighted = YES;
     self.backgroundImageView.highlighted = YES;
     
-    if ([_delegate respondsToSelector:@selector(itemButtonTapped)]) {
-        [_delegate itemButtonTapped];
+    if ([_delegate respondsToSelector:@selector(itemButtonTapped:)]) {
+        [_delegate itemButtonTapped:self];
     }
 }
 

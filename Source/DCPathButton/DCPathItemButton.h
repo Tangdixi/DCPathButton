@@ -6,16 +6,18 @@
 //  Copyright (c) 2014 Tangdxi. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
+@class DCPathItemButton;
 @protocol DCPathItemButtonDelegate <NSObject>
 
-- (void)itemButtonTapped;
+- (void)itemButtonTapped:(DCPathItemButton *)itemButton;
 
 @end
 
 @interface DCPathItemButton : UIImageView
 
+@property (assign, nonatomic) NSUInteger index;
 @property (weak, nonatomic) id<DCPathItemButtonDelegate> delegate;
 
 - (id)initWithImage:(UIImage *)image
