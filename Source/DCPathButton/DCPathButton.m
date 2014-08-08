@@ -240,6 +240,14 @@
     
     // Remove all item buttons
     //
+    [self shrinkFrame];
+    
+    _subButtonExpand = NO;
+    
+}
+
+- (void)shrinkFrame
+{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0618f * 5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         for (DCPathItemButton *itemButton in self.itemButtons) {
             [itemButton performSelector:@selector(removeFromSuperview)];
@@ -252,9 +260,6 @@
         [self.bottomView removeFromSuperview];
         [self.itemButtons removeAllObjects];
     });
-    
-    _subButtonExpand = NO;
-    
 }
 
 - (CAAnimationGroup *)shrinkAnimationFromPoint:(CGPoint)endPoint
@@ -394,19 +399,28 @@
 
 - (void)itemButtonTapped:(DCPathItemButton *)itemButton
 {
-    for (int i = 0; i < self.itemsCount; i++) {
-        if (itemButton.tag == i) {
-            // Blow up code here ...
-            
-            continue;
+    if ([_delegate respondsToSelector:@selector(itemButtonTappedAtIndex:)]) {
+        
+        DCPathItemButton *selectedButton = self.itemButtons[itemButton.tag];
+        [UIView animateWithDuration:0.0618f * 2
+                         animations:^{
+                             selectedButton.transform = CGAffineTransformMakeScale(3, 3);
+                             selectedButton.alpha = 0.0f;
+                         }];
+        for (int i = 0; i < self.itemsCount; i++) {
+            if (i == selectedButton.tag) {
+                continue;
+            }
+            DCPathItemButton *unselectedButton = self.itemButtons[i];
+            [UIView animateWithDuration:0.0618f * 2
+                             animations:^{
+                                 unselectedButton.transform = CGAffineTransformMakeScale(0, 0);
+                             }];
         }
         
-        // Scale code here ...
-        
-        
-    }
-    if ([_delegate respondsToSelector:@selector(itemButtonTappedAtIndex:)]) {
         [_delegate itemButtonTappedAtIndex:itemButton.tag];
+        [self shrinkFrame];
+        _subButtonExpand = NO;
     }
 }
 
