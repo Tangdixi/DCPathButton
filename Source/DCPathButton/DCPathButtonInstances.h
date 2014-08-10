@@ -9,7 +9,7 @@
 #ifndef DCPathButton_DCPathButtonInstances_h
 #define DCPathButton_DCPathButtonInstances_h
 
-#define originWidth [UIImage imageNamed:@"chooser-button-tab"].size.width
+#define originFrameWidth [UIImage imageNamed:@"chooser-button-tab"].size.width
 #define originHeight [UIImage imageNamed:@"chooser-button-tab"].size.height
 #define originCenter CGPointMake(currentScreenWidth/2, currentScreenHeight - tabBarHeight)
 

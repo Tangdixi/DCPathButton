@@ -8,211 +8,154 @@
 
 #import "DCPathButton.h"
 #import "DCPathCenterButton.h"
-#import "DCPathButtonInstances.h"
+//#import "DCPathButtonInstances.h"
 #import "DCPathItemButton.h"
 
 @interface DCPathButton ()<DCPathCenterButtonDelegate, DCPathItemButtonDelegate>
 
 #pragma mark - Private Property
 
-@property (assign, nonatomic, getter = isSubButtonExpand) BOOL subButtonExpand;
+@property (strong, nonatomic) UIImage *centerImage;
+@property (strong, nonatomic) UIImage *centerHighlightedImage;
+
+@property (assign, nonatomic, getter = isBloom) BOOL bloom;
+
+@property (assign, nonatomic) CGSize foldedSize;
+@property (assign, nonatomic) CGSize bloomSize;
+
+@property (assign, nonatomic) CGPoint foldCenter;
+@property (assign, nonatomic) CGPoint bloomCenter;
+
+@property (assign, nonatomic) CGPoint pathCenterButtonBloomCenter;
 
 @property (assign, nonatomic) CGPoint expandCenter;
 @property (strong, nonatomic) UIView *bottomView;
 @property (strong, nonatomic) DCPathCenterButton *pathCenterButton;
 @property (strong, nonatomic) NSMutableArray *itemButtons;
 
-@property (strong, nonatomic) NSTimer *runloopTimer;
-
 @end
 
 @implementation DCPathButton
 
-@synthesize subButtonExpand = _subButtonExpand;
+@synthesize bloom = _bloom;
 @synthesize pathCenterButton = _pathCenterButton;
 
 #pragma mark - Initialization
 
-- (id)init
+- (id)initWithCenterImage:(UIImage *)centerImage hilightedImage:(UIImage *)centerHighlightedImage
 {
     if (self = [super init]) {
         
+        // Configure center and high light center image
+        //
+        self.centerImage = centerImage;
+        self.centerHighlightedImage = centerHighlightedImage;
         
-        self.frame = CGRectMake(0, 0, originWidth, originHeight);
-        self.center = originCenter;
+        // Init button and image array
+        //
+        self.itemButtonImages = [[NSMutableArray alloc]init];
+        self.itemButtonHighlightedImages = [[NSMutableArray alloc]init];
+        self.itemButtons = [[NSMutableArray alloc]init];
         
-        _image = [UIImage imageNamed:@"chooser-button-tab"];
-        _highlightedImage = [UIImage imageNamed:@"chooser-button-tab-highlighted"];
-        _expandCenter = CGPointZero;
-        
-        _itemButtonImages = [[NSMutableArray alloc]initWithArray:@[
-                                                                   [UIImage imageNamed:@"chooser-moment-icon-music"],
-                                                                   [UIImage imageNamed:@"chooser-moment-icon-location"],
-                                                                   [UIImage imageNamed:@"chooser-moment-icon-camera"],
-                                                                   [UIImage imageNamed:@"chooser-moment-icon-thought"],
-                                                                   [UIImage imageNamed:@"chooser-moment-icon-sleep"]
-                                                                   ]];
-        _itemButtonHighlightedImages = [[NSMutableArray alloc]initWithArray:@[
-                                                                              [UIImage imageNamed:@"chooser-moment-icon-music-highlighted"],
-                                                                              [UIImage imageNamed:@"chooser-moment-icon-location-highlighted"],
-                                                                              [UIImage imageNamed:@"chooser-moment-icon-camera-highlighted"],
-                                                                              [UIImage imageNamed:@"chooser-moment-icon-thought-highlighted"],
-                                                                              [UIImage imageNamed:@"chooser-moment-icon-sleep-highlighted"]
-                                                                              ]];
-        _itemButtonBackgroundImages = [[NSMutableArray alloc]initWithArray:@[
-                                                                             [UIImage imageNamed:@"chooser-moment-button"],
-                                                                             [UIImage imageNamed:@"chooser-moment-button"],
-                                                                             [UIImage imageNamed:@"chooser-moment-button"],
-                                                                             [UIImage imageNamed:@"chooser-moment-button"],
-                                                                             [UIImage imageNamed:@"chooser-moment-button"]
-                                                                             ]];
-        _itemButtonBackgroundHighlightedImages = [[NSMutableArray alloc]initWithArray:@[
-                                                                                        [UIImage imageNamed:@"chooser-moment-button-highlighted"],
-                                                                                        [UIImage imageNamed:@"chooser-moment-button-highlighted"],
-                                                                                        [UIImage imageNamed:@"chooser-moment-button-highlighted"],
-                                                                                        [UIImage imageNamed:@"chooser-moment-button-highlighted"],
-                                                                                        [UIImage imageNamed:@"chooser-moment-button-highlighted"]
-                                                                                        ]];
-        
-        // Init basic parameters
-        
-        _subButtonExpand = NO;
-        _itemsCount = _itemButtonImages.count;
-        _itemButtons = [[NSMutableArray alloc]initWithCapacity:self.itemsCount];
-        _itemExpandRadius = 110;
-        
-        [self configureViews];
+        // Configure views
+        //
+        [self configureViewsLayout];
     }
     return self;
 }
 
-#pragma mark - Configure Center Button Images
-
-- (void)setImage:(UIImage *)image
+- (void)configureViewsLayout
 {
-    NSAssert(image, @"Load image failed! >_< ");
-    if (![image isEqual:_image]) {
-        _image = image;
-    }
-}
-
-- (void)setHighlightedImage:(UIImage *)highlightedImage
-{
-    NSAssert(highlightedImage, @"Load highlight image failed! >_< ");
-    if (![highlightedImage isEqual:_highlightedImage]) {
-        _highlightedImage = highlightedImage;
-    }
-}
-
-#pragma mark - Configure Expand Center Point
-
-- (void)setExpandCenter:(CGPoint)expandCenter
-{
-    // Just store the center point once
+    // Init some property only once
     //
-    if (_expandCenter.x != 0 && _expandCenter.x != expandCenter.x) {
-        return ;
-    }
-    _expandCenter = expandCenter;
-}
-
-#pragma mark - Configure ItemsCount
-
-- (void)setItemsCount:(NSUInteger)itemsCount
-{
-    // DCPathButton just support 1 to 5 item button
+    self.foldedSize = self.centerImage.size;
+    self.bloomSize = [UIScreen mainScreen].bounds.size;
+    
+    self.bloom = NO;
+    self.bloomRadius = 110.0f;
+    
+    // Configure the view's center, it will change after the frame folded or bloomed
     //
-    NSAssert((itemsCount > 0 && itemsCount <= 5), @"Oops... The DCPathButton just support 1 ~ 5 items >_< ");
+    self.foldCenter = CGPointMake(self.bloomSize.width / 2, self.bloomSize.height - 25.5f);
+    self.bloomCenter = CGPointMake(self.bloomSize.width / 2, self.bloomSize.height / 2);
     
-    if (itemsCount != _itemsCount) {
-        _itemsCount = itemsCount;
-    }
-}
-
-#pragma mark - Expand Status
-
-- (BOOL)isSubButtonExpand
-{
-    return _subButtonExpand;
-}
-
-#pragma mark - Item Button Images
-
-- (void)setItemButtonImages:(NSMutableArray *)itemButtonImages
-{
-    NSAssert(itemButtonImages.count >= self.itemsCount, @"The item button images' number should equal to the items count");
+    // Configure the DCPathButton's origin frame
+    //
+    self.frame = CGRectMake(0, 0, self.foldedSize.width, self.foldedSize.height);
+    self.center = self.foldCenter;
     
-    if (itemButtonImages && ![itemButtonImages isEqual:_itemButtonImages]) {
-        _itemButtonImages = itemButtonImages;
-    }
-}
-
-- (void)setItemButtonHighlightedImages:(NSMutableArray *)itemButtonHighlightedImages
-{
-    NSAssert(itemButtonHighlightedImages.count >= self.itemsCount, @"The item button highlighted images' number should equal to the items count");
-    
-    if (! [itemButtonHighlightedImages isEqual:_itemButtonHighlightedImages]) {
-        _itemButtonHighlightedImages = itemButtonHighlightedImages;
-    }
-}
-
-- (void)setItemButtonBackgroundImages:(NSMutableArray *)itemButtonBackgroundImages
-{
-    NSAssert(itemButtonBackgroundImages.count >= self.itemsCount, @"The item button background images' number should equal to the items count");
-    
-    if (! [itemButtonBackgroundImages isEqual:_itemButtonBackgroundImages]) {
-        _itemButtonBackgroundImages = itemButtonBackgroundImages;
-    }
-}
-
-- (void)setItemButtonBackgroundHighlightedImages:(NSMutableArray *)itemButtonBackgroundHighlightedImages
-{
-    NSAssert(itemButtonBackgroundHighlightedImages.count >= self.itemsCount, @"The item button background highlighted images' number should equal to the items count");
-    
-    if (! [itemButtonBackgroundHighlightedImages isEqual:_itemButtonBackgroundHighlightedImages]) {
-        _itemButtonBackgroundHighlightedImages = itemButtonBackgroundHighlightedImages;
-    }
-}
-
-#pragma mark - Configure Views
-
-- (void)configureViews
-{
     // Configure center button
     //
-    _pathCenterButton = [[DCPathCenterButton alloc]initWithImage:self.image highlightedImage:self.highlightedImage];
+    _pathCenterButton = [[DCPathCenterButton alloc]initWithImage:self.centerImage highlightedImage:self.centerHighlightedImage];
     _pathCenterButton.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     _pathCenterButton.delegate = self;
     [self addSubview:_pathCenterButton];
     
     // Configure bottom view
     //
-    _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, currentScreenWidth, currentScreenHeight)];
+    _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.bloomSize.width, self.bloomSize.height)];
     _bottomView.backgroundColor = [UIColor blackColor];
     _bottomView.alpha = 0.0f;
     
 }
 
+#pragma mark - Configure Center Button Images
+
+- (void)setCenterImage:(UIImage *)centerImage
+{
+    if (!centerImage) {
+        NSLog(@"Load center image failed ... ");
+        return ;
+    }
+    _centerImage = centerImage;
+}
+
+- (void)setCenterHighlightedImage:(UIImage *)highlightedImage
+{
+    if (!highlightedImage) {
+        NSLog(@"Load highted image failed ... ");
+        return ;
+    }
+    _centerHighlightedImage = highlightedImage;
+}
+
+#pragma mark - Configure Expand Center Point
+
+- (void)setPathCenterButtonBloomCenter:(CGPoint)centerButtonBloomCenter
+{
+    // Just set the bloom center once
+    //
+    if (_pathCenterButtonBloomCenter.x == 0) {
+        _pathCenterButtonBloomCenter = centerButtonBloomCenter;
+    }
+    return ;
+}
+
+#pragma mark - Expand Status
+
+- (BOOL)isBloom
+{
+    return _bloom;
+}
 
 #pragma mark - Center Button Delegate
 
 - (void)centerButtonTapped
 {
-    if (self.isSubButtonExpand) {
-        [self configureShrink];
-        return ;
-    }
-    [self configureExpand];
+    self.isBloom? [self pathCenterButtonFold] : [self pathCenterButtonBloom];
 }
+
+#pragma mark - Caculate The Item's End Point
 
 - (CGPoint)createEndPointWithRadius:(CGFloat)itemExpandRadius andAngel:(CGFloat)angel
 {
-    CGPoint point = CGPointMake(centerButtonExpandCenter.x - cosf(angel * M_PI) * itemExpandRadius,
-                       centerButtonExpandCenter.y - sinf(angel * M_PI) * itemExpandRadius);
-    return point;
+    return CGPointMake(self.pathCenterButtonBloomCenter.x - cosf(angel * M_PI) * itemExpandRadius,
+                       self.pathCenterButtonBloomCenter.y - sinf(angel * M_PI) * itemExpandRadius);
 }
 
-- (void)configureShrink
+#pragma mark - Center Button Fold
+
+- (void)pathCenterButtonFold
 {
     
     [UIView animateWithDuration:0.0618f * 3
@@ -223,11 +166,13 @@
                      }
                      completion:nil];
     
-    for (int i = 0; i < self.itemsCount; i++) {
+    for (int i = 0; i < self.itemButtonImages.count; i++) {
+        
         DCPathItemButton *itemButton = self.itemButtons[i];
-        CAAnimationGroup *shrinkAnimation = [self shrinkAnimationFromPoint:itemButton.center];
+        CAAnimationGroup *shrinkAnimation = [self foldAnimationFromPoint:itemButton.center];
         [itemButton.layer addAnimation:shrinkAnimation forKey:@"Shrink"];
-        itemButton.center = centerButtonExpandCenter;
+        itemButton.center = self.pathCenterButtonBloomCenter;
+        
     }
     
     [self bringSubviewToFront:self.pathCenterButton];
@@ -238,31 +183,31 @@
                      }];
     
     
-    // Remove all item buttons
+    // Resize the DCPathButton's frame to the foled frame and remove the item buttons
     //
-    [self shrinkFrame];
-    
-    _subButtonExpand = NO;
+    [self resizeToFoldedFrame];
     
 }
 
-- (void)shrinkFrame
+- (void)resizeToFoldedFrame
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0618f * 5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         for (DCPathItemButton *itemButton in self.itemButtons) {
             [itemButton performSelector:@selector(removeFromSuperview)];
         }
         
-        self.frame = CGRectMake(0, 0, originWidth, originHeight);
-        self.center = self.expandCenter;
+        self.frame = CGRectMake(0, 0, self.foldedSize.width, self.foldedSize.height);
+        self.center = self.foldCenter;
         self.pathCenterButton.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         
         [self.bottomView removeFromSuperview];
         [self.itemButtons removeAllObjects];
     });
+    
+    _bloom = NO;
 }
 
-- (CAAnimationGroup *)shrinkAnimationFromPoint:(CGPoint)endPoint
+- (CAAnimationGroup *)foldAnimationFromPoint:(CGPoint)endPoint
 {
     // 1.Configure rotation animation
     //
@@ -279,7 +224,7 @@
     //
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, endPoint.x, endPoint.y);
-    CGPathAddLineToPoint(path, NULL, centerButtonExpandCenter.x, centerButtonExpandCenter.y);
+    CGPathAddLineToPoint(path, NULL, self.pathCenterButtonBloomCenter.x, self.pathCenterButtonBloomCenter.y);
     
     movingAnimation.path = path;
     movingAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
@@ -295,21 +240,24 @@
     return animations;
 }
 
-#pragma mark - Configure Expand
+#pragma mark - Center Button Bloom
 
-- (void)configureExpand
+- (void)pathCenterButtonBloom
 {
-    // The expand code here ...
-    // 1. Store the current center point
-    //
-    _expandCenter = self.center;
     
-    self.frame = CGRectMake(0, 0, currentScreenWidth, currentScreenHeight);
-    self.center = CGPointMake(currentScreenWidth/2, currentScreenHeight/2);
+    // 1. Store the current center point to 'centerButtonBloomCenter
+    //
+    self.pathCenterButtonBloomCenter = self.center;
+    
+    // 2. Resize the DCPathButton's frame
+    //
+    self.frame = CGRectMake(0, 0, self.bloomSize.width, self.bloomSize.height);
+    self.center = CGPointMake(self.bloomSize.width / 2, self.bloomSize.height / 2);
     
     [self insertSubview:self.bottomView belowSubview:self.pathCenterButton];
     
-    
+    // 3. Excute the bottom view alpha animation
+    //
     [UIView animateWithDuration:0.0618f * 3
                           delay:0.0f
                         options:UIViewAnimationOptionCurveEaseIn
@@ -318,49 +266,54 @@
                      }
                      completion:nil];
     
+    // 4. Excute the center button rotation animation
+    //
     [UIView animateWithDuration:0.0618f * 5
                      animations:^{
                          _pathCenterButton.transform = CGAffineTransformMakeRotation(-0.75f * M_PI);
                      }];
     
-    self.pathCenterButton.center = centerButtonExpandCenter;
+    self.pathCenterButton.center = self.pathCenterButtonBloomCenter;
     
-    // Configure the item buttons
+    // 5. Excute the bloom animation
     //
-    CGFloat basicAngel = 180 / (_itemsCount + 1) ;
+    CGFloat basicAngel = 180 / (self.itemButtonImages.count + 1) ;
     
-    for (int i = 1; i <= self.itemsCount; i++) {
+    for (int i = 1; i <= self.itemButtonImages.count; i++) {
         
         DCPathItemButton *pathItemButton = [[DCPathItemButton alloc]initWithImage:self.itemButtonImages[i - 1]
                                                                  highlightedImage:self.itemButtonHighlightedImages[i - 1]
-                                                                  backgroundImage:self.itemButtonBackgroundImages[i - 1]
-                                                       backgroundHighlightedImage:self.itemButtonBackgroundHighlightedImages[i - 1]];
+                                                                  backgroundImage:self.itemButtonBackgroundImage
+                                                       backgroundHighlightedImage:self.itemButtonBackgroundHighlightedImage];
         pathItemButton.delegate = self;
         pathItemButton.tag = i - 1;
-        // 1.Add pathItem button to the view
+        
+        // 1. Add pathItem button to the view
         //
         CGFloat currentAngel = (basicAngel * i)/180;
-        pathItemButton.center = centerButtonExpandCenter;
+        
+        pathItemButton.center = self.pathCenterButtonBloomCenter;
+        
         [self insertSubview:pathItemButton belowSubview:self.pathCenterButton];
         
         // 2.Excute expand animation
         //
-        CGPoint endPoint = [self createEndPointWithRadius:self.itemExpandRadius andAngel:currentAngel];
-        CGPoint farPoint = [self createEndPointWithRadius:self.itemExpandRadius + 10.0f andAngel:currentAngel];
+        CGPoint endPoint = [self createEndPointWithRadius:self.bloomRadius andAngel:currentAngel];
+        CGPoint farPoint = [self createEndPointWithRadius:self.bloomRadius + 10.0f andAngel:currentAngel];
         
-        CAAnimationGroup *expandAnimation = [self expandAnimationWithEndPoint:endPoint
+        CAAnimationGroup *bloomAnimation = [self bloomAnimationWithEndPoint:endPoint
                                                                   andFarPoint:farPoint];
-        [pathItemButton.layer addAnimation:expandAnimation forKey:@"ExpandAnimation"];
+        [pathItemButton.layer addAnimation:bloomAnimation forKey:@"bloomAnimation"];
         pathItemButton.center = endPoint;
         
         [self.itemButtons insertObject:pathItemButton atIndex:i - 1];
     }
     
-    _subButtonExpand = YES;
+    _bloom = YES;
 
 }
 
-- (CAAnimationGroup *)expandAnimationWithEndPoint:(CGPoint)endPoint andFarPoint:(CGPoint)farPoint
+- (CAAnimationGroup *)bloomAnimationWithEndPoint:(CGPoint)endPoint andFarPoint:(CGPoint)farPoint
 {
     // 1.Configure rotation animation
     //
@@ -376,7 +329,7 @@
     // Create moving path
     //
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, centerButtonExpandCenter.x, centerButtonExpandCenter.y);
+    CGPathMoveToPoint(path, NULL, self.pathCenterButtonBloomCenter.x, self.pathCenterButtonBloomCenter.y);
     CGPathAddLineToPoint(path, NULL, farPoint.x, farPoint.y);
     CGPathAddLineToPoint(path, NULL, endPoint.x, endPoint.y);
     
@@ -395,6 +348,14 @@
     return animations;
 }
 
+#pragma mark - DCPathButton Touch Events
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    // Tap the bottom area, excute the fold animation
+    [self pathCenterButtonFold];
+}
+
 #pragma mark - DCPathButton Item Delegate
 
 - (void)itemButtonTapped:(DCPathItemButton *)itemButton
@@ -402,12 +363,18 @@
     if ([_delegate respondsToSelector:@selector(itemButtonTappedAtIndex:)]) {
         
         DCPathItemButton *selectedButton = self.itemButtons[itemButton.tag];
+        
+        // Excute the explode animation when the item is seleted
+        //
         [UIView animateWithDuration:0.0618f * 2
                          animations:^{
                              selectedButton.transform = CGAffineTransformMakeScale(3, 3);
                              selectedButton.alpha = 0.0f;
                          }];
-        for (int i = 0; i < self.itemsCount; i++) {
+        
+        // Excute the dismiss animation when the item is unselected
+        //
+        for (int i = 0; i < self.itemButtonImages.count; i++) {
             if (i == selectedButton.tag) {
                 continue;
             }
@@ -418,27 +385,14 @@
                              }];
         }
         
+        // Excute the delegate method
+        //
         [_delegate itemButtonTappedAtIndex:itemButton.tag];
-        [self shrinkFrame];
-        _subButtonExpand = NO;
+        
+        // Resize the DCPathButton's frame
+        //
+        [self resizeToFoldedFrame];
     }
-}
-
-#pragma mark - DCPathButton Touch Events
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    //The shrink code here ...
-    [self centerButtonTapped];
-    
-    NSLog(@"DCPathButton Tapped");
-    
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    //Something after the shrink animation code ...
-    
 }
 
 @end

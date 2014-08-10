@@ -20,7 +20,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    DCPathButton *pathButton = [[DCPathButton alloc]init];
+    DCPathButton *pathButton = [[DCPathButton alloc]initWithCenterImage:[UIImage imageNamed:@"chooser-button-tab"]
+                                                         hilightedImage:[UIImage imageNamed:@"chooser-button-tab-highlighted"]];
+    
+    pathButton.itemButtonBackgroundImage = [UIImage imageNamed:@"chooser-moment-button"];
+    pathButton.itemButtonBackgroundHighlightedImage = [UIImage imageNamed:@"chooser-moment-button-highlighted"];
+    
     pathButton.delegate = self;
     
     [self.view addSubview:pathButton];

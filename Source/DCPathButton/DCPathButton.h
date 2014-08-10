@@ -19,16 +19,14 @@
 
 @property (weak, nonatomic) id<DCPathButtonDelegate> delegate;
 
-@property (assign, nonatomic) NSUInteger itemsCount;
-
-@property (strong, nonatomic) UIImage *image;
-@property (strong, nonatomic) UIImage *highlightedImage;
-
 @property (strong, nonatomic) NSMutableArray *itemButtonImages;
 @property (strong, nonatomic) NSMutableArray *itemButtonHighlightedImages;
-@property (strong, nonatomic) NSMutableArray *itemButtonBackgroundImages;
-@property (strong, nonatomic) NSMutableArray *itemButtonBackgroundHighlightedImages;
 
-@property (assign, nonatomic) CGFloat itemExpandRadius;
+@property (strong, nonatomic) UIImage *itemButtonBackgroundImage;
+@property (strong, nonatomic) UIImage *itemButtonBackgroundHighlightedImage;
+
+@property (assign, nonatomic) CGFloat bloomRadius;
+
+- (id)initWithCenterImage:(UIImage *)centerImage hilightedImage:(UIImage *)centerHighlightedImage;
 
 @end
