@@ -24,23 +24,23 @@
                                                          hilightedImage:[UIImage imageNamed:@"chooser-button-tab-highlighted"]];
     pathButton.delegate = self;
     
-    DCPathItemButton *itemButton = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"chooser-moment-icon-location"]
-                                                         highlightedImage:[UIImage imageNamed:@"chooser-moment-icon-location-highlighted"]
-                                                          backgroundImage:[UIImage imageNamed:@"chooser-moment-button"]
-                                               backgroundHighlightedImage:[UIImage imageNamed:@"chooser-moment-button-highlighted"]];
+    DCPathItemButton *itemButton_1 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"chooser-moment-icon-music"]
+                                                           highlightedImage:[UIImage imageNamed:@"chooser-moment-icon-music-highlighted"]
+                                                            backgroundImage:[UIImage imageNamed:@"chooser-moment-button"]
+                                                 backgroundHighlightedImage:[UIImage imageNamed:@"chooser-moment-button-highlighted"]];
     
-    DCPathItemButton *itemButton_2 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"chooser-moment-icon-music"]
-                                                         highlightedImage:[UIImage imageNamed:@"chooser-moment-icon-music-highlighted"]
-                                                          backgroundImage:[UIImage imageNamed:@"chooser-moment-button"]
-                                               backgroundHighlightedImage:[UIImage imageNamed:@"chooser-moment-button-highlighted"]];
+    DCPathItemButton *itemButton_2 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"chooser-moment-icon-place"]
+                                                           highlightedImage:[UIImage imageNamed:@"chooser-moment-icon-place-highlighted"]
+                                                            backgroundImage:[UIImage imageNamed:@"chooser-moment-button"]
+                                                 backgroundHighlightedImage:[UIImage imageNamed:@"chooser-moment-button-highlighted"]];
     
     DCPathItemButton *itemButton_3 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"chooser-moment-icon-camera"]
                                                            highlightedImage:[UIImage imageNamed:@"chooser-moment-icon-camera-highlighted"]
                                                             backgroundImage:[UIImage imageNamed:@"chooser-moment-button"]
                                                  backgroundHighlightedImage:[UIImage imageNamed:@"chooser-moment-button-highlighted"]];
     
-    DCPathItemButton *itemButton_4 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"chooser-moment-icon-place"]
-                                                           highlightedImage:[UIImage imageNamed:@"chooser-moment-icon-place-highlighted"]
+    DCPathItemButton *itemButton_4 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"chooser-moment-icon-location"]
+                                                           highlightedImage:[UIImage imageNamed:@"chooser-moment-icon-location-highlighted"]
                                                             backgroundImage:[UIImage imageNamed:@"chooser-moment-button"]
                                                  backgroundHighlightedImage:[UIImage imageNamed:@"chooser-moment-button-highlighted"]];
     
@@ -49,7 +49,7 @@
                                                             backgroundImage:[UIImage imageNamed:@"chooser-moment-button"]
                                                  backgroundHighlightedImage:[UIImage imageNamed:@"chooser-moment-button-highlighted"]];
     
-    [pathButton addPathItem:@[itemButton, itemButton_2, itemButton_3, itemButton_4, itemButton_5]];
+    [pathButton addPathItem:@[itemButton_1, itemButton_2, itemButton_3, itemButton_4, itemButton_5]];
 
     
     [self.view addSubview:pathButton];
@@ -58,11 +58,7 @@
 
 - (void)itemButtonTappedAtIndex:(NSUInteger)index
 {
-    if (index == 0) {
-        NSLog(@"Done!");
-        return ;
-    }
-    NSLog(@"Never!");
+    
 }
 
 - (void)didReceiveMemoryWarning

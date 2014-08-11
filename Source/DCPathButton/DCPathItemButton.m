@@ -28,31 +28,22 @@
         self.userInteractionEnabled = YES;
         
         // Configure background
+        //
         _backgroundImageView = [[UIImageView alloc]initWithImage:image
                                                             highlightedImage:highlightedImage];
         
         _backgroundImageView.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
         
-        //[self insertSubview:_backgroundImageView belowSubview:self];
         [self addSubview:_backgroundImageView];
         
     }
     return self;
 }
 
-- (CAAnimationGroup *)expandAnimation
-{
-    return nil;
-}
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     self.highlighted = YES;
     self.backgroundImageView.highlighted = YES;
-    
-    if ([_delegate respondsToSelector:@selector(itemButtonTapped:)]) {
-        [_delegate itemButtonTapped:self];
-    }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -62,6 +53,7 @@
     if (! CGRectContainsPoint([self scaleRect:self.bounds], currentLocation)) {
         self.highlighted = NO;
         self.backgroundImageView.highlighted = NO;
+        
         return ;
     }
     
@@ -71,6 +63,10 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if ([_delegate respondsToSelector:@selector(itemButtonTapped:)]) {
+        [_delegate itemButtonTapped:self];
+    }
+    
     self.highlighted = NO;
     self.backgroundImageView.highlighted = NO;
 }

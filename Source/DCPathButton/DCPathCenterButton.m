@@ -50,22 +50,20 @@
     
     
     // Cancel button highlight when the touch location is out of 5x area
+    //
     if (!CGRectContainsPoint([self scaleRect:self.bounds] , currentLocation)) {
         self.highlighted = NO;
         return ;
     }
     
-    // If moving in the 5x area, keep the highlight state
+    // If moving in the 3x area, keep the highlight state
+    //
     self.highlighted = YES;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    //
-    
     self.highlighted = NO;
 }
-
-
 
 @end

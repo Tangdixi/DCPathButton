@@ -31,6 +31,11 @@
 @property (strong, nonatomic) DCPathCenterButton *pathCenterButton;
 @property (strong, nonatomic) NSMutableArray *itemButtons;
 
+@property (assign, nonatomic) SystemSoundID bloomSound;
+@property (assign, nonatomic) SystemSoundID foldSound;
+@property (assign, nonatomic) SystemSoundID selectedSound;
+
+
 @end
 
 @implementation DCPathButton
@@ -58,6 +63,10 @@
         // Configure views
         //
         [self configureViewsLayout];
+        
+        // Configure sounds
+        //
+        [self configureSounds];
     }
     return self;
 }
@@ -94,6 +103,28 @@
     _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.bloomSize.width, self.bloomSize.height)];
     _bottomView.backgroundColor = [UIColor blackColor];
     _bottomView.alpha = 0.0f;
+    
+}
+
+- (void)configureSounds
+{
+    // Configure bloom sound
+    //
+    NSString *bloomSoundPath = [[NSBundle mainBundle]pathForResource:@"bloom" ofType:@"caf"];
+    NSURL *bloomSoundURL = [NSURL fileURLWithPath:bloomSoundPath];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)bloomSoundURL, &_bloomSound);
+    
+    // Configure fold sound
+    //
+    NSString *foldSoundPath = [[NSBundle mainBundle]pathForResource:@"fold" ofType:@"caf"];
+    NSURL *foldSoundURL = [NSURL fileURLWithPath:foldSoundPath];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)foldSoundURL, &_foldSound);
+    
+    // Configure selected sound
+    //
+    NSString *selectedSoundPath = [[NSBundle mainBundle]pathForResource:@"selected" ofType:@"caf"];
+    NSURL *selectedSoundURL = [NSURL fileURLWithPath:selectedSoundPath];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)selectedSoundURL, &_selectedSound);
     
 }
 
@@ -155,7 +186,12 @@
 
 - (void)pathCenterButtonFold
 {
+    // Play fold sound
+    //
+    AudioServicesPlaySystemSound(self.foldSound);
     
+    // Load item buttons from array
+    //
     for (int i = 1; i <= self.itemButtons.count; i++) {
         
         DCPathItemButton *itemButton = self.itemButtons[i - 1];
@@ -250,7 +286,12 @@
 
 - (void)pathCenterButtonBloom
 {
+    // Play bloom sound
+    //
+    AudioServicesPlaySystemSound(self.bloomSound);
     
+    // Configure center button bloom
+    //
     // 1. Store the current center point to 'centerButtonBloomCenter
     //
     self.pathCenterButtonBloomCenter = self.center;
@@ -306,9 +347,12 @@
         //
         CGPoint endPoint = [self createEndPointWithRadius:self.bloomRadius andAngel:currentAngel];
         CGPoint farPoint = [self createEndPointWithRadius:self.bloomRadius + 10.0f andAngel:currentAngel];
+        CGPoint nearPoint = [self createEndPointWithRadius:self.bloomRadius - 5.0f andAngel:currentAngel];
         
         CAAnimationGroup *bloomAnimation = [self bloomAnimationWithEndPoint:endPoint
-                                                                  andFarPoint:farPoint];
+                                                                  andFarPoint:farPoint
+                                                                andNearPoint:nearPoint];
+        
         [pathItemButton.layer addAnimation:bloomAnimation forKey:@"bloomAnimation"];
         pathItemButton.center = endPoint;
         
@@ -318,14 +362,14 @@
 
 }
 
-- (CAAnimationGroup *)bloomAnimationWithEndPoint:(CGPoint)endPoint andFarPoint:(CGPoint)farPoint
+- (CAAnimationGroup *)bloomAnimationWithEndPoint:(CGPoint)endPoint andFarPoint:(CGPoint)farPoint andNearPoint:(CGPoint)nearPoint
 {
     // 1.Configure rotation animation
     //
     CAKeyframeAnimation *rotationAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotationAnimation.values = @[@(0.0), @(- M_PI * 1.5), @(- M_PI * 2)];
+    rotationAnimation.values = @[@(0.0), @(- M_PI), @(- M_PI * 1.5), @(- M_PI * 2)];
     rotationAnimation.duration = 0.3f;
-    rotationAnimation.keyTimes = @[@(0.0), @(0.5), @(1.0)];
+    rotationAnimation.keyTimes = @[@(0.0), @(0.3), @(0.6), @(1.0)];
     
     // 2.Configure moving animation
     //
@@ -336,10 +380,11 @@
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, self.pathCenterButtonBloomCenter.x, self.pathCenterButtonBloomCenter.y);
     CGPathAddLineToPoint(path, NULL, farPoint.x, farPoint.y);
+    CGPathAddLineToPoint(path, NULL, nearPoint.x, nearPoint.y);
     CGPathAddLineToPoint(path, NULL, endPoint.x, endPoint.y);
     
     movingAnimation.path = path;
-    movingAnimation.keyTimes = @[@(0.0), @(0.45), @(1.0)];
+    movingAnimation.keyTimes = @[@(0.0), @(0.5), @(0.7), @(1.0)];
     movingAnimation.duration = 0.3f;
     CGPathRelease(path);
     
@@ -375,6 +420,10 @@
     if ([_delegate respondsToSelector:@selector(itemButtonTappedAtIndex:)]) {
         
         DCPathItemButton *selectedButton = self.itemButtons[itemButton.tag];
+        
+        // Play selected sound
+        //
+        AudioServicesPlaySystemSound(self.selectedSound);
         
         // Excute the explode animation when the item is seleted
         //

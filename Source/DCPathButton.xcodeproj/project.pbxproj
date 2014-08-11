@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8184565D1998BEC7004767E4 /* fold.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8184565A1998BEC7004767E4 /* fold.caf */; };
+		8184565E1998BEC7004767E4 /* selected.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8184565B1998BEC7004767E4 /* selected.caf */; };
+		8184565F1998BEC7004767E4 /* bloom.caf in Resources */ = {isa = PBXBuildFile; fileRef = 8184565C1998BEC7004767E4 /* bloom.caf */; };
 		81AE87571988D85900122A81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AE87561988D85900122A81 /* Foundation.framework */; };
 		81AE87591988D85900122A81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AE87581988D85900122A81 /* CoreGraphics.framework */; };
 		81AE875B1988D85900122A81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AE875A1988D85900122A81 /* UIKit.framework */; };
@@ -37,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8184565A1998BEC7004767E4 /* fold.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = fold.caf; sourceTree = "<group>"; };
+		8184565B1998BEC7004767E4 /* selected.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = selected.caf; sourceTree = "<group>"; };
+		8184565C1998BEC7004767E4 /* bloom.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = bloom.caf; sourceTree = "<group>"; };
 		81AE87531988D85900122A81 /* DCPathButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DCPathButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AE87561988D85900122A81 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		81AE87581988D85900122A81 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -141,6 +147,9 @@
 		81AE875D1988D85900122A81 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8184565A1998BEC7004767E4 /* fold.caf */,
+				8184565B1998BEC7004767E4 /* selected.caf */,
+				8184565C1998BEC7004767E4 /* bloom.caf */,
 				81AE875E1988D85900122A81 /* DCPathButton-Info.plist */,
 				81AE875F1988D85900122A81 /* InfoPlist.strings */,
 				81AE87621988D85900122A81 /* main.m */,
@@ -244,8 +253,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AE876F1988D85900122A81 /* Images.xcassets in Resources */,
+				8184565D1998BEC7004767E4 /* fold.caf in Resources */,
 				81AE87611988D85900122A81 /* InfoPlist.strings in Resources */,
 				81AE876A1988D85900122A81 /* Main.storyboard in Resources */,
+				8184565F1998BEC7004767E4 /* bloom.caf in Resources */,
+				8184565E1998BEC7004767E4 /* selected.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

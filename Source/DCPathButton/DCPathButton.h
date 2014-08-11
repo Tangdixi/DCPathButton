@@ -10,6 +10,7 @@
 
 @import UIKit;
 @import QuartzCore;
+@import AudioToolbox;
 
 @protocol DCPathButtonDelegate <NSObject>
 
