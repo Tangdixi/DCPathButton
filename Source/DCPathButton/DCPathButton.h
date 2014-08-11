@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Tangdxi. All rights reserved.
 //
 
+#import "DCPathItemButton.h"
+
 @import UIKit;
 @import QuartzCore;
 
@@ -28,5 +30,6 @@
 @property (assign, nonatomic) CGFloat bloomRadius;
 
 - (id)initWithCenterImage:(UIImage *)centerImage hilightedImage:(UIImage *)centerHighlightedImage;
+- (void)addPathItem:(NSArray *)pathItemButtons;
 
 @end

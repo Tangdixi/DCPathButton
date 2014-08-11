@@ -8,8 +8,6 @@
 
 #import "DCPathButton.h"
 #import "DCPathCenterButton.h"
-//#import "DCPathButtonInstances.h"
-#import "DCPathItemButton.h"
 
 @interface DCPathButton ()<DCPathCenterButtonDelegate, DCPathItemButtonDelegate>
 
@@ -166,20 +164,25 @@
                      }
                      completion:nil];
     
-    for (int i = 0; i < self.itemButtonImages.count; i++) {
+    for (int i = 1; i <= self.itemButtons.count; i++) {
         
-        DCPathItemButton *itemButton = self.itemButtons[i];
-        CAAnimationGroup *shrinkAnimation = [self foldAnimationFromPoint:itemButton.center];
-        [itemButton.layer addAnimation:shrinkAnimation forKey:@"Shrink"];
+        DCPathItemButton *itemButton = self.itemButtons[i - 1];
+        
+        CGFloat currentAngel = i / ((CGFloat)self.itemButtons.count + 1);
+        CGPoint farPoint = [self createEndPointWithRadius:self.bloomRadius + 5.0f andAngel:currentAngel];
+        
+        CAAnimationGroup *foldAnimation = [self foldAnimationFromPoint:itemButton.center withFarPoint:farPoint];
+        
+        [itemButton.layer addAnimation:foldAnimation forKey:@"foldAnimation"];
         itemButton.center = self.pathCenterButtonBloomCenter;
         
     }
     
     [self bringSubviewToFront:self.pathCenterButton];
     
-    [UIView animateWithDuration:0.0618f * 2
+    [UIView animateWithDuration:0.0618f * 5
                      animations:^{
-                          //_bottomView.alpha = 0.0f;
+                          _bottomView.alpha = 0.0f;
                      }];
     
     
@@ -192,29 +195,27 @@
 - (void)resizeToFoldedFrame
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0618f * 5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        for (DCPathItemButton *itemButton in self.itemButtons) {
-            [itemButton performSelector:@selector(removeFromSuperview)];
-        }
+//        for (DCPathItemButton *itemButton in self.itemButtons) {
+//            [itemButton performSelector:@selector(removeFromSuperview)];
+//        }
         
         self.frame = CGRectMake(0, 0, self.foldedSize.width, self.foldedSize.height);
         self.center = self.foldCenter;
         self.pathCenterButton.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         
         [self.bottomView removeFromSuperview];
-        [self.itemButtons removeAllObjects];
     });
     
     _bloom = NO;
 }
 
-- (CAAnimationGroup *)foldAnimationFromPoint:(CGPoint)endPoint
+- (CAAnimationGroup *)foldAnimationFromPoint:(CGPoint)endPoint withFarPoint:(CGPoint)farPoint
 {
     // 1.Configure rotation animation
     //
     CAKeyframeAnimation *rotationAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotationAnimation.values = @[@(-M_PI * 4), @(0.0f)];
+    rotationAnimation.values = @[@(- M_PI * 4), @(- M_PI * 2), @(0.0f)];
     rotationAnimation.duration = 0.0618f * 5;
-    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
     
     // 2.Configure moving animation
     //
@@ -224,10 +225,12 @@
     //
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, endPoint.x, endPoint.y);
+    CGPathAddLineToPoint(path, NULL, farPoint.x, farPoint.y);
     CGPathAddLineToPoint(path, NULL, self.pathCenterButtonBloomCenter.x, self.pathCenterButtonBloomCenter.y);
     
+    movingAnimation.keyTimes = @[@(0.0f), @(0.7), @(1.0)];
+    
     movingAnimation.path = path;
-    movingAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
     movingAnimation.duration = 0.0618f * 5;
     CGPathRelease(path);
     
@@ -238,6 +241,13 @@
     animations.duration = 0.0618f * 5;
     
     return animations;
+}
+
+#pragma mark - Add PathButton Item
+
+- (void)addPathItem:(NSArray *)pathItemButtons
+{
+    [self.itemButtons addObjectsFromArray:pathItemButtons];
 }
 
 #pragma mark - Center Button Bloom
@@ -277,14 +287,12 @@
     
     // 5. Excute the bloom animation
     //
-    CGFloat basicAngel = 180 / (self.itemButtonImages.count + 1) ;
+    CGFloat basicAngel = 180 / (self.itemButtons.count + 1) ;
     
-    for (int i = 1; i <= self.itemButtonImages.count; i++) {
+    for (int i = 1; i <= self.itemButtons.count; i++) {
         
-        DCPathItemButton *pathItemButton = [[DCPathItemButton alloc]initWithImage:self.itemButtonImages[i - 1]
-                                                                 highlightedImage:self.itemButtonHighlightedImages[i - 1]
-                                                                  backgroundImage:self.itemButtonBackgroundImage
-                                                       backgroundHighlightedImage:self.itemButtonBackgroundHighlightedImage];
+        DCPathItemButton *pathItemButton = self.itemButtons[i - 1];
+        
         pathItemButton.delegate = self;
         pathItemButton.tag = i - 1;
         
@@ -306,7 +314,6 @@
         [pathItemButton.layer addAnimation:bloomAnimation forKey:@"bloomAnimation"];
         pathItemButton.center = endPoint;
         
-        [self.itemButtons insertObject:pathItemButton atIndex:i - 1];
     }
     
     _bloom = YES;
@@ -374,7 +381,7 @@
         
         // Excute the dismiss animation when the item is unselected
         //
-        for (int i = 0; i < self.itemButtonImages.count; i++) {
+        for (int i = 0; i < self.itemButtons.count; i++) {
             if (i == selectedButton.tag) {
                 continue;
             }

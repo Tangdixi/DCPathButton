@@ -60,7 +60,6 @@
 		81AE878C1988DCBE00122A81 /* DCPathButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPathButton.m; sourceTree = "<group>"; };
 		81AE878E1988DF1F00122A81 /* DCPathCenterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPathCenterButton.h; sourceTree = "<group>"; };
 		81AE878F1988DF1F00122A81 /* DCPathCenterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPathCenterButton.m; sourceTree = "<group>"; };
-		81AE87911988E83B00122A81 /* DCPathButtonInstances.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCPathButtonInstances.h; sourceTree = "<group>"; };
 		81AE8792198A1E0200122A81 /* DCPathItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCPathItemButton.h; sourceTree = "<group>"; };
 		81AE8793198A1E0200122A81 /* DCPathItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCPathItemButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,7 +132,6 @@
 				81AE878F1988DF1F00122A81 /* DCPathCenterButton.m */,
 				81AE8792198A1E0200122A81 /* DCPathItemButton.h */,
 				81AE8793198A1E0200122A81 /* DCPathItemButton.m */,
-				81AE87911988E83B00122A81 /* DCPathButtonInstances.h */,
 				81AE876E1988D85900122A81 /* Images.xcassets */,
 				81AE875D1988D85900122A81 /* Supporting Files */,
 			);
@@ -476,6 +474,7 @@
 				81AE87871988D85900122A81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81AE87881988D85900122A81 /* Build configuration list for PBXNativeTarget "DCPathButtonTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +483,7 @@
 				81AE878A1988D85900122A81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
