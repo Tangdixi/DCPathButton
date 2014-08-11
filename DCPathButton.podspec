@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
 
   s.author             = { "Tangdixi" => "Tangdixi@gmail.com" }
 
-  s.platform     = :ios
+  s.platform     = :ios, '7.0'
 
   s.source       = { 
 	:git => "https://github.com/Tangdixi/DCPathButton.git", 
@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
 
   s.source_files  = 'DCPathButton/Classes/*.{h,m}'
 
-  s.resource  = "DCPathButton/Sounds/*.caf"
+  s.resources  = ["DCPathButton/Sounds/*"]
 
   s.frameworks = 'QuartzCore','AudioToolBox'
 
