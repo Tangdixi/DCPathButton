@@ -70,7 +70,7 @@
     self.bloomSize = [UIScreen mainScreen].bounds.size;
     
     self.bloom = NO;
-    self.bloomRadius = 110.0f;
+    self.bloomRadius = 105.0f;
     
     // Configure the view's center, it will change after the frame folded or bloomed
     //
@@ -156,14 +156,6 @@
 - (void)pathCenterButtonFold
 {
     
-    [UIView animateWithDuration:0.0618f * 3
-                          delay:0.0618f * 2
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         _pathCenterButton.transform = CGAffineTransformMakeRotation(0);
-                     }
-                     completion:nil];
-    
     for (int i = 1; i <= self.itemButtons.count; i++) {
         
         DCPathItemButton *itemButton = self.itemButtons[i - 1];
@@ -180,12 +172,6 @@
     
     [self bringSubviewToFront:self.pathCenterButton];
     
-    [UIView animateWithDuration:0.0618f * 5
-                     animations:^{
-                          _bottomView.alpha = 0.0f;
-                     }];
-    
-    
     // Resize the DCPathButton's frame to the foled frame and remove the item buttons
     //
     [self resizeToFoldedFrame];
@@ -194,10 +180,26 @@
 
 - (void)resizeToFoldedFrame
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0618f * 5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        for (DCPathItemButton *itemButton in self.itemButtons) {
-//            [itemButton performSelector:@selector(removeFromSuperview)];
-//        }
+    [UIView animateWithDuration:0.0618f * 3
+                          delay:0.0618f * 2
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         _pathCenterButton.transform = CGAffineTransformMakeRotation(0);
+                     }
+                     completion:nil];
+    
+    [UIView animateWithDuration:0.1f
+                          delay:0.35f
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         _bottomView.alpha = 0.0f;
+                     }
+                     completion:nil];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        for (DCPathItemButton *itemButton in self.itemButtons) {
+            [itemButton performSelector:@selector(removeFromSuperview)];
+        }
         
         self.frame = CGRectMake(0, 0, self.foldedSize.width, self.foldedSize.height);
         self.center = self.foldCenter;
@@ -214,8 +216,9 @@
     // 1.Configure rotation animation
     //
     CAKeyframeAnimation *rotationAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotationAnimation.values = @[@(- M_PI * 4), @(- M_PI * 2), @(0.0f)];
-    rotationAnimation.duration = 0.0618f * 5;
+    rotationAnimation.values = @[@(0), @(M_PI), @(M_PI * 2)];
+    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    rotationAnimation.duration = 0.35f;
     
     // 2.Configure moving animation
     //
@@ -228,26 +231,19 @@
     CGPathAddLineToPoint(path, NULL, farPoint.x, farPoint.y);
     CGPathAddLineToPoint(path, NULL, self.pathCenterButtonBloomCenter.x, self.pathCenterButtonBloomCenter.y);
     
-    movingAnimation.keyTimes = @[@(0.0f), @(0.7), @(1.0)];
+    movingAnimation.keyTimes = @[@(0.0f), @(0.75), @(1.0)];
     
     movingAnimation.path = path;
-    movingAnimation.duration = 0.0618f * 5;
+    movingAnimation.duration = 0.35f;
     CGPathRelease(path);
     
     // 3.Merge animation together
     //
     CAAnimationGroup *animations = [CAAnimationGroup animation];
     animations.animations = @[rotationAnimation, movingAnimation];
-    animations.duration = 0.0618f * 5;
+    animations.duration = 0.35f;
     
     return animations;
-}
-
-#pragma mark - Add PathButton Item
-
-- (void)addPathItem:(NSArray *)pathItemButtons
-{
-    [self.itemButtons addObjectsFromArray:pathItemButtons];
 }
 
 #pragma mark - Center Button Bloom
@@ -278,7 +274,7 @@
     
     // 4. Excute the center button rotation animation
     //
-    [UIView animateWithDuration:0.0618f * 5
+    [UIView animateWithDuration:0.1575f
                      animations:^{
                          _pathCenterButton.transform = CGAffineTransformMakeRotation(-0.75f * M_PI);
                      }];
@@ -295,6 +291,8 @@
         
         pathItemButton.delegate = self;
         pathItemButton.tag = i - 1;
+        pathItemButton.transform = CGAffineTransformMakeTranslation(1, 1);
+        pathItemButton.alpha = 1.0f;
         
         // 1. Add pathItem button to the view
         //
@@ -325,9 +323,9 @@
     // 1.Configure rotation animation
     //
     CAKeyframeAnimation *rotationAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotationAnimation.values = @[@(M_PI * 4), @(0.0f)];
-    rotationAnimation.duration = 0.0618f * 6;
-    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    rotationAnimation.values = @[@(0.0), @(- M_PI * 1.5), @(- M_PI * 2)];
+    rotationAnimation.duration = 0.3f;
+    rotationAnimation.keyTimes = @[@(0.0), @(0.5), @(1.0)];
     
     // 2.Configure moving animation
     //
@@ -341,18 +339,25 @@
     CGPathAddLineToPoint(path, NULL, endPoint.x, endPoint.y);
     
     movingAnimation.path = path;
-    movingAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-    movingAnimation.duration = 0.0618f * 6;
+    movingAnimation.keyTimes = @[@(0.0), @(0.45), @(1.0)];
+    movingAnimation.duration = 0.3f;
     CGPathRelease(path);
     
     // 3.Merge two animation together
     //
     CAAnimationGroup *animations = [CAAnimationGroup animation];
     animations.animations = @[movingAnimation, rotationAnimation];
-    animations.duration = 0.0618f * 6;
+    animations.duration = 0.3f;
     animations.delegate = self;
     
     return animations;
+}
+
+#pragma mark - Add PathButton Item
+
+- (void)addPathItem:(NSArray *)pathItemButtons
+{
+    [self.itemButtons addObjectsFromArray:pathItemButtons];
 }
 
 #pragma mark - DCPathButton Touch Events
@@ -373,7 +378,7 @@
         
         // Excute the explode animation when the item is seleted
         //
-        [UIView animateWithDuration:0.0618f * 2
+        [UIView animateWithDuration:0.0618f * 5
                          animations:^{
                              selectedButton.transform = CGAffineTransformMakeScale(3, 3);
                              selectedButton.alpha = 0.0f;
