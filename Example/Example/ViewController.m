@@ -2,14 +2,14 @@
 //  ViewController.m
 //  Example
 //
-//  Created by tang dixi on 11/8/14.
+//  Created by tang dixi on 12/8/14.
 //  Copyright (c) 2014 Tangdxi. All rights reserved.
 //
 
 #import "ViewController.h"
-#import <AudioToolbox/AudioToolbox.h>
+#import "DCPathButton.h"
 
-@interface ViewController ()
+@interface ViewController ()<DCPathButtonDelegate>
 
 @end
 
@@ -19,17 +19,68 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-
-    uint8_t buffer = malloc(1024 * 1024 * 10);
-    uint8_t buffer_2[1024 * 1024 * 10];
     
+    [self ConfigureDCPathButton];
+}
+
+- (void)ConfigureDCPathButton
+{
+    // Configure center button
+    //
+    DCPathButton *dcPathButton = [[DCPathButton alloc]initWithCenterImage:[UIImage imageNamed:@"chooser-button-tab"]
+                                                           hilightedImage:[UIImage imageNamed:@"chooser-button-tab-highlighted"]];
+    dcPathButton.delegate = self;
+    
+    // Configure item buttons
+    //
+    DCPathItemButton *itemButton_1 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"chooser-moment-icon-music"]
+                                                           highlightedImage:[UIImage imageNamed:@"chooser-moment-icon-music-highlighted"]
+                                                            backgroundImage:[UIImage imageNamed:@"chooser-moment-button"]
+                                                 backgroundHighlightedImage:[UIImage imageNamed:@"chooser-moment-button-highlighted"]];
+    
+    DCPathItemButton *itemButton_2 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"chooser-moment-icon-place"]
+                                                           highlightedImage:[UIImage imageNamed:@"chooser-moment-icon-place-highlighted"]
+                                                            backgroundImage:[UIImage imageNamed:@"chooser-moment-button"]
+                                                 backgroundHighlightedImage:[UIImage imageNamed:@"chooser-moment-button-highlighted"]];
+    
+    DCPathItemButton *itemButton_3 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"chooser-moment-icon-camera"]
+                                                           highlightedImage:[UIImage imageNamed:@"chooser-moment-icon-camera-highlighted"]
+                                                            backgroundImage:[UIImage imageNamed:@"chooser-moment-button"]
+                                                 backgroundHighlightedImage:[UIImage imageNamed:@"chooser-moment-button-highlighted"]];
+    
+    DCPathItemButton *itemButton_4 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"chooser-moment-icon-thought"]
+                                                           highlightedImage:[UIImage imageNamed:@"chooser-moment-icon-thought-highlighted"]
+                                                            backgroundImage:[UIImage imageNamed:@"chooser-moment-button"]
+                                                 backgroundHighlightedImage:[UIImage imageNamed:@"chooser-moment-button-highlighted"]];
+    
+    DCPathItemButton *itemButton_5 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"chooser-moment-icon-sleep"]
+                                                           highlightedImage:[UIImage imageNamed:@"chooser-moment-icon-sleep-highlighted"]
+                                                            backgroundImage:[UIImage imageNamed:@"chooser-moment-button"]
+                                                 backgroundHighlightedImage:[UIImage imageNamed:@"chooser-moment-button-highlighted"]];
+    // Add the item button into the center button
+    //
+    [dcPathButton addPathItem:@[itemButton_1, itemButton_2, itemButton_3, itemButton_4, itemButton_5]];
+    
+    [self.view addSubview:dcPathButton];
+
+}
+
+#pragma mark - DCPathButton Delegate
+
+- (void)itemButtonTappedAtIndex:(NSUInteger)index
+{
+    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Item Tapped"
+                                                       message:[NSString stringWithFormat:@"You tapped index %ld :)", index]
+                                                      delegate:self
+                                             cancelButtonTitle:@"Ok !"
+                                             otherButtonTitles: nil];
+    [alertView show];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    
 }
 
 @end

@@ -1,1 +1,10 @@
+PODS:
+  - DCPathButton (2.0)
+
+DEPENDENCIES:
+  - DCPathButton (~> 2.0)
+
+SPEC CHECKSUMS:
+  DCPathButton: 3be37892168b5651716786cbeab42d0c66073ace
+
 COCOAPODS: 0.33.1
