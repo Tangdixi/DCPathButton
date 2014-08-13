@@ -1,8 +1,8 @@
  
 #DCPathButton 2.0 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+![ScreenShot_1](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/1.png)  
+![ScreenShot_2](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/2.png)
 
 
 DCPathButton 2.0 is a menu button for iOS. Designed by a famous iOS App [**Path**](path.com).  
