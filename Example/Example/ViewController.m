@@ -69,18 +69,17 @@
 
 - (void)itemButtonTappedAtIndex:(NSUInteger)index
 {
-    UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Item Tapped"
-                                                       message:[NSString stringWithFormat:@"You tapped index %ld :)", index]
-                                                      delegate:self
-                                             cancelButtonTitle:@"Ok !"
-                                             otherButtonTitles: nil];
-    [alertView show];
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
 }
 
 @end
