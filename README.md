@@ -4,7 +4,7 @@
 ![Foled](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/1.png).
 ![Bloom](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/2.png) 
 
-DCPathButton 2.0 is a menu button for iOS. Designed by a famous iOS App [**Path**](path.com).  
+**DCPathButton** 2.0 is a menu button for iOS. Designed by a famous iOS App [**Path**](path.com).  
 Since **Path 4.0**, this beautiful button was moved into the tab bar, with a new design.  
 So the **DCPathButton** is totally a copy, including the **animations**, the **sounds** and the **button's images** ( *of cource you can use your own images* ).  
 
@@ -50,7 +50,7 @@ import "DCPathButton.h"
 3.Create a center button and add it into your view
 ```objc
 DCPatButton *centerButton = [[DCPathButton alloc]initWithCenterImage:[UIImage imageNamed:@"chooser-button-tab"]
-                                                           hilightedImage:[UIImage imageNamed:@"chooser-button-tab-highlighted"]];
+                                                      hilightedImage:[UIImage imageNamed:@"chooser-button-tab-highlighted"]];
 [self.view addSubView:centerButton];
 ```
 4.Create some item buttons and add them into the center button
@@ -64,9 +64,9 @@ DCPatButton *centerButton = [[DCPathButton alloc]initWithCenterImage:[UIImage im
 ```
 ####DCPathButtonDelegate
 
-The **DCPathButtonDelegate** handle the action when you fire the item buttons which is similar to the **UITableViewDelegate**, control the items through the **index**  
+**DCPathButtonDelegate** handle the action when you fire the item buttons which is similar to the **UITableViewDelegate**, control the items through the **index**  
 
-You can add one item at least or five items at most. Let's assume we have five items, so the **index** is 0 to 4 :)
+You can add one item at least or five items at most. Assume we have five items, so the **index** is 0 to 4 :)
 
 ```objc
 - (void)itemButtonTappedAtIndex:(NSUInteger)index
