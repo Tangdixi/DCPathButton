@@ -57,6 +57,7 @@
                                                            highlightedImage:[UIImage imageNamed:@"chooser-moment-icon-sleep-highlighted"]
                                                             backgroundImage:[UIImage imageNamed:@"chooser-moment-button"]
                                                  backgroundHighlightedImage:[UIImage imageNamed:@"chooser-moment-button-highlighted"]];
+    
     // Add the item button into the center button
     //
     [dcPathButton addPathItem:@[itemButton_1, itemButton_2, itemButton_3, itemButton_4, itemButton_5]];
@@ -69,7 +70,7 @@
 
 - (void)itemButtonTappedAtIndex:(NSUInteger)index
 {
-    
+    NSLog(@"You tap at index : %ld", index);
 }
 
 - (void)didReceiveMemoryWarning
