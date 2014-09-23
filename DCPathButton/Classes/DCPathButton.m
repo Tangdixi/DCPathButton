@@ -40,9 +40,6 @@
 
 @implementation DCPathButton
 
-@synthesize bloom = _bloom;
-@synthesize pathCenterButton = _pathCenterButton;
-
 #pragma mark - Initialization
 
 - (id)initWithCenterImage:(UIImage *)centerImage hilightedImage:(UIImage *)centerHighlightedImage
@@ -400,7 +397,7 @@
 
 #pragma mark - Add PathButton Item
 
-- (void)addPathItem:(NSArray *)pathItemButtons
+- (void)addPathItems:(NSArray *)pathItemButtons
 {
     [self.itemButtons addObjectsFromArray:pathItemButtons];
 }

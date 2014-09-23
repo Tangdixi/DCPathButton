@@ -31,6 +31,6 @@
 @property (assign, nonatomic) CGFloat bloomRadius;
 
 - (id)initWithCenterImage:(UIImage *)centerImage hilightedImage:(UIImage *)centerHighlightedImage;
-- (void)addPathItem:(NSArray *)pathItemButtons;
+- (void)addPathItems:(NSArray *)pathItemButtons;
 
 @end

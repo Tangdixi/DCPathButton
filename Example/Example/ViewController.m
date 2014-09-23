@@ -60,7 +60,7 @@
     
     // Add the item button into the center button
     //
-    [dcPathButton addPathItem:@[itemButton_1, itemButton_2, itemButton_3, itemButton_4, itemButton_5]];
+    [dcPathButton addPathItems:@[itemButton_1, itemButton_2, itemButton_3, itemButton_4, itemButton_5]];
     
     [self.view addSubview:dcPathButton];
 

@@ -20,8 +20,17 @@
 {
     if (self = [super init]) {
         
-        self.frame = CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height);
+        // Make sure the iteam has a certain frame
+        //
+        CGRect itemFrame = CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height);
         
+        if (!backgroundImage || !backgroundHighlightedImage) {
+            itemFrame = CGRectMake(0, 0, image.size.width, image.size.height);
+        }
+        self.frame = itemFrame;
+        
+        // Configure the item image
+        //
         self.image = backgroundImage;
         self.highlightedImage = backgroundHighlightedImage;
         
