@@ -55,7 +55,7 @@ DCPatButton *centerButton = [[DCPathButton alloc]initWithCenterImage:[UIImage im
 ```
 4.Create some item buttons and add them into the center button
 ```objc
-    DCPathItemButton *itemButton_1 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"image"]
+DCPathItemButton *itemButton_1 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"image"]
                                                            highlightedImage:[UIImage imageNamed:@"highlightedImage"]
                                                             backgroundImage:[UIImage imageNamed:@"backgroundImage"]
                                                  backgroundHighlightedImage:[UIImage imageNamed:@"backgroundhighlightedImage"]];
@@ -88,8 +88,15 @@ You can add one item at least or five items at most. Assume we have five items, 
 
 `bloomRadius` is use to handle the item button bloom radius, default is `105.0f`;
 
-Now there is only one public `property` in **DCPathButton**.  :|  
-If you want more DIY. Just open an [issue](https://github.com/Tangdixi/DCPathButton/issues), tell me what you want.  :) 
+```objc
+@property (assign, nonatomic) CGPoint dcButtonCenter;
+```
+
+`dcButtonCenter` is use to modify the center button's position.  
+In default the **DCPathButton** will be located in the center of a TabBar, assume that you use a *TabBarController*
+;
+
+If you have any suggestions. Just open an [issue](https://github.com/Tangdixi/DCPathButton/issues), tell me what you want.  :) 
 
 ##Problems, bugs or advice
 
