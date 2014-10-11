@@ -62,6 +62,14 @@
     //
     [dcPathButton addPathItems:@[itemButton_1, itemButton_2, itemButton_3, itemButton_4, itemButton_5]];
     
+    // Change the bloom radius
+    //
+    dcPathButton.bloomRadius = 120.0f;
+    
+    // Change the DCButton's center
+    //
+    dcPathButton.dcButtonCenter = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height - 25.5f);
+    
     [self.view addSubview:dcPathButton];
 
 }

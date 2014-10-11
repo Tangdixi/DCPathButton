@@ -29,6 +29,7 @@
 @property (strong, nonatomic) UIImage *itemButtonBackgroundHighlightedImage;
 
 @property (assign, nonatomic) CGFloat bloomRadius;
+@property (assign, nonatomic) CGPoint dcButtonCenter;
 
 - (id)initWithCenterImage:(UIImage *)centerImage hilightedImage:(UIImage *)centerHighlightedImage;
 - (void)addPathItems:(NSArray *)pathItemButtons;
