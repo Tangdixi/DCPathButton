@@ -64,6 +64,7 @@
         // Configure sounds
         //
         [self configureSounds];
+        
     }
     return self;
 }
@@ -86,6 +87,9 @@
     // Configure the DCPathButton's origin frame
     //
     self.frame = CGRectMake(0, 0, self.foldedSize.width, self.foldedSize.height);
+    
+    // Default set the foldCenter as the DCPathButton's center
+    //
     self.center = self.foldCenter;
     
     // Configure center button
@@ -144,6 +148,18 @@
     }
     _centerHighlightedImage = highlightedImage;
 }
+
+#pragma mark - Configure Button's Center
+
+- (void)setDcButtonCenter:(CGPoint)dcButtonCenter {
+    
+    _dcButtonCenter = dcButtonCenter;
+    
+    // reset the DCPathButton's center
+    //
+    self.center = dcButtonCenter;
+}
+
 
 #pragma mark - Configure Expand Center Point
 
@@ -230,12 +246,14 @@
                      completion:nil];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        for (DCPathItemButton *itemButton in self.itemButtons) {
-            [itemButton performSelector:@selector(removeFromSuperview)];
-        }
+        
+        // Remove the button items from the superview
+        //
+        [self.itemButtons makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
         self.frame = CGRectMake(0, 0, self.foldedSize.width, self.foldedSize.height);
-        self.center = self.foldCenter;
+        self.center = _dcButtonCenter;
+        
         self.pathCenterButton.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         
         [self.bottomView removeFromSuperview];
@@ -283,6 +301,7 @@
 
 - (void)pathCenterButtonBloom
 {
+    
     // Play bloom sound
     //
     AudioServicesPlaySystemSound(self.bloomSound);
@@ -361,6 +380,7 @@
 
 - (CAAnimationGroup *)bloomAnimationWithEndPoint:(CGPoint)endPoint andFarPoint:(CGPoint)farPoint andNearPoint:(CGPoint)nearPoint
 {
+    
     // 1.Configure rotation animation
     //
     CAKeyframeAnimation *rotationAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
