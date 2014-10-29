@@ -32,7 +32,7 @@ Of cource, you can install **DCPathButton** in a traditional way -- drag the **D
 ####Podfile
 ```bash
 platform :ios, '7.0'
-pod 'DCPathButton', '~> 2.0'
+pod 'DCPathButton', '~> 2.0.2'
 ``` 
 
 ##Usage
