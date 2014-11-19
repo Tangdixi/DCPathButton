@@ -91,6 +91,7 @@
     // Default set the foldCenter as the DCPathButton's center
     //
     self.center = self.foldCenter;
+    self.dcButtonCenter = self.center;
     
     // Configure center button
     //
