@@ -16,7 +16,7 @@
 
 @end
 
-@interface DCPathItemButton : UIImageView
+@interface DCPathItemButton : UIButton
 
 @property (assign, nonatomic) NSUInteger index;
 @property (weak, nonatomic) id<DCPathItemButtonDelegate> delegate;

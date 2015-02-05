@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042512531A830DCE00D72682 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 042512521A830DCE00D72682 /* TableViewController.m */; };
 		81696CC91999D748001B9B4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81696CC81999D748001B9B4B /* Foundation.framework */; };
 		81696CCB1999D748001B9B4B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81696CCA1999D748001B9B4B /* CoreGraphics.framework */; };
 		81696CCD1999D748001B9B4B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81696CCC1999D748001B9B4B /* UIKit.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		042512511A830DCE00D72682 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		042512521A830DCE00D72682 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		14DD23BAC82943B6BA709779 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		81696CC51999D748001B9B4B /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81696CC81999D748001B9B4B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -123,6 +126,8 @@
 				81696CDA1999D748001B9B4B /* Main.storyboard */,
 				81696CDD1999D748001B9B4B /* ViewController.h */,
 				81696CDE1999D748001B9B4B /* ViewController.m */,
+				042512511A830DCE00D72682 /* TableViewController.h */,
+				042512521A830DCE00D72682 /* TableViewController.m */,
 				81696CE01999D748001B9B4B /* Images.xcassets */,
 				81696CCF1999D748001B9B4B /* Supporting Files */,
 			);
@@ -293,6 +298,7 @@
 				81696CDF1999D748001B9B4B /* ViewController.m in Sources */,
 				81696CD91999D748001B9B4B /* AppDelegate.m in Sources */,
 				81696CD51999D748001B9B4B /* main.m in Sources */,
+				042512531A830DCE00D72682 /* TableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
