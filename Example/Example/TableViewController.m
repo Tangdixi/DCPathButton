@@ -1,34 +1,53 @@
 //
-//  ViewController.m
+//  TableViewController.m
 //  Example
 //
-//  Created by tang dixi on 12/8/14.
-//  Copyright (c) 2014 Tangdxi. All rights reserved.
+//  Created by mac on 15/2/5.
+//  Copyright (c) 2015年 Tangdxi. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "DCPathButton.h"
+#import "TableViewController.h"
 
-@interface ViewController ()<DCPathButtonDelegate>
-
+@interface TableViewController () {
+    DCPathButton* _pathButton;
+}
 @end
 
-@implementation ViewController
+@implementation TableViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    
-    [self ConfigureDCPathButton];
+    self.tableView.delaysContentTouches = NO;
+    _pathButton = [self pathButtonWithCenter:CGPointMake(160, 100)];
+    [self.tableView addSubview:_pathButton];
 }
 
-- (void)ConfigureDCPathButton
+- (void)viewDidLayoutSubviews
+{
+    [self.tableView bringSubviewToFront:_pathButton];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Table view data source
+
+
+#pragma mark - DCPathButton Delegate
+
+- (void)itemButtonTappedAtIndex:(NSUInteger)index
+{
+    NSLog(@"You tap at index : %zd", index);
+}
+
+- (DCPathButton*)pathButtonWithCenter:(CGPoint)btnCenter
 {
     // Configure center button
     //
-    DCPathButton *dcPathButton = [[DCPathButton alloc]initWithCenterImage:[UIImage imageNamed:@"chooser-button-tab"]
-                                                           hilightedImage:[UIImage imageNamed:@"chooser-button-tab-highlighted"]];
+    DCPathButton *dcPathButton = [[DCPathButton alloc] initWithButtonFrame:CGRectMake(btnCenter.x, btnCenter.y, 60, 60) CenterImage:[UIImage imageNamed:@"chooser-button-tab"] hilightedImage:[UIImage imageNamed:@"chooser-button-tab-highlighted"]];
+
     dcPathButton.delegate = self;
     
     // Configure item buttons
@@ -65,35 +84,8 @@
     // Change the bloom radius
     //
     dcPathButton.bloomRadius = 120.0f;
+    dcPathButton.bloomDirection = DCPathButtonBloomBottom;
     
-    // Change the DCButton's center
-    //
-    dcPathButton.dcButtonCenter = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height - 25.5f);
-    
-    // Setting the DCButton appearance
-    //
-    dcPathButton.soundsEnable = YES;
-    dcPathButton.centerBtnRotationEnable = YES;
-    
-    [self.view addSubview:dcPathButton];
-
+    return dcPathButton;
 }
-
-#pragma mark - DCPathButton Delegate
-
-- (void)itemButtonTappedAtIndex:(NSUInteger)index
-{
-    NSLog(@"You tap at index : %zd", index);
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
-
 @end

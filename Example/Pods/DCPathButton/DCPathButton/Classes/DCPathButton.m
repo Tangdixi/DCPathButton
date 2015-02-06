@@ -7,9 +7,8 @@
 //
 
 #import "DCPathButton.h"
-#import "DCPathCenterButton.h"
 
-@interface DCPathButton ()<DCPathCenterButtonDelegate, DCPathItemButtonDelegate>
+@interface DCPathButton ()<DCPathItemButtonDelegate>
 
 #pragma mark - Private Property
 
@@ -28,7 +27,7 @@
 
 @property (assign, nonatomic) CGPoint expandCenter;
 @property (strong, nonatomic) UIView *bottomView;
-@property (strong, nonatomic) DCPathCenterButton *pathCenterButton;
+@property (strong, nonatomic) UIButton *pathCenterButton;
 @property (strong, nonatomic) NSMutableArray *itemButtons;
 
 @property (assign, nonatomic) SystemSoundID bloomSound;
@@ -43,6 +42,11 @@
 #pragma mark - Initialization
 
 - (id)initWithCenterImage:(UIImage *)centerImage hilightedImage:(UIImage *)centerHighlightedImage
+{
+    return [self initWithButtonFrame:CGRectZero CenterImage:centerImage hilightedImage:centerHighlightedImage];
+}
+
+- (id)initWithButtonFrame:(CGRect)centerBtnFrame CenterImage:(UIImage *)centerImage hilightedImage:(UIImage *)centerHighlightedImage
 {
     if (self = [super init]) {
         
@@ -59,21 +63,26 @@
         
         // Configure views
         //
-        [self configureViewsLayout];
+        if (centerBtnFrame.size.width == 0 && centerBtnFrame.size.height == 0) {
+            [self configureViewsLayoutWithButtonSize:self.centerImage.size];
+        }
+        else {
+            [self configureViewsLayoutWithButtonSize:centerBtnFrame.size];
+            self.dcButtonCenter = centerBtnFrame.origin;
+        }
         
         // Configure sounds
         //
         [self configureSounds];
-        
     }
     return self;
 }
 
-- (void)configureViewsLayout
+- (void)configureViewsLayoutWithButtonSize:(CGSize)centerBtnSize
 {
     // Init some property only once
     //
-    self.foldedSize = self.centerImage.size;
+    self.foldedSize = centerBtnSize;
     self.bloomSize = [UIScreen mainScreen].bounds.size;
     
     self.bloom = NO;
@@ -94,17 +103,25 @@
     
     // Configure center button
     //
-    _pathCenterButton = [[DCPathCenterButton alloc]initWithImage:self.centerImage highlightedImage:self.centerHighlightedImage];
+    _pathCenterButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.centerImage.size.width, self.centerImage.size.height)];
+    [_pathCenterButton setImage:self.centerImage forState:UIControlStateNormal];
+    [_pathCenterButton setImage:self.centerHighlightedImage forState:UIControlStateHighlighted];
+    [_pathCenterButton addTarget:self action:@selector(centerButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     _pathCenterButton.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
-    _pathCenterButton.delegate = self;
     [self addSubview:_pathCenterButton];
     
     // Configure bottom view
     //
-    _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.bloomSize.width, self.bloomSize.height)];
+    _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.bloomSize.width * 2, self.bloomSize.height * 2)];
     _bottomView.backgroundColor = [UIColor blackColor];
     _bottomView.alpha = 0.0f;
     
+    // Make bottomView's touch can delay superView witch like UIScrollView scrolling
+    //
+    _bottomView.userInteractionEnabled = YES;
+    UIGestureRecognizer* tapGesture = [[UIGestureRecognizer alloc] initWithTarget:nil action:nil];
+    tapGesture.delegate = self;
+    [_bottomView addGestureRecognizer:tapGesture];
 }
 
 - (void)configureSounds
@@ -113,20 +130,27 @@
     //
     NSString *bloomSoundPath = [[NSBundle mainBundle]pathForResource:@"bloom" ofType:@"caf"];
     NSURL *bloomSoundURL = [NSURL fileURLWithPath:bloomSoundPath];
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)bloomSoundURL, &_bloomSound);
     
     // Configure fold sound
     //
     NSString *foldSoundPath = [[NSBundle mainBundle]pathForResource:@"fold" ofType:@"caf"];
     NSURL *foldSoundURL = [NSURL fileURLWithPath:foldSoundPath];
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)foldSoundURL, &_foldSound);
     
     // Configure selected sound
     //
     NSString *selectedSoundPath = [[NSBundle mainBundle]pathForResource:@"selected" ofType:@"caf"];
     NSURL *selectedSoundURL = [NSURL fileURLWithPath:selectedSoundPath];
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)selectedSoundURL, &_selectedSound);
     
+    if (self.soundsEnable) {
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)bloomSoundURL, &_bloomSound);
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)foldSoundURL, &_foldSound);
+        AudioServicesCreateSystemSoundID((__bridge CFURLRef)selectedSoundURL, &_selectedSound);
+    }
+    else {
+        AudioServicesDisposeSystemSoundID(_bloomSound);
+        AudioServicesDisposeSystemSoundID(_foldSound);
+        AudioServicesDisposeSystemSoundID(_selectedSound);
+    }
 }
 
 #pragma mark - Configure Center Button Images
@@ -173,6 +197,15 @@
     return ;
 }
 
+#pragma mark - Configure appearance
+
+- (void)setSoundsEnable:(BOOL)soundsEnable
+{
+    _soundsEnable = soundsEnable;
+    [self configureSounds];
+}
+
+
 #pragma mark - Expand Status
 
 - (BOOL)isBloom
@@ -191,8 +224,22 @@
 
 - (CGPoint)createEndPointWithRadius:(CGFloat)itemExpandRadius andAngel:(CGFloat)angel
 {
-    return CGPointMake(self.pathCenterButtonBloomCenter.x - cosf(angel * M_PI) * itemExpandRadius,
-                       self.pathCenterButtonBloomCenter.y - sinf(angel * M_PI) * itemExpandRadius);
+    switch (self.bloomDirection) {
+        case DCPathButtonBloomTop:
+            return CGPointMake(self.pathCenterButtonBloomCenter.x - cosf(angel * M_PI) * itemExpandRadius,
+                               self.pathCenterButtonBloomCenter.y - sinf(angel * M_PI) * itemExpandRadius);
+        case DCPathButtonBloomLeft:
+            return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 0.5) * M_PI) * itemExpandRadius,
+                               self.pathCenterButtonBloomCenter.y + sinf((angel + 0.5) * M_PI) * itemExpandRadius);
+        case DCPathButtonBloomBottom:
+            return CGPointMake(self.pathCenterButtonBloomCenter.x - cosf((angel + 1) * M_PI) * itemExpandRadius,
+                               self.pathCenterButtonBloomCenter.y - sinf((angel + 1) * M_PI) * itemExpandRadius);
+        case DCPathButtonBloomRight:
+            return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 1.5) * M_PI) * itemExpandRadius,
+                               self.pathCenterButtonBloomCenter.y + sinf((angel + 1.5) * M_PI) * itemExpandRadius);
+        default:
+            break;
+    }
 }
 
 #pragma mark - Center Button Fold
@@ -201,7 +248,9 @@
 {
     // Play fold sound
     //
-    AudioServicesPlaySystemSound(self.foldSound);
+    if (self.soundsEnable) {
+        AudioServicesPlaySystemSound(self.foldSound);
+    }
     
     // Load item buttons from array
     //
@@ -229,13 +278,15 @@
 
 - (void)resizeToFoldedFrame
 {
-    [UIView animateWithDuration:0.0618f * 3
-                          delay:0.0618f * 2
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-                         _pathCenterButton.transform = CGAffineTransformMakeRotation(0);
-                     }
-                     completion:nil];
+    if (self.centerBtnRotationEnable) {
+        [UIView animateWithDuration:0.0618f * 3
+                              delay:0.0618f * 2
+                            options:UIViewAnimationOptionCurveEaseIn
+                         animations:^{
+                             _pathCenterButton.transform = CGAffineTransformMakeRotation(0);
+                         }
+                         completion:nil];
+    }
     
     [UIView animateWithDuration:0.1f
                           delay:0.35f
@@ -304,7 +355,9 @@
     
     // Play bloom sound
     //
-    AudioServicesPlaySystemSound(self.bloomSound);
+    if (self.soundsEnable) {
+        AudioServicesPlaySystemSound(self.bloomSound);
+    }
     
     // Configure center button bloom
     //
@@ -331,10 +384,12 @@
     
     // 4. Excute the center button rotation animation
     //
-    [UIView animateWithDuration:0.1575f
-                     animations:^{
-                         _pathCenterButton.transform = CGAffineTransformMakeRotation(-0.75f * M_PI);
-                     }];
+    if (self.centerBtnRotationEnable) {
+        [UIView animateWithDuration:0.1575f
+                         animations:^{
+                             _pathCenterButton.transform = CGAffineTransformMakeRotation(-0.75f * M_PI);
+                         }];
+    }
     
     self.pathCenterButton.center = self.pathCenterButtonBloomCenter;
     
@@ -375,7 +430,6 @@
     }
     
     _bloom = YES;
-
 }
 
 - (CAAnimationGroup *)bloomAnimationWithEndPoint:(CGPoint)endPoint andFarPoint:(CGPoint)farPoint andNearPoint:(CGPoint)nearPoint
@@ -440,7 +494,9 @@
         
         // Play selected sound
         //
-        AudioServicesPlaySystemSound(self.selectedSound);
+        if (self.soundsEnable) {
+            AudioServicesPlaySystemSound(self.selectedSound);
+        }
         
         // Excute the explode animation when the item is seleted
         //
@@ -473,4 +529,15 @@
     }
 }
 
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer NS_AVAILABLE_IOS(7_0)
+{
+    return YES;
+}
 @end
