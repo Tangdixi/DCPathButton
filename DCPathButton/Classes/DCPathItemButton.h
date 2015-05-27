@@ -21,9 +21,9 @@
 @property (assign, nonatomic) NSUInteger index;
 @property (weak, nonatomic) id<DCPathItemButtonDelegate> delegate;
 
-- (id)initWithImage:(UIImage *)image
-   highlightedImage:(UIImage *)highlightedImage
-    backgroundImage:(UIImage *)backgroundImage
-backgroundHighlightedImage:(UIImage *)backgroundHighlightedImage;
+- (instancetype)initWithImage:(UIImage *)image
+             highlightedImage:(UIImage *)highlightedImage
+              backgroundImage:(UIImage *)backgroundImage
+   backgroundHighlightedImage:(UIImage *)backgroundHighlightedImage;
 
 @end

@@ -16,7 +16,10 @@
 
 @implementation DCPathItemButton
 
-- (id)initWithImage:(UIImage *)image highlightedImage:(UIImage *)highlightedImage backgroundImage:(UIImage *)backgroundImage backgroundHighlightedImage:(UIImage *)backgroundHighlightedImage
+- (instancetype)initWithImage:(UIImage *)image
+             highlightedImage:(UIImage *)highlightedImage
+              backgroundImage:(UIImage *)backgroundImage
+   backgroundHighlightedImage:(UIImage *)backgroundHighlightedImage
 {
     if (self = [super init]) {
         
@@ -29,7 +32,7 @@
         }
         self.frame = itemFrame;
         
-        // Configure the item image
+        // Configure the item's image
         //
         [self setImage:backgroundImage forState:UIControlStateNormal];
         [self setImage:backgroundHighlightedImage forState:UIControlStateHighlighted];
@@ -37,12 +40,17 @@
         // Configure background
         //
         _backgroundImageView = [[UIImageView alloc]initWithImage:image
-                                                            highlightedImage:highlightedImage];
+                                                highlightedImage:highlightedImage];
         _backgroundImageView.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
+        
         [self addSubview:_backgroundImageView];
         
+        // Add an action for the item button
+        //
         [self addTarget:_delegate action:@selector(itemButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return self;
 }
+
 @end
