@@ -12,28 +12,29 @@
 
 #pragma mark - Private Property
 
+@property (strong, nonatomic) NSMutableArray *itemButtonImages;
+@property (strong, nonatomic) NSMutableArray *itemButtonHighlightedImages;
+
 @property (strong, nonatomic) UIImage *centerImage;
 @property (strong, nonatomic) UIImage *centerHighlightedImage;
 
-@property (assign, nonatomic, getter = isBloom) BOOL bloom;
-
-@property (assign, nonatomic) CGSize foldedSize;
 @property (assign, nonatomic) CGSize bloomSize;
+@property (assign, nonatomic) CGSize foldedSize;
 
 @property (assign, nonatomic) CGPoint foldCenter;
 @property (assign, nonatomic) CGPoint bloomCenter;
-
+@property (assign, nonatomic) CGPoint expandCenter;
 @property (assign, nonatomic) CGPoint pathCenterButtonBloomCenter;
 
-@property (assign, nonatomic) CGPoint expandCenter;
 @property (strong, nonatomic) UIView *bottomView;
 @property (strong, nonatomic) UIButton *pathCenterButton;
 @property (strong, nonatomic) NSMutableArray *itemButtons;
 
-@property (assign, nonatomic) SystemSoundID bloomSound;
 @property (assign, nonatomic) SystemSoundID foldSound;
+@property (assign, nonatomic) SystemSoundID bloomSound;
 @property (assign, nonatomic) SystemSoundID selectedSound;
 
+@property (assign, nonatomic, getter = isBloom) BOOL bloom;
 
 @end
 
@@ -41,13 +42,16 @@
 
 #pragma mark - Initialization
 
-- (id)initWithCenterImage:(UIImage *)centerImage hilightedImage:(UIImage *)centerHighlightedImage
-{
-    return [self initWithButtonFrame:CGRectZero CenterImage:centerImage hilightedImage:centerHighlightedImage];
+- (instancetype)initWithCenterImage:(UIImage *)centerImage
+                   highlightedImage:(UIImage *)centerHighlightedImage {
+    return [self initWithButtonFrame:CGRectZero
+                         centerImage:centerImage
+                      highlightedImage:centerHighlightedImage];
 }
 
-- (id)initWithButtonFrame:(CGRect)centerBtnFrame CenterImage:(UIImage *)centerImage hilightedImage:(UIImage *)centerHighlightedImage
-{
+- (instancetype)initWithButtonFrame:(CGRect)centerButtonFrame
+                        centerImage:(UIImage *)centerImage
+                   highlightedImage:(UIImage *)centerHighlightedImage {
     if (self = [super init]) {
         
         // Configure center and high light center image
@@ -61,32 +65,41 @@
         self.itemButtonHighlightedImages = [[NSMutableArray alloc]init];
         self.itemButtons = [[NSMutableArray alloc]init];
         
-        // Configure views
+        // Configure views layout
         //
-        if (centerBtnFrame.size.width == 0 && centerBtnFrame.size.height == 0) {
+        if (centerButtonFrame.size.width == 0 && centerButtonFrame.size.height == 0) {
             [self configureViewsLayoutWithButtonSize:self.centerImage.size];
         }
         else {
-            [self configureViewsLayoutWithButtonSize:centerBtnFrame.size];
-            self.dcButtonCenter = centerBtnFrame.origin;
+            [self configureViewsLayoutWithButtonSize:centerButtonFrame.size];
+            self.dcButtonCenter = centerButtonFrame.origin;
         }
+        
+        // Configure the bloom direction
+        //
+        _bloomDirection = kDCPathButtonBloomDirectionTop;
         
         // Configure sounds
         //
-        [self configureSounds];
+        _bloomSoundPath = [[NSBundle mainBundle]pathForResource:@"bloom" ofType:@"caf"];
+        _foldSoundPath = [[NSBundle mainBundle]pathForResource:@"fold" ofType:@"caf"];
+        _itemSoundPath = [[NSBundle mainBundle]pathForResource:@"selected" ofType:@"caf"];
+        
+        _allowSounds = YES;
+        
     }
     return self;
 }
 
-- (void)configureViewsLayoutWithButtonSize:(CGSize)centerBtnSize
-{
+- (void)configureViewsLayoutWithButtonSize:(CGSize)centerButtonSize {
     // Init some property only once
     //
-    self.foldedSize = centerBtnSize;
+    self.foldedSize = centerButtonSize;
     self.bloomSize = [UIScreen mainScreen].bounds.size;
     
     self.bloom = NO;
     self.bloomRadius = 105.0f;
+    self.bloomAngel = 120.0f;
     
     // Configure the view's center, it will change after the frame folded or bloomed
     //
@@ -124,24 +137,47 @@
     [_bottomView addGestureRecognizer:tapGesture];
 }
 
-- (void)configureSounds
-{
+#pragma mark - Configure Button Sound
+
+- (void)setBloomSoundPath:(NSString *)bloomSoundPath {
+    
+    _bloomSoundPath = bloomSoundPath;
+    
+    [self configureSounds];
+    
+}
+
+- (void)setFoldSoundPath:(NSString *)foldSoundPath {
+    
+    _foldSoundPath = foldSoundPath;
+    
+    [self configureSounds];
+    
+}
+
+- (void)setItemSoundPath:(NSString *)itemSoundPath {
+    
+    _itemSoundPath = itemSoundPath;
+    
+    [self configureSounds];
+    
+}
+
+- (void)configureSounds {
+    
     // Configure bloom sound
     //
-    NSString *bloomSoundPath = [[NSBundle mainBundle]pathForResource:@"bloom" ofType:@"caf"];
-    NSURL *bloomSoundURL = [NSURL fileURLWithPath:bloomSoundPath];
-    
+    NSURL *bloomSoundURL = [NSURL fileURLWithPath:self.bloomSoundPath];
+
     // Configure fold sound
     //
-    NSString *foldSoundPath = [[NSBundle mainBundle]pathForResource:@"fold" ofType:@"caf"];
-    NSURL *foldSoundURL = [NSURL fileURLWithPath:foldSoundPath];
+    NSURL *foldSoundURL = [NSURL fileURLWithPath:self.foldSoundPath];
     
     // Configure selected sound
     //
-    NSString *selectedSoundPath = [[NSBundle mainBundle]pathForResource:@"selected" ofType:@"caf"];
-    NSURL *selectedSoundURL = [NSURL fileURLWithPath:selectedSoundPath];
+    NSURL *selectedSoundURL = [NSURL fileURLWithPath:self.itemSoundPath];
     
-    if (self.soundsEnable) {
+    if (self.allowSounds) {
         AudioServicesCreateSystemSoundID((__bridge CFURLRef)bloomSoundURL, &_bloomSound);
         AudioServicesCreateSystemSoundID((__bridge CFURLRef)foldSoundURL, &_foldSound);
         AudioServicesCreateSystemSoundID((__bridge CFURLRef)selectedSoundURL, &_selectedSound);
@@ -155,8 +191,8 @@
 
 #pragma mark - Configure Center Button Images
 
-- (void)setCenterImage:(UIImage *)centerImage
-{
+- (void)setCenterImage:(UIImage *)centerImage {
+    
     if (!centerImage) {
         NSLog(@"Load center image failed ... ");
         return ;
@@ -164,8 +200,8 @@
     _centerImage = centerImage;
 }
 
-- (void)setCenterHighlightedImage:(UIImage *)highlightedImage
-{
+- (void)setCenterHighlightedImage:(UIImage *)highlightedImage {
+    
     if (!highlightedImage) {
         NSLog(@"Load highted image failed ... ");
         return ;
@@ -184,11 +220,10 @@
     self.center = dcButtonCenter;
 }
 
-
 #pragma mark - Configure Expand Center Point
 
-- (void)setPathCenterButtonBloomCenter:(CGPoint)centerButtonBloomCenter
-{
+- (void)setPathCenterButtonBloomCenter:(CGPoint)centerButtonBloomCenter {
+    
     // Just set the bloom center once
     //
     if (_pathCenterButtonBloomCenter.x == 0) {
@@ -197,74 +232,105 @@
     return ;
 }
 
-#pragma mark - Configure appearance
-
-- (void)setSoundsEnable:(BOOL)soundsEnable
-{
-    _soundsEnable = soundsEnable;
+- (void)setAllowSounds:(BOOL)soundsEnable {
+    _allowSounds = soundsEnable;
+    
     [self configureSounds];
 }
 
-
 #pragma mark - Expand Status
 
-- (BOOL)isBloom
-{
+- (BOOL)isBloom {
     return _bloom;
 }
 
 #pragma mark - Center Button Delegate
 
-- (void)centerButtonTapped
-{
+- (void)centerButtonTapped {
     self.isBloom? [self pathCenterButtonFold] : [self pathCenterButtonBloom];
 }
 
 #pragma mark - Caculate The Item's End Point
 
-- (CGPoint)createEndPointWithRadius:(CGFloat)itemExpandRadius andAngel:(CGFloat)angel
-{
+- (CGPoint)createEndPointWithRadius:(CGFloat)itemExpandRadius
+                           andAngel:(CGFloat)angel {
     switch (self.bloomDirection) {
-        case DCPathButtonBloomTop:
+            
+        case kDCPathButtonBloomDirectionTop:
+            
             return CGPointMake(self.pathCenterButtonBloomCenter.x - cosf(angel * M_PI) * itemExpandRadius,
                                self.pathCenterButtonBloomCenter.y - sinf(angel * M_PI) * itemExpandRadius);
-        case DCPathButtonBloomLeft:
+            
+        case kDCPathButtonBloomDirectionTopLeft:
+            
+            return CGPointMake(self.pathCenterButtonBloomCenter.x - cosf((angel + 0.25) * M_PI) * itemExpandRadius,
+                               self.pathCenterButtonBloomCenter.y - sinf((angel + 0.25) * M_PI) * itemExpandRadius);
+            
+        case kDCPathButtonBloomDirectionLeft:
+            
             return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 0.5) * M_PI) * itemExpandRadius,
                                self.pathCenterButtonBloomCenter.y + sinf((angel + 0.5) * M_PI) * itemExpandRadius);
-        case DCPathButtonBloomBottom:
+            
+        case kDCPathButtonBloomDirectionBottomLeft:
+            
+            return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 0.75) * M_PI) * itemExpandRadius,
+                               self.pathCenterButtonBloomCenter.y + sinf((angel + 0.75) * M_PI) * itemExpandRadius);
+            
+        case kDCPathButtonBloomDirectionBottom:
+            
             return CGPointMake(self.pathCenterButtonBloomCenter.x - cosf((angel + 1) * M_PI) * itemExpandRadius,
                                self.pathCenterButtonBloomCenter.y - sinf((angel + 1) * M_PI) * itemExpandRadius);
-        case DCPathButtonBloomRight:
+            
+        case kDCPathButtonBloomDirectionBottomRight:
+            
+            return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 1.25) * M_PI) * itemExpandRadius,
+                               self.pathCenterButtonBloomCenter.y + sinf((angel + 1.25) * M_PI) * itemExpandRadius);
+            
+        case kDCPathButtonBloomDirectionRight:
+            
             return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 1.5) * M_PI) * itemExpandRadius,
                                self.pathCenterButtonBloomCenter.y + sinf((angel + 1.5) * M_PI) * itemExpandRadius);
+            
+        case kDCPathButtonBloomDirectionTopRight:
+            
+            return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 1.75) * M_PI) * itemExpandRadius,
+                               self.pathCenterButtonBloomCenter.y + sinf((angel + 1.75) * M_PI) * itemExpandRadius);
+        
         default:
-            break;
+            
+            NSAssert(self.bloomDirection, @"DCPathButtonError: An error occur when you configuring the bloom direction");
+            return CGPointZero;
+            
     }
 }
 
+
 #pragma mark - Center Button Fold
 
-- (void)pathCenterButtonFold
-{
+- (void)pathCenterButtonFold {
     // Play fold sound
     //
-    if (self.soundsEnable) {
+    if (self.allowSounds) {
         AudioServicesPlaySystemSound(self.foldSound);
     }
     
+    CGFloat itemGapAngel = self.bloomAngel / (self.itemButtons.count - 1) ;
+    CGFloat currentAngel = (180.0f - self. bloomAngel)/2.0f;
+    
     // Load item buttons from array
     //
-    for (int i = 1; i <= self.itemButtons.count; i++) {
+    for (int i = 0; i < self.itemButtons.count; i++) {
         
-        DCPathItemButton *itemButton = self.itemButtons[i - 1];
+        DCPathItemButton *itemButton = self.itemButtons[i];
         
-        CGFloat currentAngel = i / ((CGFloat)self.itemButtons.count + 1);
-        CGPoint farPoint = [self createEndPointWithRadius:self.bloomRadius + 5.0f andAngel:currentAngel];
+        CGPoint farPoint = [self createEndPointWithRadius:self.bloomRadius + 5.0f andAngel:currentAngel/180.0f];
         
         CAAnimationGroup *foldAnimation = [self foldAnimationFromPoint:itemButton.center withFarPoint:farPoint];
         
         [itemButton.layer addAnimation:foldAnimation forKey:@"foldAnimation"];
         itemButton.center = self.pathCenterButtonBloomCenter;
+        
+        currentAngel += itemGapAngel;
         
     }
     
@@ -276,9 +342,8 @@
     
 }
 
-- (void)resizeToFoldedFrame
-{
-    if (self.centerBtnRotationEnable) {
+- (void)resizeToFoldedFrame {
+    if (self.allowCenterButtonRotation) {
         [UIView animateWithDuration:0.0618f * 3
                               delay:0.0618f * 2
                             options:UIViewAnimationOptionCurveEaseIn
@@ -313,8 +378,8 @@
     _bloom = NO;
 }
 
-- (CAAnimationGroup *)foldAnimationFromPoint:(CGPoint)endPoint withFarPoint:(CGPoint)farPoint
-{
+- (CAAnimationGroup *)foldAnimationFromPoint:(CGPoint)endPoint
+                                withFarPoint:(CGPoint)farPoint {
     // 1.Configure rotation animation
     //
     CAKeyframeAnimation *rotationAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
@@ -350,18 +415,38 @@
 
 #pragma mark - Center Button Bloom
 
-- (void)pathCenterButtonBloom
-{
+- (void)setBloomDirection:(kDCPathButtonBloomDirection)bloomDirection {
+    
+    _bloomDirection = bloomDirection;
+    
+    if (bloomDirection == kDCPathButtonBloomDirectionBottomLeft |
+        bloomDirection == kDCPathButtonBloomDirectionBottomRight |
+        bloomDirection == kDCPathButtonBloomDirectionTopLeft |
+        bloomDirection == kDCPathButtonBloomDirectionTopRight) {
+        
+        _bloomAngel = 90;
+        
+    }
+    
+}
+
+- (void)pathCenterButtonBloom {
+    
+    // DCPathButton Delegate
+    //
+    if ([_delegate respondsToSelector:@selector(willPresentItemButton)]) {
+        [_delegate willPresentItemButton];
+    }
     
     // Play bloom sound
     //
-    if (self.soundsEnable) {
+    if (self.allowSounds) {
         AudioServicesPlaySystemSound(self.bloomSound);
     }
     
     // Configure center button bloom
     //
-    // 1. Store the current center point to 'centerButtonBloomCenter
+    // 1. Store the current center point to centerButtonBloomCenter
     //
     self.pathCenterButtonBloomCenter = self.center;
     
@@ -384,7 +469,7 @@
     
     // 4. Excute the center button rotation animation
     //
-    if (self.centerBtnRotationEnable) {
+    if (self.allowCenterButtonRotation) {
         [UIView animateWithDuration:0.1575f
                          animations:^{
                              _pathCenterButton.transform = CGAffineTransformMakeRotation(-0.75f * M_PI);
@@ -395,20 +480,20 @@
     
     // 5. Excute the bloom animation
     //
-    CGFloat basicAngel = 180 / (self.itemButtons.count + 1) ;
+    CGFloat itemGapAngel = self.bloomAngel / (self.itemButtons.count - 1) ;
+    CGFloat currentAngel = (180.0f - self. bloomAngel)/2.0f;
     
-    for (int i = 1; i <= self.itemButtons.count; i++) {
+    for (int i = 0; i < self.itemButtons.count; i++) {
         
-        DCPathItemButton *pathItemButton = self.itemButtons[i - 1];
+        DCPathItemButton *pathItemButton = self.itemButtons[i];
         
         pathItemButton.delegate = self;
-        pathItemButton.tag = i - 1;
+        pathItemButton.index = i;
         pathItemButton.transform = CGAffineTransformMakeTranslation(1, 1);
         pathItemButton.alpha = 1.0f;
         
         // 1. Add pathItem button to the view
         //
-        CGFloat currentAngel = (basicAngel * i)/180;
         
         pathItemButton.center = self.pathCenterButtonBloomCenter;
         
@@ -416,24 +501,38 @@
         
         // 2.Excute expand animation
         //
-        CGPoint endPoint = [self createEndPointWithRadius:self.bloomRadius andAngel:currentAngel];
-        CGPoint farPoint = [self createEndPointWithRadius:self.bloomRadius + 10.0f andAngel:currentAngel];
-        CGPoint nearPoint = [self createEndPointWithRadius:self.bloomRadius - 5.0f andAngel:currentAngel];
+        CGPoint endPoint = [self createEndPointWithRadius:self.bloomRadius andAngel:currentAngel/180.0f];
+        CGPoint farPoint = [self createEndPointWithRadius:self.bloomRadius + 10.0f andAngel:currentAngel/180.0f];
+        CGPoint nearPoint = [self createEndPointWithRadius:self.bloomRadius - 5.0f andAngel:currentAngel/180.0f];
         
         CAAnimationGroup *bloomAnimation = [self bloomAnimationWithEndPoint:endPoint
                                                                   andFarPoint:farPoint
                                                                 andNearPoint:nearPoint];
         
-        [pathItemButton.layer addAnimation:bloomAnimation forKey:@"bloomAnimation"];
+        [pathItemButton.layer addAnimation:bloomAnimation
+                                    forKey:@"bloomAnimation"];
+        
         pathItemButton.center = endPoint;
+        
+        currentAngel += itemGapAngel;
         
     }
     
+    // Configure the bloom status
+    //
     _bloom = YES;
+    
+    // DCPathButton Delegate
+    //
+    if ([_delegate respondsToSelector:@selector(didPresentItemButton)]) {
+        [_delegate didPresentItemButton];
+    }
+    
 }
 
-- (CAAnimationGroup *)bloomAnimationWithEndPoint:(CGPoint)endPoint andFarPoint:(CGPoint)farPoint andNearPoint:(CGPoint)nearPoint
-{
+- (CAAnimationGroup *)bloomAnimationWithEndPoint:(CGPoint)endPoint
+                                     andFarPoint:(CGPoint)farPoint
+                                    andNearPoint:(CGPoint)nearPoint {
     
     // 1.Configure rotation animation
     //
@@ -471,30 +570,30 @@
 
 #pragma mark - Add PathButton Item
 
-- (void)addPathItems:(NSArray *)pathItemButtons
-{
+- (void)addPathItems:(NSArray *)pathItemButtons {
     [self.itemButtons addObjectsFromArray:pathItemButtons];
 }
 
 #pragma mark - DCPathButton Touch Events
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet *)touches
+           withEvent:(UIEvent *)event {
+    
     // Tap the bottom area, excute the fold animation
     [self pathCenterButtonFold];
 }
 
 #pragma mark - DCPathButton Item Delegate
 
-- (void)itemButtonTapped:(DCPathItemButton *)itemButton
-{
-    if ([_delegate respondsToSelector:@selector(itemButtonTappedAtIndex:)]) {
+- (void)itemButtonTapped:(DCPathItemButton *)itemButton {
+    
+    if ([_delegate respondsToSelector:@selector(pathButton:clickItemButtonAtIndex:)]) {
         
-        DCPathItemButton *selectedButton = self.itemButtons[itemButton.tag];
+        DCPathItemButton *selectedButton = self.itemButtons[itemButton.index];
         
         // Play selected sound
         //
-        if (self.soundsEnable) {
+        if (self.allowSounds) {
             AudioServicesPlaySystemSound(self.selectedSound);
         }
         
@@ -509,7 +608,7 @@
         // Excute the dismiss animation when the item is unselected
         //
         for (int i = 0; i < self.itemButtons.count; i++) {
-            if (i == selectedButton.tag) {
+            if (i == selectedButton.index) {
                 continue;
             }
             DCPathItemButton *unselectedButton = self.itemButtons[i];
@@ -521,7 +620,7 @@
         
         // Excute the delegate method
         //
-        [_delegate itemButtonTappedAtIndex:itemButton.tag];
+        [_delegate pathButton:self clickItemButtonAtIndex:itemButton.index];
         
         // Resize the DCPathButton's frame
         //
@@ -529,15 +628,15 @@
     }
 }
 
-#pragma mark - UIGestureRecognizerDelegate
+#pragma mark - UIGestureRecognizer Delegate
 
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
-{
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    
     return YES;
 }
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer NS_AVAILABLE_IOS(7_0)
-{
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer NS_AVAILABLE_IOS(7_0) {
     return YES;
 }
+
 @end

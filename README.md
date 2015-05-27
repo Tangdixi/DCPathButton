@@ -32,7 +32,7 @@ Of cource, you can install **DCPathButton** in a traditional way -- drag the **D
 ####Podfile
 ```bash
 platform :ios, '7.0'
-pod 'DCPathButton', '~> 2.0.2'
+pod 'DCPathButton', '~> 2.0.4'
 ``` 
 
 ##Usage
@@ -54,6 +54,7 @@ DCPatButton *centerButton = [[DCPathButton alloc]initWithCenterImage:[UIImage im
 [self.view addSubView:centerButton];
 ```
 4.Create some item buttons and add them into the center button
+
 ```objc
 DCPathItemButton *itemButton_1 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"image"]
                                                            highlightedImage:[UIImage imageNamed:@"highlightedImage"]
@@ -62,9 +63,11 @@ DCPathItemButton *itemButton_1 = [[DCPathItemButton alloc]initWithImage:[UIImage
 
 [centerButton addPathItems:@[itemButton_1]];                                                 
 ```
+------
+
 ####DCPathButtonDelegate
 
-**DCPathButtonDelegate** handle the action when you fire the item buttons which is similar to the **UITableViewDelegate**, control the items through the **index**  
+`<DCPathButtonDelegate>` handle the action when you fire the item buttons which is similar to the **UITableViewDelegate**, control the items through the **index**  
 
 You can add one item at least or five items at most. Assume we have five items, so the **index** is 0 to 4 :)
 
@@ -80,6 +83,23 @@ You can add one item at least or five items at most. Assume we have five items, 
 }
 ```
 
+You also can do something before or when the item buttons appear:
+
+```objc
+- (void)willPresentItemButton {
+    
+    NSLog(@"ItemButton will present");
+    
+}
+- (void)didPresentItemButton {
+
+    NSLog(@"ItemButton did present");
+    
+}
+```
+
+------
+
 ##Custom Property
 
 ```objc
@@ -88,13 +108,64 @@ You can add one item at least or five items at most. Assume we have five items, 
 
 `bloomRadius` is use to handle the item button bloom radius, default is `105.0f`;
 
+------
+
 ```objc
 @property (assign, nonatomic) CGPoint dcButtonCenter;
 ```
 
 `dcButtonCenter` is use to modify the center button's position.  
-In default the **DCPathButton** will be located in the center of a TabBar, assume that you use a *TabBarController*
-;
+
+In default the **DCPathButton** will be located in bottom center.  
+
+------
+
+```objc
+@property (assign, nonatomic) BOOL allowSounds;
+```
+
+`allowSounds ` is use to enable the button's sound, default is `YES`;
+
+------
+
+```objc
+@property (copy, nonatomic) NSString *bloomSoundPath;
+@property (copy, nonatomic) NSString *foldSoundPath;
+@property (copy, nonatomic) NSString *itemSoundPath;
+```
+You can change the button's sound through change the path of the **sound file**, for instance:
+
+```objc
+self.bloomSoundPath = [[NSBundle mainBundle]pathForResource:@"bloom" ofType:@"caf"];
+```
+
+------
+
+```objc
+@property (assign, nonatomic) kDCPathButtonBloomDirection bloomDirection;
+```
+We have `8` directions in **DCPathButton**, use the `bloomDirection` property to change the direction. All the directions you can find in the `enum` below:
+
+```objc
+typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
+    
+    kDCPathButtonBloomDirectionTop = 1,
+    kDCPathButtonBloomDirectionTopLeft = 2,
+    kDCPathButtonBloomDirectionLeft = 3,
+    kDCPathButtonBloomDirectionBottomLeft = 4,
+    kDCPathButtonBloomDirectionBottom = 5,
+    kDCPathButtonBloomDirectionBottomRight = 6,
+    kDCPathButtonBloomDirectionRight = 7,
+    kDCPathButtonBloomDirectionTopRight = 8,
+    
+};
+```
+------
+
+```objc
+@property (assign, nonatomic) CGFloat bloomAngel;
+```
+`bloomAngel` use for changing the item button's bloom angel. 
 
 If you have any suggestions. Just open an [issue](https://github.com/Tangdixi/DCPathButton/issues), tell me what you want.  :) 
 

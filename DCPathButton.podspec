@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "DCPathButton"
-  s.version      = "2.0.3"
+  s.version      = "2.1"
   s.summary      = " A beautiful button copy from Path® "
 
   s.description  = <<-DESC
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
 
   s.source       = { 
 	:git => "https://github.com/Tangdixi/DCPathButton.git", 
-	:tag => "v2.0.3"
+	:tag => "v2.1"
   }
 
   s.source_files  = 'DCPathButton/Classes/*.{h,m}'

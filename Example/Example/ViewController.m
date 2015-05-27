@@ -28,7 +28,7 @@
     // Configure center button
     //
     DCPathButton *dcPathButton = [[DCPathButton alloc]initWithCenterImage:[UIImage imageNamed:@"chooser-button-tab"]
-                                                           hilightedImage:[UIImage imageNamed:@"chooser-button-tab-highlighted"]];
+                                                         highlightedImage:[UIImage imageNamed:@"chooser-button-tab-highlighted"]];
     dcPathButton.delegate = self;
     
     // Configure item buttons
@@ -60,9 +60,14 @@
     
     // Add the item button into the center button
     //
-    [dcPathButton addPathItems:@[itemButton_1, itemButton_2, itemButton_3, itemButton_4, itemButton_5]];
+    [dcPathButton addPathItems:@[itemButton_1,
+                                 itemButton_2,
+                                 itemButton_3,
+                                 itemButton_4,
+                                 itemButton_5
+                                 ]];
     
-    // Change the bloom radius
+    // Change the bloom radius, default is 105.0f
     //
     dcPathButton.bloomRadius = 120.0f;
     
@@ -72,18 +77,13 @@
     
     // Setting the DCButton appearance
     //
-    dcPathButton.soundsEnable = YES;
-    dcPathButton.centerBtnRotationEnable = YES;
+    dcPathButton.allowSounds = YES;
+    dcPathButton.allowCenterButtonRotation = YES;
+    
+    dcPathButton.bloomDirection = kDCPathButtonBloomDirectionBottomLeft;
     
     [self.view addSubview:dcPathButton];
 
-}
-
-#pragma mark - DCPathButton Delegate
-
-- (void)itemButtonTappedAtIndex:(NSUInteger)index
-{
-    NSLog(@"You tap at index : %zd", index);
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,8 +92,22 @@
     // Dispose of any resources that can be recreated.
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
+#pragma mark - DCPathButton Delegate
+
+- (void)willPresentItemButton {
+    
+    NSLog(@"ItemButton will present");
+    
+}
+
+- (void)pathButton:(DCPathButton *)dcPathButton clickItemButtonAtIndex:(NSUInteger)itemButtonIndex {
+    NSLog(@"You tap %@ at index : %lu", dcPathButton, (unsigned long)itemButtonIndex);
+}
+
+- (void)didPresentItemButton {
+
+    NSLog(@"ItemButton did present");
+    
 }
 
 @end

@@ -12,16 +12,29 @@
 @import QuartzCore;
 @import AudioToolbox;
 
-typedef NS_ENUM(NSUInteger, DCPathButtonBloomDirection) {
-    DCPathButtonBloomTop,
-    DCPathButtonBloomLeft,
-    DCPathButtonBloomBottom,
-    DCPathButtonBloomRight,
+@class DCPathButton;
+
+typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
+    
+    kDCPathButtonBloomDirectionTop = 1,
+    kDCPathButtonBloomDirectionTopLeft = 2,
+    kDCPathButtonBloomDirectionLeft = 3,
+    kDCPathButtonBloomDirectionBottomLeft = 4,
+    kDCPathButtonBloomDirectionBottom = 5,
+    kDCPathButtonBloomDirectionBottomRight = 6,
+    kDCPathButtonBloomDirectionRight = 7,
+    kDCPathButtonBloomDirectionTopRight = 8,
+    
 };
 
 @protocol DCPathButtonDelegate <NSObject>
 
-- (void)itemButtonTappedAtIndex:(NSUInteger)index;
+- (void)pathButton:(DCPathButton *)dcPathButton clickItemButtonAtIndex:(NSUInteger)itemButtonIndex;
+
+@optional
+
+- (void)willPresentItemButton;
+- (void)didPresentItemButton;
 
 @end
 
@@ -29,21 +42,27 @@ typedef NS_ENUM(NSUInteger, DCPathButtonBloomDirection) {
 
 @property (weak, nonatomic) id<DCPathButtonDelegate> delegate;
 
-@property (strong, nonatomic) NSMutableArray *itemButtonImages;
-@property (strong, nonatomic) NSMutableArray *itemButtonHighlightedImages;
-
-@property (strong, nonatomic) UIImage *itemButtonBackgroundImage;
-@property (strong, nonatomic) UIImage *itemButtonBackgroundHighlightedImage;
-
 @property (assign, nonatomic) CGFloat bloomRadius;
+@property (assign, nonatomic) CGFloat bloomAngel;
 @property (assign, nonatomic) CGPoint dcButtonCenter;
 
-@property (nonatomic) DCPathButtonBloomDirection bloomDirection;
-@property (nonatomic) BOOL soundsEnable;
-@property (nonatomic) BOOL centerBtnRotationEnable;
+@property (assign, nonatomic) BOOL allowSounds;
 
-- (id)initWithCenterImage:(UIImage *)centerImage hilightedImage:(UIImage *)centerHighlightedImage;
-- (id)initWithButtonFrame:(CGRect)centerBtnFrame CenterImage:(UIImage *)centerImage hilightedImage:(UIImage *)centerHighlightedImage;
+@property (copy, nonatomic) NSString *bloomSoundPath;
+@property (copy, nonatomic) NSString *foldSoundPath;
+@property (copy, nonatomic) NSString *itemSoundPath;
+
+@property (assign, nonatomic) BOOL allowCenterButtonRotation;
+
+@property (assign, nonatomic) kDCPathButtonBloomDirection bloomDirection;
+
+- (instancetype)initWithCenterImage:(UIImage *)centerImage
+                   highlightedImage:(UIImage *)centerHighlightedImage;
+
+- (instancetype)initWithButtonFrame:(CGRect)centerButtonFrame
+                        centerImage:(UIImage *)centerImage
+                   highlightedImage:(UIImage *)centerHighlightedImage;
+
 - (void)addPathItems:(NSArray *)pathItemButtons;
 
 @end
