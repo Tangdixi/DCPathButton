@@ -1,10 +1,10 @@
  
-#DCPathButton 2.0 
+#DCPathButton 2.1 
 
 ![Foled](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/1.png).
 ![Bloom](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/2.png) 
 
-**DCPathButton** 2.0 is a menu button for iOS. Designed by a famous iOS App [**Path**](path.com).  
+**DCPathButton** 2.1 is a menu button for iOS. Designed by a famous iOS App [**Path**](www.path.com).  
 Since **Path 4.0**, this beautiful button was moved into the tab bar, with a new design.  
 So the **DCPathButton** is totally a copy, including the **animations**, the **sounds** and the **button's images** ( *of cource you can use your own images* ).  
 
@@ -32,7 +32,7 @@ Of cource, you can install **DCPathButton** in a traditional way -- drag the **D
 ####Podfile
 ```bash
 platform :ios, '7.0'
-pod 'DCPathButton', '~> 2.0.4'
+pod 'DCPathButton', '~> 2.1'
 ``` 
 
 ##Usage
@@ -57,9 +57,9 @@ DCPatButton *centerButton = [[DCPathButton alloc]initWithCenterImage:[UIImage im
 
 ```objc
 DCPathItemButton *itemButton_1 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"image"]
-                                                           highlightedImage:[UIImage imageNamed:@"highlightedImage"]
-                                                            backgroundImage:[UIImage imageNamed:@"backgroundImage"]
-                                                 backgroundHighlightedImage:[UIImage imageNamed:@"backgroundhighlightedImage"]];
+                                                       highlightedImage:[UIImage imageNamed:@"highlightedImage"]
+                                                        backgroundImage:[UIImage imageNamed:@"backgroundImage"]
+                                             backgroundHighlightedImage:[UIImage imageNamed:@"backgroundhighlightedImage"]];
 
 [centerButton addPathItems:@[itemButton_1]];                                                 
 ```
@@ -69,17 +69,11 @@ DCPathItemButton *itemButton_1 = [[DCPathItemButton alloc]initWithImage:[UIImage
 
 `<DCPathButtonDelegate>` handle the action when you fire the item buttons which is similar to the **UITableViewDelegate**, control the items through the **index**  
 
-You can add one item at least or five items at most. Assume we have five items, so the **index** is 0 to 4 :)
+You can add one item at least or five items at most. Assume we have five items, so the **itemButtonIndex** is 0 to 4 :)
 
 ```objc
-- (void)itemButtonTappedAtIndex:(NSUInteger)index
-{
-  if(index == 0){
-    // When the user tap index 1 here ...
-  }
-  else{
-    // other code here ...
-  }
+- (void)pathButton:(DCPathButton *)dcPathButton clickItemButtonAtIndex:(NSUInteger)itemButtonIndex {
+    NSLog(@"You tap %@ at index : %lu", dcPathButton, (unsigned long)itemButtonIndex);
 }
 ```
 
@@ -172,7 +166,7 @@ If you have any suggestions. Just open an [issue](https://github.com/Tangdixi/DC
 ##Problems, bugs or advice
 
 Open an [issue](https://github.com/Tangdixi/DCPathButton/issues) guys :)  
-I will reply you as quickly as I can .
+Reply U ASAP ~
 
 ##Lisence
 
