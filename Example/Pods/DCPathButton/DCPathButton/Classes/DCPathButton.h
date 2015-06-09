@@ -33,8 +33,11 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
 
 @optional
 
-- (void)willPresentItemButton;
-- (void)didPresentItemButton;
+- (void)willPresentDCPathButtonItems:(DCPathButton *)dcPathButton;
+- (void)didPresentDCPathButtonItems:(DCPathButton *)dcPathButton;
+
+- (void)willDismissDCPathButtonItems:(DCPathButton *)dcPathButton;
+- (void)didDismissDCPathButtonItems:(DCPathButton *)dcPathButton;
 
 @end
 
@@ -53,6 +56,8 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
 @property (copy, nonatomic) NSString *itemSoundPath;
 
 @property (assign, nonatomic) BOOL allowCenterButtonRotation;
+
+@property (strong, nonatomic) UIColor *bottomViewColor;
 
 @property (assign, nonatomic) kDCPathButtonBloomDirection bloomDirection;
 

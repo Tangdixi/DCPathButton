@@ -80,7 +80,9 @@
     dcPathButton.allowSounds = YES;
     dcPathButton.allowCenterButtonRotation = YES;
     
-    dcPathButton.bloomDirection = kDCPathButtonBloomDirectionBottomLeft;
+    dcPathButton.bottomViewColor = [UIColor grayColor];
+    
+    dcPathButton.bloomDirection = kDCPathButtonBloomDirectionTop;
     
     [self.view addSubview:dcPathButton];
 
@@ -94,7 +96,7 @@
 
 #pragma mark - DCPathButton Delegate
 
-- (void)willPresentItemButton {
+- (void)willPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
     
     NSLog(@"ItemButton will present");
     
@@ -104,7 +106,7 @@
     NSLog(@"You tap %@ at index : %lu", dcPathButton, (unsigned long)itemButtonIndex);
 }
 
-- (void)didPresentItemButton {
+- (void)didPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
 
     NSLog(@"ItemButton did present");
     

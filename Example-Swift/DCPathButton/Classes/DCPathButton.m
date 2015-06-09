@@ -52,6 +52,7 @@
 - (instancetype)initWithButtonFrame:(CGRect)centerButtonFrame
                         centerImage:(UIImage *)centerImage
                    highlightedImage:(UIImage *)centerHighlightedImage {
+    
     if (self = [super init]) {
         
         // Configure center and high light center image
@@ -86,6 +87,8 @@
         _itemSoundPath = [[NSBundle mainBundle]pathForResource:@"selected" ofType:@"caf"];
         
         _allowSounds = YES;
+        
+        _bottomViewColor = [UIColor blackColor];
         
     }
     return self;
@@ -126,7 +129,7 @@
     // Configure bottom view
     //
     _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.bloomSize.width * 2, self.bloomSize.height * 2)];
-    _bottomView.backgroundColor = [UIColor blackColor];
+    _bottomView.backgroundColor = self.bottomViewColor;
     _bottomView.alpha = 0.0f;
     
     // Make bottomView's touch can delay superView witch like UIScrollView scrolling
@@ -135,6 +138,16 @@
     UIGestureRecognizer* tapGesture = [[UIGestureRecognizer alloc] initWithTarget:nil action:nil];
     tapGesture.delegate = self;
     [_bottomView addGestureRecognizer:tapGesture];
+}
+
+#pragma mark - Configure Bottom View Color
+
+- (void)setBottomViewColor:(UIColor *)bottomViewColor {
+    
+    if (bottomViewColor) {
+        _bottomView.backgroundColor = bottomViewColor;
+    }
+    
 }
 
 #pragma mark - Configure Button Sound
@@ -258,33 +271,32 @@
             
         case kDCPathButtonBloomDirectionTop:
             
-            return CGPointMake(self.pathCenterButtonBloomCenter.x - cosf(angel * M_PI) * itemExpandRadius,
-                               self.pathCenterButtonBloomCenter.y - sinf(angel * M_PI) * itemExpandRadius);
+            return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 1) * M_PI) * itemExpandRadius,
+                               self.pathCenterButtonBloomCenter.y + sinf((angel + 1) * M_PI) * itemExpandRadius);
+        case kDCPathButtonBloomDirectionBottomLeft:
             
-        case kDCPathButtonBloomDirectionTopLeft:
-            
-            return CGPointMake(self.pathCenterButtonBloomCenter.x - cosf((angel + 0.25) * M_PI) * itemExpandRadius,
-                               self.pathCenterButtonBloomCenter.y - sinf((angel + 0.25) * M_PI) * itemExpandRadius);
+            return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 0.25) * M_PI) * itemExpandRadius,
+                               self.pathCenterButtonBloomCenter.y + sinf((angel + 0.25) * M_PI) * itemExpandRadius);
             
         case kDCPathButtonBloomDirectionLeft:
             
             return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 0.5) * M_PI) * itemExpandRadius,
                                self.pathCenterButtonBloomCenter.y + sinf((angel + 0.5) * M_PI) * itemExpandRadius);
             
-        case kDCPathButtonBloomDirectionBottomLeft:
+        case kDCPathButtonBloomDirectionTopLeft:
             
             return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 0.75) * M_PI) * itemExpandRadius,
                                self.pathCenterButtonBloomCenter.y + sinf((angel + 0.75) * M_PI) * itemExpandRadius);
             
         case kDCPathButtonBloomDirectionBottom:
             
-            return CGPointMake(self.pathCenterButtonBloomCenter.x - cosf((angel + 1) * M_PI) * itemExpandRadius,
-                               self.pathCenterButtonBloomCenter.y - sinf((angel + 1) * M_PI) * itemExpandRadius);
+            return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf(angel * M_PI) * itemExpandRadius,
+                               self.pathCenterButtonBloomCenter.y + sinf(angel * M_PI) * itemExpandRadius);
             
         case kDCPathButtonBloomDirectionBottomRight:
             
-            return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 1.25) * M_PI) * itemExpandRadius,
-                               self.pathCenterButtonBloomCenter.y + sinf((angel + 1.25) * M_PI) * itemExpandRadius);
+            return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 1.75) * M_PI) * itemExpandRadius,
+                               self.pathCenterButtonBloomCenter.y + sinf((angel + 1.75) * M_PI) * itemExpandRadius);
             
         case kDCPathButtonBloomDirectionRight:
             
@@ -293,8 +305,8 @@
             
         case kDCPathButtonBloomDirectionTopRight:
             
-            return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 1.75) * M_PI) * itemExpandRadius,
-                               self.pathCenterButtonBloomCenter.y + sinf((angel + 1.75) * M_PI) * itemExpandRadius);
+            return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 1.25) * M_PI) * itemExpandRadius,
+                               self.pathCenterButtonBloomCenter.y + sinf((angel + 1.25) * M_PI) * itemExpandRadius);
         
         default:
             
@@ -308,6 +320,13 @@
 #pragma mark - Center Button Fold
 
 - (void)pathCenterButtonFold {
+    
+    // DCPathButton Delegate
+    //
+    if ([_delegate respondsToSelector:@selector(willDismissDCPathButtonItems:)]) {
+        [_delegate willDismissDCPathButtonItems:self];
+    }
+    
     // Play fold sound
     //
     if (self.allowSounds) {
@@ -339,6 +358,12 @@
     // Resize the DCPathButton's frame to the foled frame and remove the item buttons
     //
     [self resizeToFoldedFrame];
+    
+    // DCPathButton Delegate
+    //
+    if ([_delegate respondsToSelector:@selector(didDismissDCPathButtonItems:)]) {
+        [_delegate didDismissDCPathButtonItems:self];
+    }
     
 }
 
@@ -424,7 +449,7 @@
         bloomDirection == kDCPathButtonBloomDirectionTopLeft |
         bloomDirection == kDCPathButtonBloomDirectionTopRight) {
         
-        _bloomAngel = 90;
+        _bloomAngel = 90.0f;
         
     }
     
@@ -434,8 +459,8 @@
     
     // DCPathButton Delegate
     //
-    if ([_delegate respondsToSelector:@selector(willPresentItemButton)]) {
-        [_delegate willPresentItemButton];
+    if ([_delegate respondsToSelector:@selector(willPresentDCPathButtonItems:)]) {
+        [_delegate willPresentDCPathButtonItems:self];
     }
     
     // Play bloom sound
@@ -524,8 +549,8 @@
     
     // DCPathButton Delegate
     //
-    if ([_delegate respondsToSelector:@selector(didPresentItemButton)]) {
-        [_delegate didPresentItemButton];
+    if ([_delegate respondsToSelector:@selector(didPresentDCPathButtonItems:)]) {
+        [_delegate didPresentDCPathButtonItems:self];
     }
     
 }
