@@ -163,6 +163,10 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
 
 If you have any suggestions. Just open an [issue](https://github.com/Tangdixi/DCPathButton/issues), tell me what you want.  :) 
 
+##Swift Example
+
+I M working on a Swift version. There is a example show you how to use **DCPathButton** in you Swift code.
+
 ##Problems, bugs or advice
 
 Open an [issue](https://github.com/Tangdixi/DCPathButton/issues) guys :)  
