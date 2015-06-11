@@ -1,7 +1,7 @@
  
 #DCPathButton 2.1 
 
-[![Build Status](https://api.travis-ci.org/Tangdixi/DCPathButton.svg?branch=master)]
+![Build Status](https://api.travis-ci.org/Tangdixi/DCPathButton.svg?branch=master)
 
 ![Foled](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/1.png).
 ![Bloom](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/2.png) 
