@@ -1,26 +1,31 @@
 //
-//  ViewController.m
-//  Example
+//  TabBarViewController.m
+//  
 //
-//  Created by tang dixi on 12/8/14.
-//  Copyright (c) 2014 Tangdxi. All rights reserved.
+//  Created by Paul on 6/29/15.
+//
 //
 
-#import "ViewController.h"
+#import "TabBarViewController.h"
 #import "DCPathButton.h"
 
-@interface ViewController ()<DCPathButtonDelegate>
+@interface TabBarViewController ()<DCPathButtonDelegate>
 
 @end
 
-@implementation ViewController
+@implementation TabBarViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view.
     
     [self configureDCPathButton];
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)configureDCPathButton
@@ -82,17 +87,10 @@
     
     dcPathButton.bottomViewColor = [UIColor grayColor];
     
-    dcPathButton.bloomDirection = kDCPathButtonBloomDirectionTopRight;
-    dcPathButton.dcButtonCenter = CGPointMake(10 + dcPathButton.frame.size.width/2, self.view.frame.size.height - dcPathButton.frame.size.height/2 - 10);
+    dcPathButton.bloomDirection = kDCPathButtonBloomDirectionTop;
     
     [self.view addSubview:dcPathButton];
-
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
 
 #pragma mark - DCPathButton Delegate
@@ -108,7 +106,7 @@
 }
 
 - (void)didPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
-
+    
     NSLog(@"ItemButton did present");
     
 }

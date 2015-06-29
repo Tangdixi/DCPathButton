@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		810D19761B41293E0032125D /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D19751B41293E0032125D /* TabBarViewController.m */; };
+		810D19791B412DCF0032125D /* UIScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D19781B412DCF0032125D /* UIScrollViewController.m */; };
 		81696CC91999D748001B9B4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81696CC81999D748001B9B4B /* Foundation.framework */; };
 		81696CCB1999D748001B9B4B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81696CCA1999D748001B9B4B /* CoreGraphics.framework */; };
 		81696CCD1999D748001B9B4B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81696CCC1999D748001B9B4B /* UIKit.framework */; };
@@ -36,6 +38,10 @@
 
 /* Begin PBXFileReference section */
 		14DD23BAC82943B6BA709779 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		810D19741B41293E0032125D /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		810D19751B41293E0032125D /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		810D19771B412DCF0032125D /* UIScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIScrollViewController.h; sourceTree = "<group>"; };
+		810D19781B412DCF0032125D /* UIScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIScrollViewController.m; sourceTree = "<group>"; };
 		81696CC51999D748001B9B4B /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81696CC81999D748001B9B4B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		81696CCA1999D748001B9B4B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -122,6 +128,10 @@
 				81696CD81999D748001B9B4B /* AppDelegate.m */,
 				81696CDD1999D748001B9B4B /* ViewController.h */,
 				81696CDE1999D748001B9B4B /* ViewController.m */,
+				810D19741B41293E0032125D /* TabBarViewController.h */,
+				810D19751B41293E0032125D /* TabBarViewController.m */,
+				810D19771B412DCF0032125D /* UIScrollViewController.h */,
+				810D19781B412DCF0032125D /* UIScrollViewController.m */,
 				81696CDA1999D748001B9B4B /* Main.storyboard */,
 				81696CE01999D748001B9B4B /* Images.xcassets */,
 				81696CCF1999D748001B9B4B /* Supporting Files */,
@@ -290,9 +300,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				810D19761B41293E0032125D /* TabBarViewController.m in Sources */,
 				81696CDF1999D748001B9B4B /* ViewController.m in Sources */,
 				81696CD91999D748001B9B4B /* AppDelegate.m in Sources */,
 				81696CD51999D748001B9B4B /* main.m in Sources */,
+				810D19791B412DCF0032125D /* UIScrollViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

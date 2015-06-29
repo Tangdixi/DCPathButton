@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Tangdxi. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface ViewController : UIViewController
 

@@ -1,26 +1,32 @@
 //
-//  ViewController.m
-//  Example
+//  UIScrollViewController.m
+//  
 //
-//  Created by tang dixi on 12/8/14.
-//  Copyright (c) 2014 Tangdxi. All rights reserved.
+//  Created by Paul on 6/29/15.
+//
 //
 
-#import "ViewController.h"
+#import "UIScrollViewController.h"
 #import "DCPathButton.h"
 
-@interface ViewController ()<DCPathButtonDelegate>
+@interface UIScrollViewController ()<DCPathButtonDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *scrollView;
 @end
 
-@implementation ViewController
+@implementation UIScrollViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view.
     
     [self configureDCPathButton];
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)configureDCPathButton
@@ -82,17 +88,11 @@
     
     dcPathButton.bottomViewColor = [UIColor grayColor];
     
-    dcPathButton.bloomDirection = kDCPathButtonBloomDirectionTopRight;
-    dcPathButton.dcButtonCenter = CGPointMake(10 + dcPathButton.frame.size.width/2, self.view.frame.size.height - dcPathButton.frame.size.height/2 - 10);
+    dcPathButton.bloomDirection = kDCPathButtonBloomDirectionBottom;
+    dcPathButton.dcButtonCenter = CGPointMake(self.view.frame.size.width/2, 50);
     
-    [self.view addSubview:dcPathButton];
-
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.scrollView addSubview:dcPathButton];
+    
 }
 
 #pragma mark - DCPathButton Delegate
@@ -108,7 +108,7 @@
 }
 
 - (void)didPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
-
+    
     NSLog(@"ItemButton did present");
     
 }
