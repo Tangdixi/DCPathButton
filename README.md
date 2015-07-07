@@ -169,6 +169,12 @@ If you have any suggestions. Just open an [issue](https://github.com/Tangdixi/DC
 
 I M working on a Swift version. There is a example show you how to use **DCPathButton** in you Swift code.
 
+##Contribution 
+
+Thanks these PR:
+*  [AlexJeng's](https://github.com/AlexJeng/DCPathButton/commit/05228d583626f839a17f40613afb30f013cc34f0)  
+*  [wangweiarr's](https://github.com/wangweiarr/DCPathButton/commit/d723afdcd32bcfffadba5e60698b027aa29e95df)
+
 ##Problems, bugs or advice
 
 Open an [issue](https://github.com/Tangdixi/DCPathButton/issues) guys :)  
