@@ -393,7 +393,7 @@
 				INFOPLIST_FILE = "Example-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Tangdixi/Desktop/Example-Swift/Example-Swift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Example-Swift-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -404,7 +404,7 @@
 				INFOPLIST_FILE = "Example-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/Tangdixi/Desktop/Example-Swift/Example-Swift-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Example-Swift-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -461,6 +461,7 @@
 				816754951B1CAD4700E1E464 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		816754961B1CAD4700E1E464 /* Build configuration list for PBXNativeTarget "Example-SwiftTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +470,7 @@
 				816754981B1CAD4700E1E464 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
