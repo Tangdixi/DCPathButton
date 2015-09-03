@@ -51,7 +51,7 @@ import "DCPathButton.h"
 ```
 3.Create a center button and add it into your view
 ```objc
-DCPatButton *centerButton = [[DCPathButton alloc]initWithCenterImage:[UIImage imageNamed:@"chooser-button-tab"]
+DCPathButton *centerButton = [[DCPathButton alloc]initWithCenterImage:[UIImage imageNamed:@"chooser-button-tab"]
                                                       hilightedImage:[UIImage imageNamed:@"chooser-button-tab-highlighted"]];
 [self.view addSubView:centerButton];
 ```
