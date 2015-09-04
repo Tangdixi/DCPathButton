@@ -71,9 +71,12 @@
     //
     dcPathButton.bloomRadius = 120.0f;
     
+
+    
     // Change the DCButton's center
     //
-    dcPathButton.dcButtonCenter = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height - 25.5f);
+    dcPathButton.dcButtonCenter = self.view.center;
+    dcPathButton.bloomDirection = kDCPathButtonBloomDirectionCenter;
     
     // Setting the DCButton appearance
     //
@@ -82,8 +85,8 @@
     
     dcPathButton.bottomViewColor = [UIColor grayColor];
     
-    dcPathButton.bloomDirection = kDCPathButtonBloomDirectionTopRight;
-    dcPathButton.dcButtonCenter = CGPointMake(10 + dcPathButton.frame.size.width/2, self.view.frame.size.height - dcPathButton.frame.size.height/2 - 10);
+//    dcPathButton.bloomDirection = kDCPathButtonBloomDirectionTopRight;
+//    dcPathButton.dcButtonCenter = CGPointMake(10 + dcPathButton.frame.size.width/2, self.view.frame.size.height - dcPathButton.frame.size.height/2 - 10);
     
     [self.view addSubview:dcPathButton];
 
