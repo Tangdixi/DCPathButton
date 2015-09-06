@@ -140,7 +140,7 @@ self.bloomSoundPath = [[NSBundle mainBundle]pathForResource:@"bloom" ofType:@"ca
 ```objc
 @property (assign, nonatomic) kDCPathButtonBloomDirection bloomDirection;
 ```
-We have `8` directions in **DCPathButton**, use the `bloomDirection` property to change the direction. All the directions you can find in the `enum` below:
+We have `9` directions in **DCPathButton**, use the `bloomDirection` property to change the direction. All the directions you can find in the `enum` below:
 
 ```objc
 typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
@@ -153,6 +153,7 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
     kDCPathButtonBloomDirectionBottomRight = 6,
     kDCPathButtonBloomDirectionRight = 7,
     kDCPathButtonBloomDirectionTopRight = 8,
+    kDCPathButtonBloomDirectionCenter = 9,
     
 };
 ```
