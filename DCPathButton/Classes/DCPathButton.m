@@ -307,6 +307,11 @@
             
             return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 1.25) * M_PI) * itemExpandRadius,
                                self.pathCenterButtonBloomCenter.y + sinf((angel + 1.25) * M_PI) * itemExpandRadius);
+            
+        case kDCPathButtonBloomDirectionCenter:
+            
+            return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf(angel * 2 * M_PI) * itemExpandRadius,
+                               self.pathCenterButtonBloomCenter.y + sinf(angel * 2 * M_PI) * itemExpandRadius);
         
         default:
             
@@ -334,6 +339,9 @@
     }
     
     CGFloat itemGapAngel = self.bloomAngel / (self.itemButtons.count - 1) ;
+    if (self.bloomDirection == kDCPathButtonBloomDirectionCenter) {
+        itemGapAngel = self.bloomAngel / self.itemButtons.count;
+    }
     CGFloat currentAngel = (180.0f - self. bloomAngel)/2.0f;
     
     // Load item buttons from array
@@ -453,6 +461,10 @@
         
     }
     
+    if (bloomDirection == kDCPathButtonBloomDirectionCenter) {
+        _bloomAngel = 360.0f;
+    }
+    
 }
 
 - (void)pathCenterButtonBloom {
@@ -506,6 +518,9 @@
     // 5. Excute the bloom animation
     //
     CGFloat itemGapAngel = self.bloomAngel / (self.itemButtons.count - 1) ;
+    if (self.bloomDirection == kDCPathButtonBloomDirectionCenter) {
+        itemGapAngel = self.bloomAngel / self.itemButtons.count;
+    }
     CGFloat currentAngel = (180.0f - self. bloomAngel)/2.0f;
     
     for (int i = 0; i < self.itemButtons.count; i++) {
