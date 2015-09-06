@@ -24,7 +24,7 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
     kDCPathButtonBloomDirectionBottomRight = 6,
     kDCPathButtonBloomDirectionRight = 7,
     kDCPathButtonBloomDirectionTopRight = 8,
-    kDCPathButtonBloomDirectionCenter = 9,
+    
 };
 
 @protocol DCPathButtonDelegate <NSObject>

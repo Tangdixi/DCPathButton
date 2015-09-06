@@ -29,9 +29,7 @@ class ViewController: UIViewController, DCPathButtonDelegate {
         dcPathButton = DCPathButton(centerImage: UIImage(named: "chooser-button-tab"), highlightedImage: UIImage(named: "chooser-button-tab-highlighted"))
         
         dcPathButton.delegate = self
-        dcPathButton.dcButtonCenter = self.view.center
-        dcPathButton.bloomDirection = kDCPathButtonBloomDirection.DCPathButtonBloomDirectionCenter
-        dcPathButton.bottomViewColor = UIColor.grayColor()
+        dcPathButton.dcButtonCenter = CGPointMake(self.view.bounds.width/2, self.view.bounds.height - 25.5)
         dcPathButton.allowSounds = true
         dcPathButton.allowCenterButtonRotation = true
         dcPathButton.bloomRadius = 105
