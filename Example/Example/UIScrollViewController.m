@@ -33,7 +33,8 @@
 {
     // Configure center button
     //
-    DCPathButton *dcPathButton = [[DCPathButton alloc]initWithCenterImage:[UIImage imageNamed:@"chooser-button-tab"]
+    DCPathButton *dcPathButton = [[DCPathButton alloc]initWithButtonFrame:CGRectMake(0, 0, 150, 150)
+                                                              centerImage:[UIImage imageNamed:@"chooser-button-tab"]
                                                          highlightedImage:[UIImage imageNamed:@"chooser-button-tab-highlighted"]];
     dcPathButton.delegate = self;
     

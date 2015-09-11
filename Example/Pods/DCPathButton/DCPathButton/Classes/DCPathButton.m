@@ -119,7 +119,7 @@
     
     // Configure center button
     //
-    _pathCenterButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.centerImage.size.width, self.centerImage.size.height)];
+    _pathCenterButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, centerButtonSize.width, centerButtonSize.height)];
     [_pathCenterButton setImage:self.centerImage forState:UIControlStateNormal];
     [_pathCenterButton setImage:self.centerHighlightedImage forState:UIControlStateHighlighted];
     [_pathCenterButton addTarget:self action:@selector(centerButtonTapped) forControlEvents:UIControlEventTouchUpInside];
@@ -128,7 +128,7 @@
     
     // Configure bottom view
     //
-    _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.bloomSize.width * 2, self.bloomSize.height * 2)];
+    _bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.bloomSize.width, self.bloomSize.height)];
     _bottomView.backgroundColor = self.bottomViewColor;
     _bottomView.alpha = 0.0f;
     
