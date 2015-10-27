@@ -1,10 +1,10 @@
 PODS:
-  - DCPathButton (2.0)
+  - DCPathButton (2.1.3)
 
 DEPENDENCIES:
-  - DCPathButton (~> 2.0)
+  - DCPathButton (~> 2.1.3)
 
 SPEC CHECKSUMS:
-  DCPathButton: 3be37892168b5651716786cbeab42d0c66073ace
+  DCPathButton: 431bb93072e8d25bd0de0eaa0373e39d896a38e3
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.38.2

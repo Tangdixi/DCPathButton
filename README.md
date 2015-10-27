@@ -34,7 +34,7 @@ Of cource, you can install **DCPathButton** in a traditional way -- drag the **D
 ####Podfile
 ```bash
 platform :ios, '7.0'
-pod 'DCPathButton', '~> 2.1'
+pod 'DCPathButton', '~> 2.1.3'
 ``` 
 
 ##Usage
@@ -164,17 +164,30 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
 ```
 `bloomAngel` use for changing the item button's bloom angel. 
 
-If you have any suggestions. Just open an [issue](https://github.com/Tangdixi/DCPathButton/issues), tell me what you want.  :) 
+------
+
+```objc
+@property (assign, nonatomic) BOOL allowSubItemRotation;
+```
+`allowSubItemRotation ` use for handling the rotation of the subItem .
+
+------
+
+```objc
+@property (assign, nonatomic) NSTimeInterval basicDuration;
+```
+`basicDuration ` is using for change the animation's duration, you can make the subItems bloom slowly, etc.
 
 ##Swift Example
 
-I M working on a Swift version. There is a example show you how to use **DCPathButton** in you Swift code.
+I M working on a Swift version.  
+There is a example show you how to use **DCPathButton** in you Swift code.
 
 ##Contribution 
 
-Thanks these PR:
+Thanks these PR:  
 *  [AlexJeng's](https://github.com/AlexJeng/DCPathButton/commit/05228d583626f839a17f40613afb30f013cc34f0)  
-*  [wangweiarr's](https://github.com/wangweiarr/DCPathButton/commit/d723afdcd32bcfffadba5e60698b027aa29e95df)
+*  [wangweiarr's](https://github.com/wangweiarr/DCPathButton/commit/  d723afdcd32bcfffadba5e60698b027aa29e95df)
 *  [thundertrick's](https://github.com/Tangdixi/DCPathButton/pull/33)  
   
 ##Problems, bugs or advice
