@@ -40,6 +40,8 @@
 
 @implementation DCPathButton
 
+const static CGFloat period = 0.0618f;
+
 #pragma mark - Initialization
 
 - (instancetype)initWithCenterImage:(UIImage *)centerImage
@@ -90,6 +92,9 @@
         
         _bottomViewColor = [UIColor blackColor];
         
+        _allowMenuButtonRotation = YES;
+        
+        _animationMultiplier = 1.0;
     }
     return self;
 }
@@ -377,8 +382,8 @@
 
 - (void)resizeToFoldedFrame {
     if (self.allowCenterButtonRotation) {
-        [UIView animateWithDuration:0.0618f * 3
-                              delay:0.0618f * 2
+        [UIView animateWithDuration:period * 3 * self.animationMultiplier
+                              delay:period * 2 * self.animationMultiplier
                             options:UIViewAnimationOptionCurveEaseIn
                          animations:^{
                              _pathCenterButton.transform = CGAffineTransformMakeRotation(0);
@@ -386,8 +391,8 @@
                          completion:nil];
     }
     
-    [UIView animateWithDuration:0.1f
-                          delay:0.35f
+    [UIView animateWithDuration:0.1f * self.animationMultiplier
+                          delay:0.35f * self.animationMultiplier
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
                          _bottomView.alpha = 0.0f;
@@ -440,7 +445,11 @@
     // 3.Merge animation together
     //
     CAAnimationGroup *animations = [CAAnimationGroup animation];
-    animations.animations = @[rotationAnimation, movingAnimation];
+    if (self.allowMenuButtonRotation) {
+        animations.animations = @[rotationAnimation, movingAnimation];
+    } else {
+        animations.animations = @[movingAnimation];
+    }
     animations.duration = 0.35f;
     
     return animations;
@@ -496,7 +505,7 @@
     
     // 3. Excute the bottom view alpha animation
     //
-    [UIView animateWithDuration:0.0618f * 3
+    [UIView animateWithDuration:period * 3 * self.animationMultiplier
                           delay:0.0f
                         options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
@@ -507,7 +516,7 @@
     // 4. Excute the center button rotation animation
     //
     if (self.allowCenterButtonRotation) {
-        [UIView animateWithDuration:0.1575f
+        [UIView animateWithDuration:0.1575f * self.animationMultiplier
                          animations:^{
                              _pathCenterButton.transform = CGAffineTransformMakeRotation(-0.75f * M_PI);
                          }];
@@ -578,7 +587,7 @@
     //
     CAKeyframeAnimation *rotationAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
     rotationAnimation.values = @[@(0.0), @(- M_PI), @(- M_PI * 1.5), @(- M_PI * 2)];
-    rotationAnimation.duration = 0.3f;
+    rotationAnimation.duration = 0.3f * self.animationMultiplier;
     rotationAnimation.keyTimes = @[@(0.0), @(0.3), @(0.6), @(1.0)];
     
     // 2.Configure moving animation
@@ -595,14 +604,18 @@
     
     movingAnimation.path = path;
     movingAnimation.keyTimes = @[@(0.0), @(0.5), @(0.7), @(1.0)];
-    movingAnimation.duration = 0.3f;
+    movingAnimation.duration = 0.3f * self.animationMultiplier;
     CGPathRelease(path);
     
     // 3.Merge two animation together
     //
     CAAnimationGroup *animations = [CAAnimationGroup animation];
-    animations.animations = @[movingAnimation, rotationAnimation];
-    animations.duration = 0.3f;
+    if (self.allowMenuButtonRotation) {
+        animations.animations = @[movingAnimation, rotationAnimation];
+    } else {
+        animations.animations = @[movingAnimation];
+    }
+    animations.duration = 0.3f * self.animationMultiplier;
     animations.delegate = self;
     
     return animations;
@@ -639,7 +652,7 @@
         
         // Excute the explode animation when the item is seleted
         //
-        [UIView animateWithDuration:0.0618f * 5
+        [UIView animateWithDuration:period * 5 * self.animationMultiplier
                          animations:^{
                              selectedButton.transform = CGAffineTransformMakeScale(3, 3);
                              selectedButton.alpha = 0.0f;
@@ -652,7 +665,7 @@
                 continue;
             }
             DCPathItemButton *unselectedButton = self.itemButtons[i];
-            [UIView animateWithDuration:0.0618f * 2
+            [UIView animateWithDuration:period * 2 * self.animationMultiplier
                              animations:^{
                                  unselectedButton.transform = CGAffineTransformMakeScale(0, 0);
                              }];

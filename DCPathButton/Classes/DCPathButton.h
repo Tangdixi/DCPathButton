@@ -52,11 +52,14 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
 
 @property (assign, nonatomic) BOOL allowSounds;
 
+@property (assign, nonatomic) CGFloat animationMultiplier;
+
 @property (copy, nonatomic) NSString *bloomSoundPath;
 @property (copy, nonatomic) NSString *foldSoundPath;
 @property (copy, nonatomic) NSString *itemSoundPath;
 
 @property (assign, nonatomic) BOOL allowCenterButtonRotation;
+@property (assign, nonatomic) BOOL allowMenuButtonRotation;
 
 @property (strong, nonatomic) UIColor *bottomViewColor;
 
