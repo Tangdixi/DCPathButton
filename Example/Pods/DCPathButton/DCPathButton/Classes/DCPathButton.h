@@ -45,6 +45,9 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
 
 @property (weak, nonatomic) id<DCPathButtonDelegate> delegate;
 
+@property (assign, nonatomic) NSTimeInterval basicDuration;
+@property (assign, nonatomic) BOOL allowSubItemRotation;
+
 @property (assign, nonatomic) CGFloat bloomRadius;
 @property (assign, nonatomic) CGFloat bloomAngel;
 @property (assign, nonatomic) CGPoint dcButtonCenter;

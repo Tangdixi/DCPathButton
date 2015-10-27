@@ -90,6 +90,10 @@
         
         _bottomViewColor = [UIColor blackColor];
         
+        _allowSubItemRotation = YES;
+        
+        _basicDuration = 0.3f;
+        
     }
     return self;
 }
@@ -307,11 +311,6 @@
             
             return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf((angel + 1.25) * M_PI) * itemExpandRadius,
                                self.pathCenterButtonBloomCenter.y + sinf((angel + 1.25) * M_PI) * itemExpandRadius);
-            
-        case kDCPathButtonBloomDirectionCenter:
-            
-            return CGPointMake(self.pathCenterButtonBloomCenter.x + cosf(angel * 2 * M_PI) * itemExpandRadius,
-                               self.pathCenterButtonBloomCenter.y + sinf(angel * 2 * M_PI) * itemExpandRadius);
         
         default:
             
@@ -339,9 +338,6 @@
     }
     
     CGFloat itemGapAngel = self.bloomAngel / (self.itemButtons.count - 1) ;
-    if (self.bloomDirection == kDCPathButtonBloomDirectionCenter) {
-        itemGapAngel = self.bloomAngel / self.itemButtons.count;
-    }
     CGFloat currentAngel = (180.0f - self. bloomAngel)/2.0f;
     
     // Load item buttons from array
@@ -387,7 +383,7 @@
     }
     
     [UIView animateWithDuration:0.1f
-                          delay:0.35f
+                          delay:self.basicDuration + 0.05f
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
                          _bottomView.alpha = 0.0f;
@@ -418,7 +414,7 @@
     CAKeyframeAnimation *rotationAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
     rotationAnimation.values = @[@(0), @(M_PI), @(M_PI * 2)];
     rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
-    rotationAnimation.duration = 0.35f;
+    rotationAnimation.duration = self.basicDuration + 0.05f;
     
     // 2.Configure moving animation
     //
@@ -434,14 +430,14 @@
     movingAnimation.keyTimes = @[@(0.0f), @(0.75), @(1.0)];
     
     movingAnimation.path = path;
-    movingAnimation.duration = 0.35f;
+    movingAnimation.duration = self.basicDuration + 0.05f;
     CGPathRelease(path);
     
     // 3.Merge animation together
     //
     CAAnimationGroup *animations = [CAAnimationGroup animation];
     animations.animations = @[rotationAnimation, movingAnimation];
-    animations.duration = 0.35f;
+    animations.duration = self.basicDuration + 0.05f;
     
     return animations;
 }
@@ -459,10 +455,6 @@
         
         _bloomAngel = 90.0f;
         
-    }
-    
-    if (bloomDirection == kDCPathButtonBloomDirectionCenter) {
-        _bloomAngel = 360.0f;
     }
     
 }
@@ -518,9 +510,6 @@
     // 5. Excute the bloom animation
     //
     CGFloat itemGapAngel = self.bloomAngel / (self.itemButtons.count - 1) ;
-    if (self.bloomDirection == kDCPathButtonBloomDirectionCenter) {
-        itemGapAngel = self.bloomAngel / self.itemButtons.count;
-    }
     CGFloat currentAngel = (180.0f - self. bloomAngel)/2.0f;
     
     for (int i = 0; i < self.itemButtons.count; i++) {
@@ -578,7 +567,7 @@
     //
     CAKeyframeAnimation *rotationAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
     rotationAnimation.values = @[@(0.0), @(- M_PI), @(- M_PI * 1.5), @(- M_PI * 2)];
-    rotationAnimation.duration = 0.3f;
+    rotationAnimation.duration = self.basicDuration;
     rotationAnimation.keyTimes = @[@(0.0), @(0.3), @(0.6), @(1.0)];
     
     // 2.Configure moving animation
@@ -595,14 +584,14 @@
     
     movingAnimation.path = path;
     movingAnimation.keyTimes = @[@(0.0), @(0.5), @(0.7), @(1.0)];
-    movingAnimation.duration = 0.3f;
+    movingAnimation.duration = self.basicDuration;
     CGPathRelease(path);
     
     // 3.Merge two animation together
     //
     CAAnimationGroup *animations = [CAAnimationGroup animation];
     animations.animations = @[movingAnimation, rotationAnimation];
-    animations.duration = 0.3f;
+    animations.duration = self.basicDuration;
     animations.delegate = self;
     
     return animations;

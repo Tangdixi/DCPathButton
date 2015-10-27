@@ -24,7 +24,6 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
     kDCPathButtonBloomDirectionBottomRight = 6,
     kDCPathButtonBloomDirectionRight = 7,
     kDCPathButtonBloomDirectionTopRight = 8,
-    kDCPathButtonBloomDirectionCenter = 9,
     
 };
 
@@ -45,6 +44,9 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
 @interface DCPathButton : UIView <UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) id<DCPathButtonDelegate> delegate;
+
+@property (assign, nonatomic) NSTimeInterval basicDuration;
+@property (assign, nonatomic) BOOL allowSubItemRotation;
 
 @property (assign, nonatomic) CGFloat bloomRadius;
 @property (assign, nonatomic) CGFloat bloomAngel;
