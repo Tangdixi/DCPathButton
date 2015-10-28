@@ -436,7 +436,7 @@
     // 3.Merge animation together
     //
     CAAnimationGroup *animations = [CAAnimationGroup animation];
-    animations.animations = @[rotationAnimation, movingAnimation];
+    animations.animations = (self.allowSubItemRotation? @[rotationAnimation, movingAnimation] : @[movingAnimation]);
     animations.duration = self.basicDuration + 0.05f;
     
     return animations;
@@ -590,7 +590,7 @@
     // 3.Merge two animation together
     //
     CAAnimationGroup *animations = [CAAnimationGroup animation];
-    animations.animations = @[movingAnimation, rotationAnimation];
+    animations.animations = (self.allowSubItemRotation? @[movingAnimation, rotationAnimation] : @[movingAnimation]);
     animations.duration = self.basicDuration;
     animations.delegate = self;
     

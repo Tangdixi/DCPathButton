@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D964741D00C43C7F00D3507 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14DD23BAC82943B6BA709779 /* libPods.a */; };
+		43F4EFF81BE0B65B00FC8D9A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43F4EFF71BE0B65B00FC8D9A /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
 		810D19761B41293E0032125D /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D19751B41293E0032125D /* TabBarViewController.m */; };
 		810D19791B412DCF0032125D /* UIScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D19781B412DCF0032125D /* UIScrollViewController.m */; };
 		81696CC91999D748001B9B4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81696CC81999D748001B9B4B /* Foundation.framework */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		14DD23BAC82943B6BA709779 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		43F4EFF71BE0B65B00FC8D9A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		5E0C4FD4DA447F22D4DFAD2C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		810D19741B41293E0032125D /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		810D19751B41293E0032125D /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 		81696CCF1999D748001B9B4B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				43F4EFF71BE0B65B00FC8D9A /* Default-568h@2x.png */,
 				81696CD01999D748001B9B4B /* Example-Info.plist */,
 				81696CD11999D748001B9B4B /* InfoPlist.strings */,
 				81696CD41999D748001B9B4B /* main.m */,
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81696CE11999D748001B9B4B /* Images.xcassets in Resources */,
+				43F4EFF81BE0B65B00FC8D9A /* Default-568h@2x.png in Resources */,
 				81696CD31999D748001B9B4B /* InfoPlist.strings in Resources */,
 				81696CDC1999D748001B9B4B /* Main.storyboard in Resources */,
 			);
@@ -439,7 +443,6 @@
 			baseConfigurationReference = 5E0C4FD4DA447F22D4DFAD2C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
 				INFOPLIST_FILE = "Example/Example-Info.plist";
@@ -453,7 +456,6 @@
 			baseConfigurationReference = CF8FD6AE02D134863679FE27 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
 				INFOPLIST_FILE = "Example/Example-Info.plist";
@@ -467,7 +469,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(SDKROOT)/System/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
@@ -489,7 +491,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(SDKROOT)/System/Library/Frameworks",
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
