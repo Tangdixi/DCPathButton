@@ -1,35 +1,27 @@
 //
-//  ViewController.m
+//  UIViewController.m
 //  Example
 //
-//  Created by tang dixi on 12/8/14.
-//  Copyright (c) 2014 Tangdxi. All rights reserved.
+//  Created by Tangdixi on 2/11/2015.
+//  Copyright © 2015 Tangdxi. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "BarButtonItemViewController.h"
 #import "DCPathButton.h"
 
-@interface ViewController ()<DCPathButtonDelegate>
+@interface BarButtonItemViewController ()<DCPathButtonDelegate>
+
+@property (strong, nonatomic) DCPathButton *dcPathButton;
 
 @end
 
-@implementation ViewController
+@implementation BarButtonItemViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
     
-    [self configureDCPathButton];
-}
-
-- (void)configureDCPathButton
-{
-    // Configure center button
-    //
-    DCPathButton *dcPathButton = [[DCPathButton alloc]initWithCenterImage:[UIImage imageNamed:@"chooser-button-tab"]
-                                                         highlightedImage:[UIImage imageNamed:@"chooser-button-tab-highlighted"]];
-    dcPathButton.delegate = self;
+    _dcPathButton = [[DCPathButton alloc]initWithCenterImage:[UIImage imageNamed:@"chooser-button-tab"]
+                                            highlightedImage:[UIImage imageNamed:@"chooser-button-tab-highlighted"]];
+    _dcPathButton.delegate = self;
     
     // Configure item buttons
     //
@@ -60,57 +52,16 @@
     
     // Add the item button into the center button
     //
-    [dcPathButton addPathItems:@[itemButton_1,
+    [_dcPathButton addPathItems:@[itemButton_1,
                                  itemButton_2,
                                  itemButton_3,
                                  itemButton_4,
                                  itemButton_5
                                  ]];
-    
-    // Change the bloom radius, default is 105.0f
-    //
-    dcPathButton.bloomRadius = 120.0f;
-    
-    // Change the DCButton's center
-    //
-    dcPathButton.dcButtonCenter = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height - 25.5f);
-    
-    // Setting the DCButton appearance
-    //
-    dcPathButton.allowSounds = YES;
-    dcPathButton.allowCenterButtonRotation = YES;
-    
-    dcPathButton.bottomViewColor = [UIColor grayColor];
-    
-    dcPathButton.bloomDirection = kDCPathButtonBloomDirectionTopRight;
-    dcPathButton.dcButtonCenter = CGPointMake(10 + dcPathButton.frame.size.width/2, self.view.frame.size.height - dcPathButton.frame.size.height/2 - 10);
-    dcPathButton.bottomViewColor = [UIColor redColor];
-    
-    [self.view addSubview:dcPathButton];
 
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - DCPathButton Delegate
-
-- (void)willPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
+    UIBarButtonItem *rightButtonItem = [[UIBarButtonItem alloc]initWithCustomView:self.dcPathButton];
     
-    NSLog(@"ItemButton will present");
-    
-}
-
-- (void)pathButton:(DCPathButton *)dcPathButton clickItemButtonAtIndex:(NSUInteger)itemButtonIndex {
-    NSLog(@"You tap %@ at index : %lu", dcPathButton, (unsigned long)itemButtonIndex);
-}
-
-- (void)didPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
-
-    NSLog(@"ItemButton did present");
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
     
 }
 

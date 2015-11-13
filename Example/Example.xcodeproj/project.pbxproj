@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0D964741D00C43C7F00D3507 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14DD23BAC82943B6BA709779 /* libPods.a */; };
 		43F4EFF81BE0B65B00FC8D9A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43F4EFF71BE0B65B00FC8D9A /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
+		43F4EFFE1BE70BAF00FC8D9A /* BarButtonItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F4EFFD1BE70BAF00FC8D9A /* BarButtonItemViewController.m */; settings = {ASSET_TAGS = (); }; };
 		810D19761B41293E0032125D /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D19751B41293E0032125D /* TabBarViewController.m */; };
 		810D19791B412DCF0032125D /* UIScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D19781B412DCF0032125D /* UIScrollViewController.m */; };
 		81696CC91999D748001B9B4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81696CC81999D748001B9B4B /* Foundation.framework */; };
@@ -40,6 +41,8 @@
 /* Begin PBXFileReference section */
 		14DD23BAC82943B6BA709779 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F4EFF71BE0B65B00FC8D9A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
+		43F4EFFC1BE70BAF00FC8D9A /* BarButtonItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarButtonItemViewController.h; sourceTree = "<group>"; };
+		43F4EFFD1BE70BAF00FC8D9A /* BarButtonItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarButtonItemViewController.m; sourceTree = "<group>"; };
 		5E0C4FD4DA447F22D4DFAD2C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		810D19741B41293E0032125D /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		810D19751B41293E0032125D /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
@@ -135,6 +138,8 @@
 				810D19751B41293E0032125D /* TabBarViewController.m */,
 				810D19771B412DCF0032125D /* UIScrollViewController.h */,
 				810D19781B412DCF0032125D /* UIScrollViewController.m */,
+				43F4EFFC1BE70BAF00FC8D9A /* BarButtonItemViewController.h */,
+				43F4EFFD1BE70BAF00FC8D9A /* BarButtonItemViewController.m */,
 				81696CDA1999D748001B9B4B /* Main.storyboard */,
 				81696CE01999D748001B9B4B /* Images.xcassets */,
 				81696CCF1999D748001B9B4B /* Supporting Files */,
@@ -316,6 +321,7 @@
 			files = (
 				810D19761B41293E0032125D /* TabBarViewController.m in Sources */,
 				81696CDF1999D748001B9B4B /* ViewController.m in Sources */,
+				43F4EFFE1BE70BAF00FC8D9A /* BarButtonItemViewController.m in Sources */,
 				81696CD91999D748001B9B4B /* AppDelegate.m in Sources */,
 				81696CD51999D748001B9B4B /* main.m in Sources */,
 				810D19791B412DCF0032125D /* UIScrollViewController.m in Sources */,

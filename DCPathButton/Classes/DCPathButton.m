@@ -151,6 +151,7 @@
     if (bottomViewColor) {
         _bottomView.backgroundColor = bottomViewColor;
     }
+    _bottomViewColor = bottomViewColor;
     
 }
 
