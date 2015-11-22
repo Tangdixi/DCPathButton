@@ -104,13 +104,24 @@
     
 }
 
+- (void)didPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
+
+    NSLog(@"ItemButton did present");
+    
+}
+
 - (void)pathButton:(DCPathButton *)dcPathButton clickItemButtonAtIndex:(NSUInteger)itemButtonIndex {
     NSLog(@"You tap %@ at index : %lu", dcPathButton, (unsigned long)itemButtonIndex);
 }
 
-- (void)didPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
+- (void)willDismissDCPathButtonItems:(DCPathButton *)dcPathButton {
+    
+    NSLog(@"ItemButton will dismiss");
+}
 
-    NSLog(@"ItemButton did present");
+- (void)didDismissDCPathButtonItems:(DCPathButton *)dcPathButton {
+    
+    NSLog(@"ItemButton did dismiss");
     
 }
 

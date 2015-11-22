@@ -373,6 +373,7 @@
 }
 
 - (void)resizeToFoldedFrame {
+    
     if (self.allowCenterButtonRotation) {
         [UIView animateWithDuration:0.0618f * 3
                               delay:0.0618f * 2
@@ -652,9 +653,13 @@
         //
         [_delegate pathButton:self clickItemButtonAtIndex:itemButton.index];
         
+        [_delegate willDismissDCPathButtonItems:self];
+        
         // Resize the DCPathButton's frame
         //
         [self resizeToFoldedFrame];
+        
+        [_delegate didDismissDCPathButtonItems:self];
     }
 }
 
