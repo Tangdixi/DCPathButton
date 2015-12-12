@@ -82,10 +82,10 @@
         
         // Configure sounds
         //
-        _bloomSoundPath = [[NSBundle mainBundle]pathForResource:@"bloom" ofType:@"caf"];
-        _foldSoundPath = [[NSBundle mainBundle]pathForResource:@"fold" ofType:@"caf"];
-        _itemSoundPath = [[NSBundle mainBundle]pathForResource:@"selected" ofType:@"caf"];
-        
+        _bloomSoundPath = [[NSBundle bundleForClass:[self class]]pathForResource:@"bloom" ofType:@"caf"];
+        _foldSoundPath = [[NSBundle bundleForClass:[self class]]pathForResource:@"fold" ofType:@"caf"];
+        _itemSoundPath = [[NSBundle bundleForClass:[self class]]pathForResource:@"selected" ofType:@"caf"];
+
         _allowSounds = YES;
         
         _bottomViewColor = [UIColor blackColor];
