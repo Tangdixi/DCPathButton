@@ -189,8 +189,9 @@ Thanks these PR:
 *  [AlexJeng's](https://github.com/AlexJeng/DCPathButton/commit/05228d583626f839a17f40613afb30f013cc34f0)  
 *  [wangweiarr's](https://github.com/wangweiarr/DCPathButton/commit/  d723afdcd32bcfffadba5e60698b027aa29e95df)
 *  [thundertrick's](https://github.com/Tangdixi/DCPathButton/pull/33)  
-*  [Ian Hirschfeld's](https://github.com/Tangdixi/DCPathButton/pull/47)
-  
+*  [Ian Hirschfeld's](https://github.com/Tangdixi/DCPathButton/pull/47)  
+*  [skyline75489](https://github.com/Tangdixi/DCPathButton/pull/49)
+
 ##Problems, bugs or advice
 
 Open an [issue](https://github.com/Tangdixi/DCPathButton/issues) guys :)  
