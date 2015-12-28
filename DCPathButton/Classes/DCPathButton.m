@@ -651,15 +651,20 @@
         
         // Excute the delegate method
         //
-        [_delegate pathButton:self clickItemButtonAtIndex:itemButton.index];
-        
-        [_delegate willDismissDCPathButtonItems:self];
-        
+        if ([_delegate respondsToSelector:@selector(pathButton:clickItemButtonAtIndex:)]) {
+            [_delegate pathButton:self clickItemButtonAtIndex:itemButton.index];
+        }
+        if ([_delegate respondsToSelector:@selector(willDismissDCPathButtonItems:)]) {
+            [_delegate willDismissDCPathButtonItems:self];
+        }
+
         // Resize the DCPathButton's frame
         //
         [self resizeToFoldedFrame];
-        
-        [_delegate didDismissDCPathButtonItems:self];
+
+        if ([_delegate respondsToSelector:@selector(didDismissDCPathButtonItems:)]) {
+            [_delegate didDismissDCPathButtonItems:self];
+        }
     }
 }
 
