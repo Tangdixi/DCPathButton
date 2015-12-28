@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
 
   s.resources  = ["DCPathButton/Sounds/*"]
 
-  s.frameworks = 'QuartzCore','AudioToolBox'
+  s.frameworks = 'QuartzCore','AudioToolbox'
 
   s.requires_arc = true
 
