@@ -1,12 +1,12 @@
  
-#DCPathButton 2.1 
+#DCPathButton 
 
 ![Build Status](https://api.travis-ci.org/Tangdixi/DCPathButton.svg?branch=master)
 
 ![Foled](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/1.png).
 ![Bloom](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/2.png) 
 
-**DCPathButton** 2.1 is a menu button for iOS. Designed by a famous iOS App [**Path**](www.path.com).  
+**DCPathButton** is a menu button for iOS. Designed by a famous iOS App [**Path**](www.path.com).  
 Since **Path 4.0**, this beautiful button was moved into the tab bar, with a new design.  
 So the **DCPathButton** is totally a copy, including the **animations**, the **sounds** and the **button's images** ( *of cource you can use your own images* ).  
 
