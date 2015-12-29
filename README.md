@@ -191,6 +191,7 @@ Thanks these PR:
 *  [thundertrick's](https://github.com/Tangdixi/DCPathButton/pull/33)  
 *  [Ian Hirschfeld's](https://github.com/Tangdixi/DCPathButton/pull/47)  
 *  [skyline75489](https://github.com/Tangdixi/DCPathButton/pull/49)
+*  [tdubik](https://github.com/Tangdixi/DCPathButton/pull/50)
 
 ##Problems, bugs or advice
 
