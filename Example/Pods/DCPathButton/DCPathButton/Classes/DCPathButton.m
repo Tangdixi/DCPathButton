@@ -82,10 +82,10 @@
         
         // Configure sounds
         //
-        _bloomSoundPath = [[NSBundle mainBundle]pathForResource:@"bloom" ofType:@"caf"];
-        _foldSoundPath = [[NSBundle mainBundle]pathForResource:@"fold" ofType:@"caf"];
-        _itemSoundPath = [[NSBundle mainBundle]pathForResource:@"selected" ofType:@"caf"];
-        
+        _bloomSoundPath = [[NSBundle bundleForClass:[self class]]pathForResource:@"bloom" ofType:@"caf"];
+        _foldSoundPath = [[NSBundle bundleForClass:[self class]]pathForResource:@"fold" ofType:@"caf"];
+        _itemSoundPath = [[NSBundle bundleForClass:[self class]]pathForResource:@"selected" ofType:@"caf"];
+
         _allowSounds = YES;
         
         _bottomViewColor = [UIColor blackColor];
@@ -651,15 +651,20 @@
         
         // Excute the delegate method
         //
-        [_delegate pathButton:self clickItemButtonAtIndex:itemButton.index];
-        
-        [_delegate willDismissDCPathButtonItems:self];
-        
+        if ([_delegate respondsToSelector:@selector(pathButton:clickItemButtonAtIndex:)]) {
+            [_delegate pathButton:self clickItemButtonAtIndex:itemButton.index];
+        }
+        if ([_delegate respondsToSelector:@selector(willDismissDCPathButtonItems:)]) {
+            [_delegate willDismissDCPathButtonItems:self];
+        }
+
         // Resize the DCPathButton's frame
         //
         [self resizeToFoldedFrame];
-        
-        [_delegate didDismissDCPathButtonItems:self];
+
+        if ([_delegate respondsToSelector:@selector(didDismissDCPathButtonItems:)]) {
+            [_delegate didDismissDCPathButtonItems:self];
+        }
     }
 }
 

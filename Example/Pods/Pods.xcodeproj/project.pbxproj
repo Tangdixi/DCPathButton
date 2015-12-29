@@ -7,62 +7,62 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18BB41D6D76278C65F27477C1C769B8C /* DCPathItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2FDE8240D0BC484CCE9756E6DDC1BA96 /* DCPathItemButton.m */; };
-		1D9893F355883930F5AD975C1A5BEF0E /* DCPathItemButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B8A1852FAD34F66A10A319AC0AC0930 /* DCPathItemButton.h */; };
-		3737ABD8FCD592E46132169E70483BEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 347FA48DD83FC90BF2C3A664271F1931 /* Foundation.framework */; };
-		48ED5FBBE27459F8D65568B76C401F3A /* AudioToolBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2498FFEBBB4231123A27968E662FBB0 /* AudioToolBox.framework */; };
-		6BD62534982C591BDA7A29C4E68142DD /* DCPathButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 457C89E10D41F04E15B63F36E0EF5694 /* DCPathButton-dummy.m */; };
-		79042976D23B18F0D1904916BE44155E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C40574509BA3DC870909F2DAA5851270 /* QuartzCore.framework */; };
+		25E7CD51EEE1E9BA01441B734931085E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76C3C9AEE97823D8DF0E92001AAB96FD /* QuartzCore.framework */; };
+		28B70852B2CAD5A32F25AED3812A7394 /* DCPathButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B2E7A99B996FD26B040BF11FE40C96 /* DCPathButton.h */; };
+		2C03960C4DB5FEF362D24173970525E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E4FA9B86145610C3FDD8C53CB04DAA6 /* Foundation.framework */; };
+		2D22F1547B62B1FC60849BA6B161EFA5 /* DCPathButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F8246C45F29C2C05DA9A8A735EC616 /* DCPathButton.m */; };
+		41714EC7F6A597D439065064F3150759 /* DCPathButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 302D4A4EFEA38E87B10B02382CCCEF74 /* DCPathButton-dummy.m */; };
+		6CAE9A13400009EB008BA9B2B38E3A07 /* AudioToolBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3A1B4E6FC50E10A59614F3306CE5A7 /* AudioToolBox.framework */; };
 		A4E30808ADAB2723F992ACB08A7604F7 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C4265865B495DCFD4814E3EF126B513D /* Pods-dummy.m */; };
-		AAEE79D892473815C4EB144C285A6C30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 347FA48DD83FC90BF2C3A664271F1931 /* Foundation.framework */; };
-		C79A4D6DEDF149A769F3C4A39D3849CC /* DCPathButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B945DBB6BEA1B0D8C3A3D0BFCEF512 /* DCPathButton.m */; };
-		E18C84C5E6F582ADFA806C1AC6666ABB /* DCPathButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 8779DB8BF179FBA7B6E10059710E293A /* DCPathButton.h */; };
+		AAEE79D892473815C4EB144C285A6C30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E4FA9B86145610C3FDD8C53CB04DAA6 /* Foundation.framework */; };
+		D3ADD3C7E20892B7093025F1D2C5C312 /* DCPathItemButton.h in Headers */ = {isa = PBXBuildFile; fileRef = A2A2E4DF282EE486C053A4D7D48A992E /* DCPathItemButton.h */; };
+		E34B70134E84342B28210530EC186FD3 /* DCPathItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C6DDE2654A141F3389CD6D39E3BF7E45 /* DCPathItemButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		56A3885B3EF0E7FDD373E20A931AD834 /* PBXContainerItemProxy */ = {
+		77AA0EDFA5A1571C47890AB6A2F78B34 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 2B0D267DF5EA464EB0D8BC23B524619F;
+			remoteGlobalIDString = 2E341D2C5CAAC7D269F17DD96D85AE6C;
 			remoteInfo = DCPathButton;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		05EFF4C4FFAB556F97FE035C6813F85D /* DCPathButton-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "DCPathButton-Private.xcconfig"; sourceTree = "<group>"; };
+		0B3A1B4E6FC50E10A59614F3306CE5A7 /* AudioToolBox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolBox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/AudioToolBox.framework; sourceTree = DEVELOPER_DIR; };
 		15A529C27057E4A57D259CBC6E6CE49C /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
-		2B8A1852FAD34F66A10A319AC0AC0930 /* DCPathItemButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DCPathItemButton.h; path = DCPathButton/Classes/DCPathItemButton.h; sourceTree = "<group>"; };
+		1E4FA9B86145610C3FDD8C53CB04DAA6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		21B2E7A99B996FD26B040BF11FE40C96 /* DCPathButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DCPathButton.h; path = DCPathButton/Classes/DCPathButton.h; sourceTree = "<group>"; };
 		2E064D0CF5FEF67E8EE9D7FE848E58E9 /* fold.caf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = fold.caf; path = DCPathButton/Sounds/fold.caf; sourceTree = "<group>"; };
-		2FDE8240D0BC484CCE9756E6DDC1BA96 /* DCPathItemButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DCPathItemButton.m; path = DCPathButton/Classes/DCPathItemButton.m; sourceTree = "<group>"; };
-		347FA48DD83FC90BF2C3A664271F1931 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		302D4A4EFEA38E87B10B02382CCCEF74 /* DCPathButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DCPathButton-dummy.m"; sourceTree = "<group>"; };
 		3561BB58372AF5258760BB4F9BF7B7BC /* DCPathButton-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DCPathButton-prefix.pch"; sourceTree = "<group>"; };
 		3F779E36E8876AE323C71086D05AA6A6 /* DCPathButton.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DCPathButton.xcconfig; sourceTree = "<group>"; };
-		457C89E10D41F04E15B63F36E0EF5694 /* DCPathButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DCPathButton-dummy.m"; sourceTree = "<group>"; };
+		44F8246C45F29C2C05DA9A8A735EC616 /* DCPathButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DCPathButton.m; path = DCPathButton/Classes/DCPathButton.m; sourceTree = "<group>"; };
 		56313E063FE7F75AC7D58F31447B0799 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		641AE05DD55E5E6AC1590CD7B4A18F97 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
 		69CF63FA81FC02E5A6CD36F2EAD696F8 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		76C3C9AEE97823D8DF0E92001AAB96FD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		84D378ECF8C146E18542B0AB1895B013 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
-		8779DB8BF179FBA7B6E10059710E293A /* DCPathButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DCPathButton.h; path = DCPathButton/Classes/DCPathButton.h; sourceTree = "<group>"; };
-		A2498FFEBBB4231123A27968E662FBB0 /* AudioToolBox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolBox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/AudioToolBox.framework; sourceTree = DEVELOPER_DIR; };
+		A2A2E4DF282EE486C053A4D7D48A992E /* DCPathItemButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DCPathItemButton.h; path = DCPathButton/Classes/DCPathItemButton.h; sourceTree = "<group>"; };
 		AE44D2FE06C8AAB34A0D94275BFF718C /* bloom.caf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = bloom.caf; path = DCPathButton/Sounds/bloom.caf; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BF59BC15D23E1E1912C8F334E7236813 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		C40574509BA3DC870909F2DAA5851270 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		C4265865B495DCFD4814E3EF126B513D /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		C6DDE2654A141F3389CD6D39E3BF7E45 /* DCPathItemButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DCPathItemButton.m; path = DCPathButton/Classes/DCPathItemButton.m; sourceTree = "<group>"; };
 		C8E235A65832841FA2416F9D9B5D6ED1 /* selected.caf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = selected.caf; path = DCPathButton/Sounds/selected.caf; sourceTree = "<group>"; };
-		E9B945DBB6BEA1B0D8C3A3D0BFCEF512 /* DCPathButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DCPathButton.m; path = DCPathButton/Classes/DCPathButton.m; sourceTree = "<group>"; };
-		FCA39326926D6801972695F35A712BAC /* libDCPathButton.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDCPathButton.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EDA64808D2F58BAA9B79D1C4FF39C4D2 /* libDCPathButton.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDCPathButton.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF49D5BC7F6FD266313EEE8C934570E8 /* DCPathButton-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "DCPathButton-Private.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		03E989F26D010EAEAA96F5D78E707092 /* Frameworks */ = {
+		03F2021B4635FD591BD382D7AE95E9CE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48ED5FBBE27459F8D65568B76C401F3A /* AudioToolBox.framework in Frameworks */,
-				3737ABD8FCD592E46132169E70483BEF /* Foundation.framework in Frameworks */,
-				79042976D23B18F0D1904916BE44155E /* QuartzCore.framework in Frameworks */,
+				6CAE9A13400009EB008BA9B2B38E3A07 /* AudioToolBox.framework in Frameworks */,
+				2C03960C4DB5FEF362D24173970525E1 /* Foundation.framework in Frameworks */,
+				25E7CD51EEE1E9BA01441B734931085E /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,10 +96,10 @@
 		1F4E30A1832926AD6209757311DE70D3 /* DCPathButton */ = {
 			isa = PBXGroup;
 			children = (
-				8779DB8BF179FBA7B6E10059710E293A /* DCPathButton.h */,
-				E9B945DBB6BEA1B0D8C3A3D0BFCEF512 /* DCPathButton.m */,
-				2B8A1852FAD34F66A10A319AC0AC0930 /* DCPathItemButton.h */,
-				2FDE8240D0BC484CCE9756E6DDC1BA96 /* DCPathItemButton.m */,
+				21B2E7A99B996FD26B040BF11FE40C96 /* DCPathButton.h */,
+				44F8246C45F29C2C05DA9A8A735EC616 /* DCPathButton.m */,
+				A2A2E4DF282EE486C053A4D7D48A992E /* DCPathItemButton.h */,
+				C6DDE2654A141F3389CD6D39E3BF7E45 /* DCPathItemButton.m */,
 				BBEFDFF5306FD14DE7AFB338823C2246 /* Resources */,
 				DD8F1148F4CF8740AD8B398A6801DB3B /* Support Files */,
 			);
@@ -109,9 +109,9 @@
 		4F7CDFC64278C3C4DAA1EB78936596DE /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				A2498FFEBBB4231123A27968E662FBB0 /* AudioToolBox.framework */,
-				347FA48DD83FC90BF2C3A664271F1931 /* Foundation.framework */,
-				C40574509BA3DC870909F2DAA5851270 /* QuartzCore.framework */,
+				0B3A1B4E6FC50E10A59614F3306CE5A7 /* AudioToolBox.framework */,
+				1E4FA9B86145610C3FDD8C53CB04DAA6 /* Foundation.framework */,
+				76C3C9AEE97823D8DF0E92001AAB96FD /* QuartzCore.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
@@ -154,7 +154,7 @@
 		CCA510CFBEA2D207524CDA0D73C3B561 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FCA39326926D6801972695F35A712BAC /* libDCPathButton.a */,
+				EDA64808D2F58BAA9B79D1C4FF39C4D2 /* libDCPathButton.a */,
 				56313E063FE7F75AC7D58F31447B0799 /* libPods.a */,
 			);
 			name = Products;
@@ -172,8 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				3F779E36E8876AE323C71086D05AA6A6 /* DCPathButton.xcconfig */,
-				05EFF4C4FFAB556F97FE035C6813F85D /* DCPathButton-Private.xcconfig */,
-				457C89E10D41F04E15B63F36E0EF5694 /* DCPathButton-dummy.m */,
+				EF49D5BC7F6FD266313EEE8C934570E8 /* DCPathButton-Private.xcconfig */,
+				302D4A4EFEA38E87B10B02382CCCEF74 /* DCPathButton-dummy.m */,
 				3561BB58372AF5258760BB4F9BF7B7BC /* DCPathButton-prefix.pch */,
 			);
 			name = "Support Files";
@@ -183,25 +183,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		EAB4FAFC1308F5941C47A018E88DED4A /* Headers */ = {
+		83AB4A4977794AA3E06D721FE5D09F11 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E18C84C5E6F582ADFA806C1AC6666ABB /* DCPathButton.h in Headers */,
-				1D9893F355883930F5AD975C1A5BEF0E /* DCPathItemButton.h in Headers */,
+				28B70852B2CAD5A32F25AED3812A7394 /* DCPathButton.h in Headers */,
+				D3ADD3C7E20892B7093025F1D2C5C312 /* DCPathItemButton.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		2B0D267DF5EA464EB0D8BC23B524619F /* DCPathButton */ = {
+		2E341D2C5CAAC7D269F17DD96D85AE6C /* DCPathButton */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7A04C0A46C94288800A673661ABCAD33 /* Build configuration list for PBXNativeTarget "DCPathButton" */;
+			buildConfigurationList = 0D922C933B268EF939D4225FD0C40973 /* Build configuration list for PBXNativeTarget "DCPathButton" */;
 			buildPhases = (
-				12EBC24AA00A30BC42A891FDFB0E8957 /* Sources */,
-				03E989F26D010EAEAA96F5D78E707092 /* Frameworks */,
-				EAB4FAFC1308F5941C47A018E88DED4A /* Headers */,
+				DE37717201411BAA53B0CA13513D7A2D /* Sources */,
+				03F2021B4635FD591BD382D7AE95E9CE /* Frameworks */,
+				83AB4A4977794AA3E06D721FE5D09F11 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -209,7 +209,7 @@
 			);
 			name = DCPathButton;
 			productName = DCPathButton;
-			productReference = FCA39326926D6801972695F35A712BAC /* libDCPathButton.a */;
+			productReference = EDA64808D2F58BAA9B79D1C4FF39C4D2 /* libDCPathButton.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		8AF97BF913310347BC36D6262E48A42B /* Pods */ = {
@@ -222,7 +222,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				5CE26BE2B1E78709A34232A680680BF8 /* PBXTargetDependency */,
+				53CC7812880F6519B469FF043EF8EC57 /* PBXTargetDependency */,
 			);
 			name = Pods;
 			productName = Pods;
@@ -250,23 +250,13 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2B0D267DF5EA464EB0D8BC23B524619F /* DCPathButton */,
+				2E341D2C5CAAC7D269F17DD96D85AE6C /* DCPathButton */,
 				8AF97BF913310347BC36D6262E48A42B /* Pods */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		12EBC24AA00A30BC42A891FDFB0E8957 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6BD62534982C591BDA7A29C4E68142DD /* DCPathButton-dummy.m in Sources */,
-				C79A4D6DEDF149A769F3C4A39D3849CC /* DCPathButton.m in Sources */,
-				18BB41D6D76278C65F27477C1C769B8C /* DCPathItemButton.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		534E62C8269582C4D78B6CC194A73A45 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -275,14 +265,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DE37717201411BAA53B0CA13513D7A2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41714EC7F6A597D439065064F3150759 /* DCPathButton-dummy.m in Sources */,
+				2D22F1547B62B1FC60849BA6B161EFA5 /* DCPathButton.m in Sources */,
+				E34B70134E84342B28210530EC186FD3 /* DCPathItemButton.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5CE26BE2B1E78709A34232A680680BF8 /* PBXTargetDependency */ = {
+		53CC7812880F6519B469FF043EF8EC57 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = DCPathButton;
-			target = 2B0D267DF5EA464EB0D8BC23B524619F /* DCPathButton */;
-			targetProxy = 56A3885B3EF0E7FDD373E20A931AD834 /* PBXContainerItemProxy */;
+			target = 2E341D2C5CAAC7D269F17DD96D85AE6C /* DCPathButton */;
+			targetProxy = 77AA0EDFA5A1571C47890AB6A2F78B34 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -353,9 +353,9 @@
 			};
 			name = Release;
 		};
-		96E7659BFD8A5875301477039CC6E1DA /* Release */ = {
+		783A1EA20269057B80FF153730AA258C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05EFF4C4FFAB556F97FE035C6813F85D /* DCPathButton-Private.xcconfig */;
+			baseConfigurationReference = EF49D5BC7F6FD266313EEE8C934570E8 /* DCPathButton-Private.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/DCPathButton/DCPathButton-prefix.pch";
@@ -368,6 +368,22 @@
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
+		};
+		7F7AA22328DD02D373FCC4DFB5FA6DAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF49D5BC7F6FD266313EEE8C934570E8 /* DCPathButton-Private.xcconfig */;
+			buildSettings = {
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/DCPathButton/DCPathButton-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
 		};
 		B37F0F91F85060E28F1DAAB522DC7EC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -408,25 +424,18 @@
 			};
 			name = Debug;
 		};
-		FD4A01E7945AE989E28DBB6DD9812AE3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 05EFF4C4FFAB556F97FE035C6813F85D /* DCPathButton-Private.xcconfig */;
-			buildSettings = {
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/DCPathButton/DCPathButton-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0D922C933B268EF939D4225FD0C40973 /* Build configuration list for PBXNativeTarget "DCPathButton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7F7AA22328DD02D373FCC4DFB5FA6DAB /* Debug */,
+				783A1EA20269057B80FF153730AA258C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -441,15 +450,6 @@
 			buildConfigurations = (
 				2462597CFBA867D0DB489652D0085125 /* Debug */,
 				2EFA69B079F2302DD20F3189A667A3E1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7A04C0A46C94288800A673661ABCAD33 /* Build configuration list for PBXNativeTarget "DCPathButton" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FD4A01E7945AE989E28DBB6DD9812AE3 /* Debug */,
-				96E7659BFD8A5875301477039CC6E1DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

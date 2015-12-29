@@ -1,12 +1,12 @@
  
-#DCPathButton 2.1 
+#DCPathButton 
 
 ![Build Status](https://api.travis-ci.org/Tangdixi/DCPathButton.svg?branch=master)
 
 ![Foled](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/1.png).
 ![Bloom](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/2.png) 
 
-**DCPathButton** 2.1 is a menu button for iOS. Designed by a famous iOS App [**Path**](www.path.com).  
+**DCPathButton** is a menu button for iOS. Designed by a famous iOS App [**Path**](www.path.com).  
 Since **Path 4.0**, this beautiful button was moved into the tab bar, with a new design.  
 So the **DCPathButton** is totally a copy, including the **animations**, the **sounds** and the **button's images** ( *of cource you can use your own images* ).  
 
@@ -34,7 +34,7 @@ Of cource, you can install **DCPathButton** in a traditional way -- drag the **D
 ####Podfile
 ```bash
 platform :ios, '7.0'
-pod 'DCPathButton', '~> 2.1'
+pod 'DCPathButton', '~> 2.1.3'
 ``` 
 
 ##Usage
@@ -164,19 +164,35 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
 ```
 `bloomAngel` use for changing the item button's bloom angel. 
 
-If you have any suggestions. Just open an [issue](https://github.com/Tangdixi/DCPathButton/issues), tell me what you want.  :) 
+------
+
+```objc
+@property (assign, nonatomic) BOOL allowSubItemRotation;
+```
+`allowSubItemRotation ` use for handling the rotation of the subItem .
+
+------
+
+```objc
+@property (assign, nonatomic) NSTimeInterval basicDuration;
+```
+`basicDuration ` is using for change the animation's duration, you can make the subItems bloom slowly, etc.
 
 ##Swift Example
 
-I M working on a Swift version. There is a example show you how to use **DCPathButton** in you Swift code.
+I M working on a Swift version.  
+There is a example show you how to use **DCPathButton** in you Swift code.
 
 ##Contribution 
 
-Thanks these PR:
+Thanks these PR:  
 *  [AlexJeng's](https://github.com/AlexJeng/DCPathButton/commit/05228d583626f839a17f40613afb30f013cc34f0)  
-*  [wangweiarr's](https://github.com/wangweiarr/DCPathButton/commit/d723afdcd32bcfffadba5e60698b027aa29e95df)
+*  [wangweiarr's](https://github.com/wangweiarr/DCPathButton/commit/  d723afdcd32bcfffadba5e60698b027aa29e95df)
 *  [thundertrick's](https://github.com/Tangdixi/DCPathButton/pull/33)  
-  
+*  [Ian Hirschfeld's](https://github.com/Tangdixi/DCPathButton/pull/47)  
+*  [skyline75489](https://github.com/Tangdixi/DCPathButton/pull/49)
+*  [tdubik](https://github.com/Tangdixi/DCPathButton/pull/50)
+
 ##Problems, bugs or advice
 
 Open an [issue](https://github.com/Tangdixi/DCPathButton/issues) guys :)  
