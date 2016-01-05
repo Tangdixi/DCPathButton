@@ -136,12 +136,6 @@
     _bottomView.backgroundColor = self.bottomViewColor;
     _bottomView.alpha = 0.0f;
     
-    // Make bottomView's touch can delay superView witch like UIScrollView scrolling
-    //
-    _bottomView.userInteractionEnabled = YES;
-    UIGestureRecognizer* tapGesture = [[UIGestureRecognizer alloc] initWithTarget:nil action:nil];
-    tapGesture.delegate = self;
-    [_bottomView addGestureRecognizer:tapGesture];
 }
 
 #pragma mark - Configure Bottom View Color
@@ -605,13 +599,15 @@
     [self.itemButtons addObjectsFromArray:pathItemButtons];
 }
 
-#pragma mark - DCPathButton Touch Events
+#pragma mark - DCPathButton Touch Event
 
 - (void)touchesBegan:(NSSet *)touches
            withEvent:(UIEvent *)event {
     
     // Tap the bottom area, excute the fold animation
+    //
     [self pathCenterButtonFold];
+    
 }
 
 #pragma mark - DCPathButton Item Delegate
