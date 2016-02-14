@@ -6,8 +6,7 @@
 ![Foled](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/1.png)
 ![Bloom](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/2.png) 
 
-**DCPathButton** is a custom menu button for iOS. The original design for this control first appeared in the well-known iOS app, [**Path**](www.path.com). Starting in **Path 4.0**, this beautiful button appeared in the tab bar, with a new design.  
-The **DCPathButton** is a close a replication of Path's button, including the **animations**, the **sounds** and the **button's images** (*of course you can use your own images*).  
+**DCPathButton** is a custom menu button for iOS. The original design for this control first appeared in the well-known iOS app, [**Path**](www.path.com). Starting in **Path 4.0**, this beautiful button appeared in the tab bar, with a new design. The **DCPathButton** is a close replication of Path's button, including the **animations**, the **sounds** and the **button's images** (*of course you can use your own images*).  
 
 ## How To Get Started  
 
