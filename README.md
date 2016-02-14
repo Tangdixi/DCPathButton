@@ -3,12 +3,11 @@
 
 [![Build Status](https://travis-ci.org/Tangdixi/DCPathButton.svg?branch=master)](https://travis-ci.org/Tangdixi/DCPathButton)
 
-![Foled](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/1.png).
+![Foled](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/1.png)
 ![Bloom](https://raw.githubusercontent.com/Tangdixi/DCPathButton/master/ScreenShot/2.png) 
 
-**DCPathButton** is a menu button for iOS. Designed by a famous iOS App [**Path**](www.path.com).  
-Since **Path 4.0**, this beautiful button was moved into the tab bar, with a new design.  
-So the **DCPathButton** is totally a copy, including the **animations**, the **sounds** and the **button's images** ( *of cource you can use your own images* ).  
+**DCPathButton** is a custom menu button for iOS. The original design for this control first appeared in the well-known iOS app, [**Path**](www.path.com). Starting in **Path 4.0**, this beautiful button appeared in the tab bar, with a new design.  
+The **DCPathButton** is a close a replication of Path's button, including the **animations**, the **sounds** and the **button's images** (*of course you can use your own images*).  
 
 ## How To Get Started  
 
@@ -21,15 +20,15 @@ git clone git@github.com:Tangdixi/DCPathButton.git
 
 ##Installation
 
-Of cource, you can install **DCPathButton** in a traditional way -- drag the **DCPathButton** folder into your projects. but I strongly recommanded that you install from **CocoaPods**
+You can install **DCPathButton** in a traditional way -- drag the **DCPathButton** folder into your project. However, it is strongly recommended that you install via **CocoaPods**.
 
-####Requirement
+####Requirements
 
 - **AudioToolBox.framework**
 - **QuartzCore.framework**
 
 ##Install with CocoaPods
-[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C, which automates and simplifies the process of using 3rd-party libraries like **DCPathButton** in your projects.
+[CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C and Swift, which automates and simplifies the process of using 3rd-party libraries like **DCPathButton** in your projects.
 
 ####Podfile
 ```bash
@@ -55,7 +54,7 @@ DCPathButton *centerButton = [[DCPathButton alloc]initWithCenterImage:[UIImage i
                                                       hilightedImage:[UIImage imageNamed:@"chooser-button-tab-highlighted"]];
 [self.view addSubView:centerButton];
 ```
-4.Create some item buttons and add them into the center button
+4.Create some item buttons and add them to the center button
 
 ```objc
 DCPathItemButton *itemButton_1 = [[DCPathItemButton alloc]initWithImage:[UIImage imageNamed:@"image"]
@@ -71,7 +70,7 @@ DCPathItemButton *itemButton_1 = [[DCPathItemButton alloc]initWithImage:[UIImage
 
 `<DCPathButtonDelegate>` handle the action when you fire the item buttons which is similar to the **UITableViewDelegate**, control the items through the **index**  
 
-You can add one item at least or five items at most. Assume we have five items, so the **itemButtonIndex** is 0 to 4 :)
+You can add a minimum of one item or a maximum of five items. The `itemButtonIndex` parameter is  Assuming we have five items, so the **itemButtonIndex** is 0 to 4.
 
 ```objc
 - (void)pathButton:(DCPathButton *)dcPathButton clickItemButtonAtIndex:(NSUInteger)itemButtonIndex {
@@ -96,13 +95,13 @@ You also can do something before or when the item buttons appear:
 
 ------
 
-##Custom Property
+##Custom Properties
 
 ```objc
 @property (assign, nonatomic) CGFloat bloomRadius;
 ```
 
-`bloomRadius` is use to handle the item button bloom radius, default is `105.0f`;
+`bloomRadius` is used to handle the item button bloom radius. The default value is `105.0f`.
 
 ------
 
@@ -110,9 +109,7 @@ You also can do something before or when the item buttons appear:
 @property (assign, nonatomic) CGPoint dcButtonCenter;
 ```
 
-`dcButtonCenter` is use to modify the center button's position.  
-
-In default the **DCPathButton** will be located in bottom center.  
+`dcButtonCenter` is used to modify the center button's position.  The default value positions the **DCPathButton** in bottom center.  
 
 ------
 
@@ -120,7 +117,7 @@ In default the **DCPathButton** will be located in bottom center.
 @property (assign, nonatomic) BOOL allowSounds;
 ```
 
-`allowSounds ` is use to enable the button's sound, default is `YES`;
+`allowSounds ` is used to enable the button's sound. The default value is `YES`.
 
 ------
 
@@ -129,10 +126,10 @@ In default the **DCPathButton** will be located in bottom center.
 @property (copy, nonatomic) NSString *foldSoundPath;
 @property (copy, nonatomic) NSString *itemSoundPath;
 ```
-You can change the button's sound through change the path of the **sound file**, for instance:
+You can change the button's sound by specifying the path of a custom sound file, for instance:
 
 ```objc
-self.bloomSoundPath = [[NSBundle mainBundle]pathForResource:@"bloom" ofType:@"caf"];
+self.bloomSoundPath = [[NSBundle mainBundle] pathForResource:@"bloom" ofType:@"caf"];
 ```
 
 ------
@@ -140,7 +137,7 @@ self.bloomSoundPath = [[NSBundle mainBundle]pathForResource:@"bloom" ofType:@"ca
 ```objc
 @property (assign, nonatomic) kDCPathButtonBloomDirection bloomDirection;
 ```
-We have `9` directions in **DCPathButton**, use the `bloomDirection` property to change the direction. All the directions you can find in the `enum` below:
+There are `9` directions in **DCPathButton**, use the `bloomDirection` property to change the direction. All the directions are defined in the `NS_ENUM` below:
 
 ```objc
 typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
@@ -162,30 +159,29 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
 ```objc
 @property (assign, nonatomic) CGFloat bloomAngel;
 ```
-`bloomAngel` use for changing the item button's bloom angel. 
+`bloomAngel` is used for changing the item button's bloom angle. 
 
 ------
 
 ```objc
 @property (assign, nonatomic) BOOL allowSubItemRotation;
 ```
-`allowSubItemRotation ` use for handling the rotation of the subItem .
+`allowSubItemRotation ` is used for handling the rotation of the subItems.
 
 ------
 
 ```objc
 @property (assign, nonatomic) NSTimeInterval basicDuration;
 ```
-`basicDuration ` is using for change the animation's duration, you can make the subItems bloom slowly, etc.
+`basicDuration ` is used for changing the bloom animation's duration / speed.
 
 ##Swift Example
 
-I M working on a Swift version.  
-There is a example show you how to use **DCPathButton** in you Swift code.
+A Swift version of the project is coming. For now refer to the included Swift example to understand how you might integrate this project into your own Swift app.
 
 ##Contribution 
 
-Thanks these PR:  
+Special Thanks for these Pull Requests:  
 *  [AlexJeng's](https://github.com/AlexJeng/DCPathButton/commit/05228d583626f839a17f40613afb30f013cc34f0)  
 *  [wangweiarr's](https://github.com/wangweiarr/DCPathButton/commit/  d723afdcd32bcfffadba5e60698b027aa29e95df)
 *  [thundertrick's](https://github.com/Tangdixi/DCPathButton/pull/33)  
@@ -193,12 +189,10 @@ Thanks these PR:
 *  [skyline75489](https://github.com/Tangdixi/DCPathButton/pull/49)
 *  [tdubik](https://github.com/Tangdixi/DCPathButton/pull/50)
 
-##Problems, bugs or advice
+##Issues, Bugs, Suggestions
 
-Open an [issue](https://github.com/Tangdixi/DCPathButton/issues) guys :)  
-Reply U ASAP ~
+Open an [issue](https://github.com/Tangdixi/DCPathButton/issues) 
 
-##Lisence
+##License
 
 **DCPathButton** is available under the MIT license. See the LICENSE file for more info.
-
