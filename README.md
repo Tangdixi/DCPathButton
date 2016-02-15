@@ -185,8 +185,9 @@ Special Thanks for these Pull Requests:
 *  [wangweiarr's](https://github.com/wangweiarr/DCPathButton/commit/  d723afdcd32bcfffadba5e60698b027aa29e95df)
 *  [thundertrick's](https://github.com/Tangdixi/DCPathButton/pull/33)  
 *  [Ian Hirschfeld's](https://github.com/Tangdixi/DCPathButton/pull/47)  
-*  [skyline75489](https://github.com/Tangdixi/DCPathButton/pull/49)
-*  [tdubik](https://github.com/Tangdixi/DCPathButton/pull/50)
+*  [skyline75489's](https://github.com/Tangdixi/DCPathButton/pull/49)
+*  [tdubik's](https://github.com/Tangdixi/DCPathButton/pull/50)
+*  [Sam Spencer's](https://github.com/Tangdixi/DCPathButton/pull/54)
 
 ##Issues, Bugs, Suggestions
 
