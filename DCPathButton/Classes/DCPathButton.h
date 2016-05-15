@@ -72,34 +72,99 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
 
 @interface DCPathButton : UIView <UIGestureRecognizerDelegate>
 
+/**
+ *  The object that acts as the delegate of the `DCPathButton` object.
+ */
 @property (weak, nonatomic) id<DCPathButtonDelegate> delegate;
 
+/**
+ *  `DCPathButton` object's bloom animation's duration.
+ */
 @property (assign, nonatomic) NSTimeInterval basicDuration;
+/**
+ *  `YES` if allows `DCPathButton` object's sub items to rotate. Otherwise `NO`.
+ */
 @property (assign, nonatomic) BOOL allowSubItemRotation;
 
+/**
+ *  `DCPathButton` object's bloom radius. The default value is 105.0f.
+ */
 @property (assign, nonatomic) CGFloat bloomRadius;
+
+/**
+ *  `DCPathButton` object's bloom angle.
+ */
 @property (assign, nonatomic) CGFloat bloomAngel;
+
+/**
+ *  The center of a `DCPathButton` object's position. The default value positions the `DCPathButton` object in bottom center.
+ */
 @property (assign, nonatomic) CGPoint dcButtonCenter;
 
+/**
+ *  If set to `YES` a sound will be played when the `DCPathButton` object is being interacted. The default value is `YES`.
+ */
 @property (assign, nonatomic) BOOL allowSounds;
 
+/**
+ *  The path to the `DCPathButton` object's bloom effect sound file.
+ */
 @property (copy, nonatomic) NSString *bloomSoundPath;
+
+/**
+ *  The path to the `DCPathButton` object's fold effect sound file.
+ */
 @property (copy, nonatomic) NSString *foldSoundPath;
+
+/**
+ *  The path to the `DCPathButton` object's item action sound file.
+ */
 @property (copy, nonatomic) NSString *itemSoundPath;
 
+/**
+ *  `YES` if allows the `DCPathButton` object's center button to rotate. Otherwise `NO`.
+ */
 @property (assign, nonatomic) BOOL allowCenterButtonRotation;
 
+/**
+ *  Color of the backdrop view when `DCPathButton` object's sub items are shown.
+ */
 @property (strong, nonatomic) UIColor *bottomViewColor;
 
+/**
+ *  Direction of `DCPathButton` object's bloom animation.
+ */
 @property (assign, nonatomic) kDCPathButtonBloomDirection bloomDirection;
 
+/**
+ *  Creates a `DCPathButton` object with a given normal image and highlited images for center button.
+ *
+ *  @param centerImage            The normal image for `DCPathButton` object's center button.
+ *  @param centerHighlightedImage The highlighted image for `DCPathButton` object's center button.
+ *
+ *  @return A `DCPathButton` object.
+ */
 - (instancetype)initWithCenterImage:(UIImage *)centerImage
                    highlightedImage:(UIImage *)centerHighlightedImage;
 
+/**
+ *  Creates a `DCPathButton` object with a given frame, normal and highlighted images for its center button.
+ *
+ *  @param centerButtonFrame      The frame of `DCPathButton` object.
+ *  @param centerImage            The normal image for `DCPathButton` object's center button.
+ *  @param centerHighlightedImage The highlighted image for `DCPathButton` object's center button.
+ *
+ *  @return A `DCPathButton` object.
+ */
 - (instancetype)initWithButtonFrame:(CGRect)centerButtonFrame
                         centerImage:(UIImage *)centerImage
                    highlightedImage:(UIImage *)centerHighlightedImage;
 
+/**
+ *  Adds item buttons to an existing `DCPathButton` object.
+ *
+ *  @param pathItemButtons The item buttons to be added.
+ */
 - (void)addPathItems:(NSArray *)pathItemButtons;
 
 @end
