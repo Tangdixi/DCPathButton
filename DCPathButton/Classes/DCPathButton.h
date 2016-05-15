@@ -27,16 +27,45 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
     
 };
 
+/**
+ *  `DCPathButtonDelegate` protocol defines methods that inform the delegate object the events of item button's selection, presentation and dismissal.
+ */
 @protocol DCPathButtonDelegate <NSObject>
 
+/**
+ *  Tells the delegate that the item button at an index is clicked.
+ *
+ *  @param dcPathButton    A `DCPathButton` object informing the delegate about the button click.
+ *  @param itemButtonIndex The index of the item button being clicked.
+ */
 - (void)pathButton:(DCPathButton *)dcPathButton clickItemButtonAtIndex:(NSUInteger)itemButtonIndex;
 
 @optional
 
+/**
+ *  Tells the delegate that the `DCPathButton` object will present its items.
+ *
+ *  @param dcPathButton A `DCPathButton` object that is about to present its items.
+ */
 - (void)willPresentDCPathButtonItems:(DCPathButton *)dcPathButton;
+/**
+ *  Tells the delegate that the `DCPathButton` object has already presented its items.
+ *
+ *  @param dcPathButton A `DCPathButton` object that has presented its items.
+ */
 - (void)didPresentDCPathButtonItems:(DCPathButton *)dcPathButton;
 
+/**
+ *  Tells the delegate that the `DCPathButton` object will dismiss its items.
+ *
+ *  @param dcPathButton A `DCPathButton` object that is about to dismiss its items
+ */
 - (void)willDismissDCPathButtonItems:(DCPathButton *)dcPathButton;
+/**
+ *  Tells the delegate that the `DCPathButton` object has already dismissed its items.
+ *
+ *  @param dcPathButton A `DCPathButton` object that has dismissed its items.
+ */
 - (void)didDismissDCPathButtonItems:(DCPathButton *)dcPathButton;
 
 @end
