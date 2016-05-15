@@ -14,17 +14,42 @@
 
 @class DCPathButton;
 
+/**
+ *  The direction of a `DCPathButton` object's bloom animation.
+ */
 typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
-    
+    /**
+     *  Bloom animation gose to the top of the `DCPathButton` object.
+     */
     kDCPathButtonBloomDirectionTop = 1,
+    /**
+     *  Bloom animation gose to top left of the `DCPathButton` object.
+     */
     kDCPathButtonBloomDirectionTopLeft = 2,
+    /**
+     *  Bloom animation gose to the left of the `DCPathButton` object.
+     */
     kDCPathButtonBloomDirectionLeft = 3,
+    /**
+     *  Bloom animation gose to bottom left of the `DCPathButton` object.
+     */
     kDCPathButtonBloomDirectionBottomLeft = 4,
+    /**
+     *  Bloom animation gose to the bottom of the `DCPathButton` object.
+     */
     kDCPathButtonBloomDirectionBottom = 5,
+    /**
+     *  Bloom animation gose to bottom right of the `DCPathButton` object.
+     */
     kDCPathButtonBloomDirectionBottomRight = 6,
+    /**
+     *  Bloom animation gose to the right of the `DCPathButton` object.
+     */
     kDCPathButtonBloomDirectionRight = 7,
+    /**
+     *  Bloom animation gose around the `DCPathButton` object.
+     */
     kDCPathButtonBloomDirectionTopRight = 8,
-    
 };
 
 /**
