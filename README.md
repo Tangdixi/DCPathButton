@@ -188,6 +188,7 @@ Special Thanks for these Pull Requests:
 *  [skyline75489's](https://github.com/Tangdixi/DCPathButton/pull/49)
 *  [tdubik's](https://github.com/Tangdixi/DCPathButton/pull/50)
 *  [Sam Spencer's](https://github.com/Tangdixi/DCPathButton/pull/54)
+*  [Peng90's](https://github.com/Tangdixi/DCPathButton/pull/56)
 
 ##Issues, Bugs, Suggestions
 
