@@ -65,4 +65,9 @@
     
 }
 
+#pragma mark - DCPathButtonDelegate
+- (void)pathButton:(DCPathButton *)dcPathButton clickItemButtonAtIndex:(NSUInteger)itemButtonIndex {
+    NSLog(@"You tap %@ at index : %tu", dcPathButton, itemButtonIndex);
+}
+
 @end

@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0D964741D00C43C7F00D3507 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14DD23BAC82943B6BA709779 /* libPods.a */; };
-		43F4EFF81BE0B65B00FC8D9A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43F4EFF71BE0B65B00FC8D9A /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
-		43F4EFFE1BE70BAF00FC8D9A /* BarButtonItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F4EFFD1BE70BAF00FC8D9A /* BarButtonItemViewController.m */; settings = {ASSET_TAGS = (); }; };
+		43F4EFF81BE0B65B00FC8D9A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43F4EFF71BE0B65B00FC8D9A /* Default-568h@2x.png */; };
+		43F4EFFE1BE70BAF00FC8D9A /* BarButtonItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F4EFFD1BE70BAF00FC8D9A /* BarButtonItemViewController.m */; };
 		810D19761B41293E0032125D /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D19751B41293E0032125D /* TabBarViewController.m */; };
 		810D19791B412DCF0032125D /* UIScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D19781B412DCF0032125D /* UIScrollViewController.m */; };
 		81696CC91999D748001B9B4B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81696CC81999D748001B9B4B /* Foundation.framework */; };
@@ -232,7 +232,7 @@
 		81696CBD1999D748001B9B4B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Tangdxi;
 				TargetAttributes = {
 					81696CE51999D748001B9B4B = {
@@ -392,6 +392,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -452,6 +453,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
 				INFOPLIST_FILE = "Example/Example-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "DC.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -465,6 +467,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
 				INFOPLIST_FILE = "Example/Example-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "DC.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -486,6 +489,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "ExampleTests/ExampleTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "DC.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -504,6 +508,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
 				INFOPLIST_FILE = "ExampleTests/ExampleTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "DC.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

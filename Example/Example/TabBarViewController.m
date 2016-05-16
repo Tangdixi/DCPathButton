@@ -102,7 +102,7 @@
 }
 
 - (void)pathButton:(DCPathButton *)dcPathButton clickItemButtonAtIndex:(NSUInteger)itemButtonIndex {
-    NSLog(@"You tap %@ at index : %lu", dcPathButton, (unsigned long)itemButtonIndex);
+    NSLog(@"You tap %@ at index : %tu", dcPathButton, itemButtonIndex);
 }
 
 - (void)didPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
