@@ -1,7 +1,5 @@
 language: objective-c
-platform: ios, '9.3'
-workspace 'Example'
+xcode_workspace: Example.xcworkspace
+xcode_scheme: Example
+podfile: Example/Podfile
 
-target: App do
-    xcodeproj 'Example/Example.xcodeproj'
-end
