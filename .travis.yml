@@ -1,7 +1,7 @@
 language: objective-c
-platform :ios, '9.3'
+platform: ios, '9.3'
 workspace 'Example'
 
-target :App do
+target: App do
     xcodeproj 'Example/Example.xcodeproj'
 end
