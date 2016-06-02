@@ -1,1 +1,5 @@
 language: objective-c
+xcode_workspace: Example.xcworkspace
+xcode_scheme: Example
+podfile: Example/Podfile
+
