@@ -1,2 +1,3 @@
 platform :ios, '7.0'
+xcodeproj '/Example.xcodeproj'
 pod 'DCPathButton', '~> 2.1.3'
