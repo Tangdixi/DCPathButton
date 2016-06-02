@@ -4,4 +4,4 @@ xcode_scheme: Example
 podfile: Example/Podfile
 
 script:
-  xctool clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+  xctool -workspace Example.xcworkspace -scheme Example clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
