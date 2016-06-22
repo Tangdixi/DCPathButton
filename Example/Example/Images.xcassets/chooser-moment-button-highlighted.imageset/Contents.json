@@ -2,13 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "chooser-moment-button-highlighted.png"
+      "filename" : "chooser-moment-button-highlighted.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "chooser-moment-button-highlighted@2x.png"
+      "filename" : "chooser-moment-button-highlighted@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
