@@ -85,12 +85,16 @@
     dcPathButton.allowSounds = YES;
     dcPathButton.allowCenterButtonRotation = YES;
     
-    dcPathButton.bottomViewColor = [UIColor grayColor];
+    dcPathButton.bottomViewColor = [UIColor blackColor];
     
     dcPathButton.bloomDirection = kDCPathButtonBloomDirectionTop;
     
     [self.view addSubview:dcPathButton];
     
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 #pragma mark - DCPathButton Delegate
