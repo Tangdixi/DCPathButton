@@ -8,6 +8,10 @@
 
 **DCPathButton** is a custom menu button for iOS. The original design for this control first appeared in the well-known iOS app, [**Path**](www.path.com). Starting in **Path 4.0**, this beautiful button appeared in the tab bar, with a new design. The **DCPathButton** is a close replication of Path's button, including the **animations**, the **sounds** and the **button's images** (*of course you can use your own images*).  
 
+## Swift Version
+
+Working on Swift Version now. It need some times ...
+
 ## How To Get Started  
 
 - Download [**DCPathButton**](https://codeload.github.com/Tangdixi/DCPathButton/zip/master)
