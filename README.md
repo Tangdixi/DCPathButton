@@ -1,5 +1,5 @@
  
-#DCPathButton 
+# DCPathButton 
 
 [![Build Status](https://api.travis-ci.org/Tangdixi/DCPathButton.svg?branch=master)](https://travis-ci.org/Tangdixi/DCPathButton)
 
@@ -21,27 +21,27 @@ Working on Swift Version now. It need some times ...
 git clone git@github.com:Tangdixi/DCPathButton.git
 ```
 
-##Installation
+## Installation
 
 You can install **DCPathButton** in a traditional way -- drag the **DCPathButton** folder into your project. However, it is strongly recommended that you install via **CocoaPods**.
 
-####Requirements
+#### Requirements
 
 - **AudioToolBox.framework**
 - **QuartzCore.framework**
 
-##Install with CocoaPods
+## Install with CocoaPods
 [CocoaPods](http://cocoapods.org) is a dependency manager for Objective-C and Swift, which automates and simplifies the process of using 3rd-party libraries like **DCPathButton** in your projects.
 
-####Podfile
+#### Podfile
 ```bash
 platform :ios, '7.0'
 pod 'DCPathButton', '~> 2.1.3'
 ``` 
 
-##Usage
+## Usage
 
-####Create a DCPathButton  
+#### Create a DCPathButton  
 
 1.import the "DCPathButton" to your controller
 ```objc
@@ -69,7 +69,7 @@ DCPathItemButton *itemButton_1 = [[DCPathItemButton alloc]initWithImage:[UIImage
 ```
 ------
 
-####DCPathButtonDelegate
+#### DCPathButtonDelegate
 
 `<DCPathButtonDelegate>` handle the action when you fire the item buttons which is similar to the **UITableViewDelegate**, control the items through the **index**  
 
@@ -98,7 +98,7 @@ You also can do something before or when the item buttons appear:
 
 ------
 
-##Custom Properties
+## Custom Properties
 
 ```objc
 @property (assign, nonatomic) CGFloat bloomRadius;
@@ -178,11 +178,11 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
 ```
 `basicDuration ` is used for changing the bloom animation's duration / speed.
 
-##Swift Example
+## Swift Example
 
 A Swift version of the project is coming. For now refer to the included Swift example to understand how you might integrate this project into your own Swift app.
 
-##Contribution 
+## Contribution 
 
 Special Thanks for these Pull Requests:  
 *  [AlexJeng's](https://github.com/AlexJeng/DCPathButton/commit/05228d583626f839a17f40613afb30f013cc34f0)  
@@ -194,10 +194,10 @@ Special Thanks for these Pull Requests:
 *  [Sam Spencer's](https://github.com/Tangdixi/DCPathButton/pull/54)
 *  [Peng90's](https://github.com/Tangdixi/DCPathButton/pull/56)
 
-##Issues, Bugs, Suggestions
+## Issues, Bugs, Suggestions
 
 Open an [issue](https://github.com/Tangdixi/DCPathButton/issues) 
 
-##License
+## License
 
 **DCPathButton** is available under the MIT license. See the LICENSE file for more info.
