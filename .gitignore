@@ -14,3 +14,5 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+
+Example/Pods
