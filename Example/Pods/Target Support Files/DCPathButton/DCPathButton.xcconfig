@@ -1,1 +1,0 @@
-DCPATHBUTTON_OTHER_LDFLAGS = -framework "AudioToolBox" -framework "QuartzCore"
