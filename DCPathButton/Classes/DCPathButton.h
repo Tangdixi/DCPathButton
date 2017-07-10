@@ -15,6 +15,15 @@
 @class DCPathButton;
 
 /*!
+ *  The device orientation.
+ */
+typedef NS_ENUM(NSInteger, DCPathButtonOrientation) {
+    DCPathButtonOrientationUnknown,
+    DCPathButtonOrientationPortrait,
+    DCPathButtonOrientationLandscape
+};
+
+/*!
  *  The direction of a `DCPathButton` object's bloom animation.
  */
 typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
@@ -92,6 +101,14 @@ typedef NS_ENUM(NSUInteger, kDCPathButtonBloomDirection) {
  *  @param dcPathButton A `DCPathButton` object that has dismissed its items.
  */
 - (void)didDismissDCPathButtonItems:(DCPathButton *)dcPathButton;
+
+/*!
+ * Tells the delegate the device orientation changed.  Use this method to change the path buttons center.
+ *
+ * @param dcPathButton A `DCPathButton` object who received a device orientation changed notification.
+ * @param orientation The updated device orientation.
+ */
+- (void)pathButton:(DCPathButton *)dcPathButton didUpdateOrientation:(DCPathButtonOrientation)orientation;
 
 @end
 
