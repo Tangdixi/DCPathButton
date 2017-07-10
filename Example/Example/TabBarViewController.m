@@ -99,6 +99,14 @@
 
 #pragma mark - DCPathButton Delegate
 
+- (void)pathButton:(DCPathButton *)dcPathButton didUpdateOrientation:(DCPathButtonOrientation)orientation {
+    // Update the buttons center to account for the device orientation change.
+    //
+    [UIView transitionWithView:self.view duration:0.3 options:UIViewAnimationOptionLayoutSubviews animations:^{
+        dcPathButton.dcButtonCenter = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height - 25.5f);
+    } completion:NULL];
+}
+
 - (void)willPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
     
     NSLog(@"ItemButton will present");
