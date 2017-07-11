@@ -1,4 +1,9 @@
+--- 
 language: objective-c
-xcode_workspace: Example/Example.xcworkspace
-xcode_scheme: Example
+osx_image: xcode8.3
 podfile: Example/Podfile
+xcode_scheme: Example
+xcode_workspace: Example/Example.xcworkspace
+before_install:
+  - brew update
+  - brew outdated xctool || brew upgrade xctool

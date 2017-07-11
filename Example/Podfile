@@ -2,4 +2,9 @@ platform :ios, '7.0'
 
 target 'Example' do
   pod 'DCPathButton', :path => "../DCPathButton.podspec"  
+
+  target "ExampleTests" do
+    inherit! :search_paths
+  end
+
 end

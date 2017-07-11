@@ -15,12 +15,13 @@
 
 @implementation TabBarViewController
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     [self configureDCPathButton];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,8 +29,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)configureDCPathButton
-{
+- (void)configureDCPathButton {
     // Configure center button
     //
     DCPathButton *dcPathButton = [[DCPathButton alloc]initWithCenterImage:[UIImage imageNamed:@"chooser-button-tab"]
@@ -90,7 +90,6 @@
     dcPathButton.bloomDirection = kDCPathButtonBloomDirectionTop;
     
     [self.view addSubview:dcPathButton];
-    
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -108,9 +107,7 @@
 }
 
 - (void)willPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
-    
     NSLog(@"ItemButton will present");
-    
 }
 
 - (void)pathButton:(DCPathButton *)dcPathButton clickItemButtonAtIndex:(NSUInteger)itemButtonIndex {
@@ -118,9 +115,7 @@
 }
 
 - (void)didPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
-    
     NSLog(@"ItemButton did present");
-    
 }
 
 @end
