@@ -8,7 +8,7 @@
 
 #import "DCPathButton.h"
 
-@interface DCPathButton ()<DCPathItemButtonDelegate>
+@interface DCPathButton ()<DCPathItemButtonDelegate, CAAnimationDelegate>
 
 #pragma mark - Private Property
 

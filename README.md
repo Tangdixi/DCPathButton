@@ -186,13 +186,14 @@ A Swift version of the project is coming. For now refer to the included Swift ex
 
 Special Thanks for these Pull Requests:  
 *  [AlexJeng's](https://github.com/AlexJeng/DCPathButton/commit/05228d583626f839a17f40613afb30f013cc34f0)  
-*  [wangweiarr's](https://github.com/wangweiarr/DCPathButton/commit/  d723afdcd32bcfffadba5e60698b027aa29e95df)
+*  [wangweiarr's](https://github.com/wangweiarr/DCPathButton/commit/d723afdcd32bcfffadba5e60698b027aa29e95df)
 *  [thundertrick's](https://github.com/Tangdixi/DCPathButton/pull/33)  
 *  [Ian Hirschfeld's](https://github.com/Tangdixi/DCPathButton/pull/47)  
 *  [skyline75489's](https://github.com/Tangdixi/DCPathButton/pull/49)
 *  [tdubik's](https://github.com/Tangdixi/DCPathButton/pull/50)
 *  [Sam Spencer's](https://github.com/Tangdixi/DCPathButton/pull/54)
 *  [Peng90's](https://github.com/Tangdixi/DCPathButton/pull/56)
+*  [Kevin](https://github.com/Tangdixi/DCPathButton/pull/64)
 
 ## Issues, Bugs, Suggestions
 
