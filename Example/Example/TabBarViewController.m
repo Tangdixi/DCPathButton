@@ -15,12 +15,13 @@
 
 @implementation TabBarViewController
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     [self configureDCPathButton];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,8 +29,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)configureDCPathButton
-{
+- (void)configureDCPathButton {
     // Configure center button
     //
     DCPathButton *dcPathButton = [[DCPathButton alloc]initWithCenterImage:[UIImage imageNamed:@"chooser-button-tab"]
@@ -90,7 +90,6 @@
     dcPathButton.bloomDirection = kDCPathButtonBloomDirectionTop;
     
     [self.view addSubview:dcPathButton];
-    
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
@@ -99,10 +98,16 @@
 
 #pragma mark - DCPathButton Delegate
 
+- (void)pathButton:(DCPathButton *)dcPathButton didUpdateOrientation:(DCPathButtonOrientation)orientation {
+    // Update the buttons center to account for the device orientation change.
+    //
+    [UIView transitionWithView:self.view duration:0.3 options:UIViewAnimationOptionLayoutSubviews animations:^{
+        dcPathButton.dcButtonCenter = CGPointMake(self.view.bounds.size.width / 2, self.view.bounds.size.height - 25.5f);
+    } completion:NULL];
+}
+
 - (void)willPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
-    
     NSLog(@"ItemButton will present");
-    
 }
 
 - (void)pathButton:(DCPathButton *)dcPathButton clickItemButtonAtIndex:(NSUInteger)itemButtonIndex {
@@ -110,9 +115,7 @@
 }
 
 - (void)didPresentDCPathButtonItems:(DCPathButton *)dcPathButton {
-    
     NSLog(@"ItemButton did present");
-    
 }
 
 @end

@@ -94,8 +94,14 @@
         
         _basicDuration = 0.3f;
         
+        [self configureDeviceOrientationObserver];
+        
     }
     return self;
+}
+
+- (void)dealloc {
+    [self cleanUpOrientationObservers];
 }
 
 - (void)configureViewsLayoutWithButtonSize:(CGSize)centerButtonSize {
@@ -254,6 +260,47 @@
 
 - (BOOL)isBloom {
     return _bloom;
+}
+
+#pragma mark - Orientation Changes
+
+- (void)configureDeviceOrientationObserver {
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    
+    // Register for orientation change notifications.
+    //
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateDCPathButtonForOrientationChangeNotification:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+}
+
+- (void)updateDCPathButtonForOrientationChangeNotification:(NSNotification *)notification {
+    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+    
+    if ([self.delegate respondsToSelector:@selector(pathButton:didUpdateOrientation:)]) {
+        DCPathButtonOrientation dcPathOrientation = [self dcPathOrientationFromOrientation:orientation];
+        
+        [self.delegate pathButton:self didUpdateOrientation:dcPathOrientation];
+    }
+}
+
+- (DCPathButtonOrientation)dcPathOrientationFromOrientation:(UIDeviceOrientation)orientation {
+    if (orientation == UIDeviceOrientationUnknown) {
+        return DCPathButtonOrientationUnknown;
+    }
+    
+    BOOL isPortrait = UIDeviceOrientationIsPortrait(orientation);
+    
+    return (isPortrait ? DCPathButtonOrientationPortrait : DCPathButtonOrientationLandscape);
+}
+
+- (void)cleanUpOrientationObservers {
+    // Stop generating orientation notifications.
+    //
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Center Button Delegate

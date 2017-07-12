@@ -7,27 +7,66 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "DCPathButtonTestObject.h"
+#import <DCPathButton/DCPathButton.h>
 
 @interface ExampleTests : XCTestCase
+
+@property (nonatomic, strong) DCPathButtonTestObject *pathButtonTestView;
+@property (nonatomic, strong) DCPathButton *dcPathButton;
 
 @end
 
 @implementation ExampleTests
 
-- (void)setUp
-{
+#pragma mark - Setup -
+
+- (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+
+    self.pathButtonTestView = [DCPathButtonTestObject new];
+
+    self.dcPathButton = [[DCPathButton alloc] initWithCenterImage:[UIImage imageNamed:@"chooser-button-tab"]
+                                                 highlightedImage:[UIImage imageNamed:@"chooser-button-tab-highlighted"]];
+
+    [self.dcPathButton addPathItems:self.pathButtonTestView.pathButtonItems];
 }
 
-- (void)tearDown
-{
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+- (void)tearDown {
+    self.pathButtonTestView = nil;
+    self.dcPathButton = nil;
+
     [super tearDown];
 }
 
-- (void)testExample
-{
+#pragma mark - Tests -
+
+- (void)testDCPathButtonBloomDirectionIsTopDirectionTrue {
+    self.dcPathButton.bloomDirection = kDCPathButtonBloomDirectionTop;
+    XCTAssertTrue(self.dcPathButton.bloomDirection == kDCPathButtonBloomDirectionTop);
+}
+
+- (void)testDCPathButtonAllowsCenterRotationIsTrue {
+    self.dcPathButton.allowCenterButtonRotation = YES;
+    XCTAssertTrue(self.dcPathButton.allowCenterButtonRotation);
+}
+
+- (void)testDCPathButtonCenterMatchesAssignedCGPointIsTrue {
+    CGPoint centerPoint = CGPointMake(250, 200);
+
+    self.dcPathButton.center = centerPoint;
+
+    XCTAssertTrue(CGPointEqualToPoint(self.dcPathButton.center, centerPoint));
+}
+
+- (void)testDCPathButtonAllowsSoundIsFalse {
+    self.dcPathButton.allowSounds = NO;
+    XCTAssertFalse(self.dcPathButton.allowSounds);
+}
+
+- (void)testDCPathButtonAllowSubItemRotationIsFalse {
+    self.dcPathButton.allowSubItemRotation = NO;
+    XCTAssertFalse(self.dcPathButton.allowSubItemRotation);
 }
 
 @end
