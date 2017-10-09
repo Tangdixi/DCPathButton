@@ -4,6 +4,9 @@ osx_image: xcode9
 podfile: Example/Podfile
 xcode_scheme: Example
 xcode_workspace: Example/Example.xcworkspace
+before_install:
+  - gem install bundler
+  - bundle install
 before_script: 
   - "SIMULATOR_ID=$(xcrun instruments -s | grep -o \"iPhone 8 \\[.*\\]\" | grep -o \"\\[.*\\]\" | sed \"s/^\\[\\(.*\\)\\]$/\\1/\")"
 script:

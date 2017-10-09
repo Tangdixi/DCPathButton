@@ -29,3 +29,4 @@ fastlane/screenshots
 Example/fastlane/test_output
 *.junit
 report.xml
+fastlane/test_output
