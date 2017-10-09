@@ -1,0 +1,73 @@
+fastlane_require 'fileutils'
+fastlane_version "2.60.1"
+
+default_platform :ios
+
+platform :ios do
+
+  # Scheme to test.
+  app_scheme_name = "Example"
+
+  # Root fastlane folder.
+  fastlane_folder = "fastlane"
+
+  # Output folder for building archives (relative to fastlane_folder).
+  build_folder = File.join(fastlane_folder, "Build")
+
+  # Folder for test output files.
+  test_output_folder = "test_output"
+
+  ###########
+  ## SETUP ##
+  ###########
+  before_all do
+
+  end
+
+  #############################
+  ## TESTING & CODE COVERAGE ##
+  #############################
+
+  desc "Runs all the tests of the iOS App and gathers code coverage"
+  lane :test do
+    # Make the test output folder, if it doesn't exist
+    FileUtils.mkdir_p(test_output_folder)
+
+    scan(
+      workspace: "#{app_scheme_name}.xcworkspace",
+      scheme: "#{app_scheme_name}",
+      clean: true,
+      device: "iPhone 8",
+      code_coverage: true,
+      derived_data_path: build_folder,
+      output_directory: File.join(fastlane_folder, test_output_folder),
+      skip_build: true, #the test action will already kick off a build, don't build twice
+    )
+
+    if is_ci?
+      clean_build_artifacts
+    end
+  end
+
+  ######################
+  ## SUCCESS HANDLING ##
+  ######################
+
+  after_all do |lane|
+    puts "Success!"
+
+    if !is_ci?
+      notification(message: "Fastlane finished '#{lane}'")
+    end
+  end
+
+  ######################
+  ## FAILURE HANDLING ##
+  ######################
+
+  error do |lane, exception|
+    puts "FAIL!!!!: #{exception}"
+
+    notification(message: "Error completing Fastlane '#{lane}'")
+  end
+end
