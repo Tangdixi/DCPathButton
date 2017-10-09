@@ -1,9 +1,15 @@
 --- 
 language: objective-c
-osx_image: xcode8.3
+osx_image: xcode9
 podfile: Example/Podfile
 xcode_scheme: Example
 xcode_workspace: Example/Example.xcworkspace
-before_install:
-  - brew update
-  - brew outdated xctool || brew upgrade xctool
+before_script: 
+  - "SIMULATOR_ID=$(xcrun instruments -s | grep -o \"iPhone 8 \\[.*\\]\" | grep -o \"\\[.*\\]\" | sed \"s/^\\[\\(.*\\)\\]$/\\1/\")"
+script:
+  - open -a "simulator" --args -CurrentDeviceUDID $SIMULATOR_ID
+  - bundle exec fastlane test
+cache:
+  - bundler  # Save/cache "bundler" (local Ruby gems) for future builds.
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
